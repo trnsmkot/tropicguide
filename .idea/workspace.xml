@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56e1c716-9a8d-4221-b79f-e6af5455ae85" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/logo.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/logo.imageset/logo-black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_info.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_info.imageset/information.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_map.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_map.imageset/map1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_points.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_points.imageset/sunset.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_tours.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/menu_tours.imageset/ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/extensions/UIColor+Extensions.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/extensions/UIView+extensions.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/tab/BaseTabBarControllerViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/tab/InfosViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/tab/MapViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/tab/PlacesViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/tab/ToursViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/shared/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/first.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/first.imageset/first.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/second.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/second.imageset/second.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Base.lproj/LaunchScreen.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Base.lproj/Main.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/FirstViewController.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/SecondViewController.swift" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_38949C7A-EE30-45A0-8B84-F47E39375C66" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/PlacesViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/InfosViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/MapViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/ToursViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/tab/PlacesViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/tab/InfosViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/tab/MapViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/tab/ToursViewController.swift" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+              <item name="controllers" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+              <item name="controllers" type="fcab9f18:XcodeViewNode" />
+              <item name="base" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+              <item name="controllers" type="fcab9f18:XcodeViewNode" />
+              <item name="extensions" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+              <item name="controllers" type="fcab9f18:XcodeViewNode" />
+              <item name="shared" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
+              <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
+              <item name="controllers" type="fcab9f18:XcodeViewNode" />
+              <item name="tab" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Cidr.FilesView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TropicGuide" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="TropicGuide" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TropicGuide" TARGET_NAME="TropicGuide" CONFIG_NAME="Debug" SCHEME_NAME="TropicGuide" IS_LOCATION_SIMULATION_ALLOWED="true" RUN_TARGET_PROJECT_NAME="TropicGuide" RUN_TARGET_NAME="TropicGuide" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56e1c716-9a8d-4221-b79f-e6af5455ae85" name="Default Changelist" comment="" />
+      <created>1545749060519</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545749060519</updated>
+      <workItem from="1545749063762" duration="647000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="647000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18742369" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/BaseTabBarControllerViewController.swift">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.m">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/PlacesViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/InfosViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/MapViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tab/ToursViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
