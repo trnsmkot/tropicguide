@@ -10,9 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TourViewController: BaseViewController {
+class TourViewController: BaseTableViewController<TourTableViewCell>  {
 
-    private let tableView = UITableView()
     private let tableViewCellIdentifier = "tourTableViewCellIdentifier"
 
     private let spinner = Spinner()
@@ -48,35 +47,9 @@ class TourViewController: BaseViewController {
                     self.spinner.end()
                     // Вывести ошибку получения данных ?
                 }).disposed(by: disposeBag)
-
-
     }
 
     private func setupViews() {
-        view.backgroundColor = .white
-
-        view.subviews.forEach { view in
-            view.removeFromSuperview()
-        }
-
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(TourTableViewCell.self, forCellReuseIdentifier: tableViewCellIdentifier)
-        tableView.separatorStyle = .none
-        tableView.rowHeight = (view.bounds.size.width - 20) / 16 * 9
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 10))
-        tableView.showsVerticalScrollIndicator = false
-
-        view.addSubview(tableView)
-
-        if #available(iOS 11.0, *) {
-            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        } else {
-            view.addConstraintsWithFormat(format: "V:|[v0]|", views: tableView)
-        }
-
-        view.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: tableView)
-
         self.dataSource.asObservable()
                 .bind(to: tableView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
                     guard let tourCell = cell as? TourTableViewCell else {
@@ -94,4 +67,7 @@ class TourViewController: BaseViewController {
                 }.disposed(by: disposeBag)
     }
 
+    override func getTableViewCellIdentifier() -> String {
+        return tableViewCellIdentifier
+    }
 }

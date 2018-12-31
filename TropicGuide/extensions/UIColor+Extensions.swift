@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
     static let simpleBlue = UIColor(hex: "#47c9e5")
     static let darkBlue = UIColor(hex: "#16acce")
+    static let mainBgGray = UIColor(hex: "#fafafa")
     
     convenience init(hex:String) {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

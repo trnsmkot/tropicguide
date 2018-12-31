@@ -18,7 +18,7 @@ class TourViewModal {
     let disposeBag = DisposeBag()
     
     init() {
-        categories = apiProvider.getCategories()
+        categories = apiProvider.getTourCategories()
                 .observeOn(MainScheduler.instance)
                 .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .share(replay: 1)

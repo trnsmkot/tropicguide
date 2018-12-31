@@ -7,24 +7,68 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class ToursViewController: BaseViewController {
+class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
+
+    private let tableViewCellIdentifier = "tourCategoryTableViewCellIdentifier"
+
+    private let spinner = Spinner()
+    private let disposeBag = DisposeBag()
+
+    let dataSource = Variable<[TourCategory]>([])
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Экскурсии"
+        navigationItem.title = "Экскурсии"
+
+        setupViews()
+        initSpinner(spinner: spinner)
+
+        spinner.start()
+        TourViewModal.shared.categories
+                .subscribe(onNext: { response in
+                    if response.successful {
+                        self.dataSource.value = response.data ?? []
+                    } else {
+//                        _ = self.navigationController?.popViewController(animated: true)
+                        // Вывести ошибку получения данных ?
+                    }
+
+                    self.spinner.end()
+
+                }, onError: { error in
+                    CustomLogger.instance.reportError(error: error)
+//                    _ = self.navigationController?.popViewController(animated: true)
+
+                    self.spinner.end()
+                    // Вывести ошибку получения данных ?
+                }).disposed(by: disposeBag)
     }
-    
 
-    /*
-    // MARK: - Navigation
+    override func initBackButton() {}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupViews() {
+        self.dataSource.asObservable()
+                .bind(to: tableView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
+                    guard let tourCell = cell as? TourCategoryTableViewCell else {
+                        return
+                    }
+                    tourCell.selectionStyle = .none
+                    tourCell.setData(category: item)
+                }.disposed(by: self.disposeBag)
+
+        tableView.rx.modelSelected(TourCategory.self)
+                .subscribe { item in
+                    if let category = item.element {
+                        self.navigator?.openToursViewControllerByCategory(category)
+                    }
+                }.disposed(by: disposeBag)
     }
-    */
 
+    override func getTableViewCellIdentifier() -> String {
+        return tableViewCellIdentifier
+    }
 }

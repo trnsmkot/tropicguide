@@ -29,4 +29,9 @@ class Navigator {
         navigationController.pushViewController(tourContentViewController, animated: true)
     }
 
+    func openInfosViewControllerByCategory(_ category: InfoCategory) {
+        let infoViewController = InfoViewController()
+        infoViewController.infoCategory = category
+        navigationController.pushViewController(infoViewController, animated: true)
+    }
 }

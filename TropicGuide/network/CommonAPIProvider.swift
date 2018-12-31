@@ -9,7 +9,7 @@ import RxCocoa
 
 class CommonAPIProvider {
 
-    func getCategories() -> Observable<ServerResponse<[TourCategory]>> {
+    func getTourCategories() -> Observable<ServerResponse<[TourCategory]>> {
         guard let url = URL(string: NetworkVariables.TOUR_CATEGORIES_URL) else {
             return Observable.just(getResponse([], 500, "Wrong API url"))
         }
@@ -67,9 +67,87 @@ class CommonAPIProvider {
         }
     }
 
+    func getInfoCategories() -> Observable<ServerResponse<[InfoCategory]>> {
+        guard let url = URL(string: NetworkVariables.INFO_CATEGORIES_URL) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
 
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([InfoCategory].self, from: data)
 
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of info's categories: \(items.count)")
 
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get info's categories"))
+        }
+    }
+
+    func getInfosByCategory(id: Int) -> Observable<ServerResponse<[InfoItem]>> {
+        guard let url = URL(string: NetworkVariables.getInfosURLByCategory(id: id)) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([InfoItem].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of infos by category: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get infos by category"))
+        }
+    }
+
+    func getInfosByInfo(id: Int) -> Observable<ServerResponse<InfoItem?>> {
+        guard let url = URL(string: NetworkVariables.getInfoURLByInfo(id: id)) else {
+            return Observable.just(getResponse(nil, 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let item = try JSONDecoder().decode(InfoItem.self, from: data)
+
+                    return self.getResponse(item)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse(nil, 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse(nil, 500, "Error, can't get infos by category"))
+        }
+    }
 
 
 
