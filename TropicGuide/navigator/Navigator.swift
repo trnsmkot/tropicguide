@@ -34,4 +34,10 @@ class Navigator {
         infoViewController.infoCategory = category
         navigationController.pushViewController(infoViewController, animated: true)
     }
+
+    func openContentInfoViewController(_ info: InfoItem) {
+        let infoViewController = InfoContentViewController()
+        infoViewController.infoItem = info
+        navigationController.pushViewController(infoViewController, animated: true)
+    }
 }

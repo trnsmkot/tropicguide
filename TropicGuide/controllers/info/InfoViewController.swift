@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InfoViewController: BaseTableViewController<InfoTableViewCell>  {
+class InfoViewController: BaseTableViewController<InfoTableViewCell> {
 
     private let tableViewCellIdentifier = "infoTableViewCellIdentifier"
 
@@ -64,9 +64,9 @@ class InfoViewController: BaseTableViewController<InfoTableViewCell>  {
 
         tableView.rx.modelSelected(InfoItem.self)
                 .subscribe { item in
-//                    if let category = item.element {
-//                        self.navigator?.openToursViewControllerByCategory(category)
-//                    }
+                    if let info = item.element {
+                        self.navigator?.openContentInfoViewController(info)
+                    }
                 }.disposed(by: disposeBag)
     }
 

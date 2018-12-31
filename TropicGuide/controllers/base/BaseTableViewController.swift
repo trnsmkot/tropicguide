@@ -10,7 +10,7 @@ import UIKit
 
 protocol BaseTableProtocol {
     func getTableViewCellIdentifier() -> String
-    func getRowHeight() -> CGFloat
+    func getRowHeight() -> CGFloat?
 }
 
 class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, BaseTableProtocol {
@@ -32,7 +32,11 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CellClass.self, forCellReuseIdentifier: getTableViewCellIdentifier())
         tableView.separatorStyle = .none
-        tableView.rowHeight = getRowHeight()
+        if let rowHeight = getRowHeight() {
+            tableView.rowHeight = rowHeight
+//        } else {
+//            tableView.rowHeight = UITableView.automaticDimension
+        }
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 10))
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .mainBgGray
@@ -49,7 +53,7 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
         view.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: tableView)
     }
 
-    func getRowHeight() -> CGFloat {
+    func getRowHeight() -> CGFloat? {
         return (view.bounds.size.width - 20) / 16 * 9
     }
 

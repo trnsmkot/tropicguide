@@ -2,28 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56e1c716-9a8d-4221-b79f-e6af5455ae85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/right.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/right.imageset/right-chevron.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/model/common/CommonDescription.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/model/info/InfoCategory.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/model/info/InfoItem.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/view/info/InfoTableViewCell.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/view/tour/TourCategoryTableViewCell.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TropicGuide/viewmodel/InfoViewModal.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoContentViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/tour/TourViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/tour/TourViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/tour/ToursViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/tour/ToursViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/extensions/UIColor+Extensions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/extensions/UIColor+Extensions.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/network/CommonAPIProvider.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/network/CommonAPIProvider.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/view/TourCategoryTableViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/view/info/InfoCategoryTableViewCell.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/view/TourTableViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/view/tour/TourTableViewCell.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/viewmodel/TourViewModal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/viewmodel/TourViewModal.swift" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,14 +16,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_38949C7A-EE30-45A0-8B84-F47E39375C66" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_8E9DDC27-703D-4423-B99A-9CDF8307DDD7" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfoContentViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="63" column="48" lean-forward="true" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
+            <state relative-caret-position="1458">
+              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="e#167#179#0" expanded="true" />
               </folding>
@@ -47,45 +32,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift">
+        <entry file="file://$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TropicGuide/network/CommonAPIProvider.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="150" selection-start-line="150" selection-end-line="150" />
+            <state relative-caret-position="233">
+              <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
               <folding>
-                <element signature="e#118#135#0" expanded="true" />
-                <element signature="e#198#1372#0" />
-                <element signature="e#1378#2566#0" />
-                <element signature="e#2580#3758#0" />
-                <element signature="e#3763#4951#0" />
-                <element signature="e#4954#6001#0" />
+                <element signature="e#169#181#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -123,15 +76,17 @@
         <option value="$PROJECT_DIR$/TropicGuide/model/common/CommonDescription.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/viewmodel/InfoViewModal.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/extensions/UIColor+Extensions.swift" />
-        <option value="$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/view/tour/TourTableViewCell.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/view/tour/TourCategoryTableViewCell.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/view/info/InfoCategoryTableViewCell.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/model/info/InfoItem.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/view/info/InfoTableViewCell.swift" />
-        <option value="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" />
         <option value="$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift" />
+        <option value="$PROJECT_DIR$/TropicGuide/controllers/info/InfoContentViewController.swift" />
       </list>
     </option>
   </component>
@@ -265,7 +220,7 @@
               <item name="TropicGuide" type="1d218c8b:XcodeProjectNode" />
               <item name="TropicGuide" type="fcab9f18:XcodeViewNode" />
               <item name="view" type="fcab9f18:XcodeViewNode" />
-              <item name="info" type="fcab9f18:XcodeViewNode" />
+              <item name="desc" type="fcab9f18:XcodeViewNode" />
             </path>
             <path>
               <item name="" type="efc3779f:XcodeRootNode" />
@@ -295,8 +250,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/TropicGuide/controllers/info" />
       <recent name="$PROJECT_DIR$/TropicGuide/view/info" />
+      <recent name="$PROJECT_DIR$/TropicGuide/controllers/info" />
       <recent name="$PROJECT_DIR$/TropicGuide/model/info" />
       <recent name="$PROJECT_DIR$/TropicGuide/viewmodel" />
       <recent name="$PROJECT_DIR$/TropicGuide/model/tour" />
@@ -341,12 +296,12 @@
       <workItem from="1545893555944" duration="698000" />
       <workItem from="1545918542970" duration="480000" />
       <workItem from="1546185573985" duration="2028000" />
-      <workItem from="1546240218996" duration="17382000" />
+      <workItem from="1546240218996" duration="24400000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21956000" />
+    <option name="totallyTimeSpent" value="28974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
@@ -357,7 +312,7 @@
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -451,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TropicGuide/model/response/ServerResponse.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tour/ToursViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -492,13 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/view/tour/TourCategoryTableViewCell.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -513,27 +454,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TropicGuide/view/tour/TourTableViewCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="49" />
-          <folding>
-            <element signature="e#165#177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/tour/TourViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -590,9 +514,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/model/response/ServerResponse.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/RxSwift/RxSwift/ObservableType.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/RxCocoa/RxCocoa/iOS/UITableView+Rx.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="995">
+          <caret line="79" column="71" lean-forward="true" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
+        <state relative-caret-position="605">
           <caret line="63" column="48" lean-forward="true" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
           <folding>
             <element signature="e#167#179#0" expanded="true" />
@@ -602,15 +554,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+        <state relative-caret-position="570">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="430">
+          <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Kingfisher/Sources/General/Deprecated.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="156" column="35" lean-forward="true" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/view/tour/TourTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/base/BaseTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+          <folding>
+            <element signature="e#169#181#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TropicGuide/controllers/info/InfoContentViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1458">
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+          <folding>
+            <element signature="e#167#179#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -24,8 +24,10 @@
 		5E8FA09B91E1EBAC92FEB187 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAED0A9278E4670D92342 /* InfoViewController.swift */; };
 		5E8FA11F2588947407C67F93 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA113D8006ABB6715A63D /* InfoTableViewCell.swift */; };
 		5E8FA1422AD2FFFB408B84C3 /* InfoCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAE67558E49D691A32536 /* InfoCategoryTableViewCell.swift */; };
+		5E8FA27EE021ED5004E918F8 /* InfoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA6A78119C67C4EE5594D /* InfoContentViewController.swift */; };
 		5E8FA2B3222B8B60D7E93A7C /* InfoViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA8B80A0161E3CDB74CF7 /* InfoViewModal.swift */; };
 		5E8FA3CC75FC003D2E0F86D2 /* TourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAAC81C596D742A7EB14E /* TourTableViewCell.swift */; };
+		5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */; };
 		5E8FA472E7321FB475E115DE /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA41DAAE7E4CB8130228D /* ServerResponse.swift */; };
 		5E8FA4C5D10FA1D8FDEA3D7C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */; };
 		5E8FA54D21446A229E6D5E0B /* NetworkVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */; };
@@ -67,7 +69,9 @@
 		5E8FA41DAAE7E4CB8130228D /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		5E8FA541E5D70470F451D8EF /* TourCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourCategory.swift; sourceTree = "<group>"; };
 		5E8FA5AD7F68FEF400691FDA /* TourCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDescTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA692D430A0C5C7B00719 /* InfoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
+		5E8FA6A78119C67C4EE5594D /* InfoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContentViewController.swift; sourceTree = "<group>"; };
 		5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkVariables.swift; sourceTree = "<group>"; };
 		5E8FA852F0C1AF24173564C8 /* CustomLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLogger.swift; sourceTree = "<group>"; };
 		5E8FA892E3B252D3B23715C3 /* InfoCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCategory.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 			children = (
 				5E8FAC3E642E47BDDB20D5BC /* tour */,
 				5E8FA37DE873AE4B521E40ED /* info */,
+				5E8FAFD269BFFFDDFD65E339 /* desc */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			children = (
 				08C9A8F821CCE5280087140E /* InfosViewController.swift */,
 				5E8FAED0A9278E4670D92342 /* InfoViewController.swift */,
+				5E8FA6A78119C67C4EE5594D /* InfoContentViewController.swift */,
 			);
 			path = info;
 			sourceTree = "<group>";
@@ -340,6 +346,14 @@
 				5E8FAD55AAF6F9BBDE23B29D /* BaseTableViewController.swift */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		5E8FAFD269BFFFDDFD65E339 /* desc */ = {
+			isa = PBXGroup;
+			children = (
+				5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */,
+			);
+			path = desc;
 			sourceTree = "<group>";
 		};
 		CEE45A6BB0C908FDD416477A /* Pods */ = {
@@ -504,6 +518,8 @@
 				5E8FAC771443FCA37486FAE8 /* CommonDescription.swift in Sources */,
 				5E8FA11F2588947407C67F93 /* InfoTableViewCell.swift in Sources */,
 				5E8FA09B91E1EBAC92FEB187 /* InfoViewController.swift in Sources */,
+				5E8FA27EE021ED5004E918F8 /* InfoContentViewController.swift in Sources */,
+				5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
