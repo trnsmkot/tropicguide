@@ -7,5 +7,8 @@ target 'TropicGuide' do
 
   # Pods for TropicGuide
 
-  pod 'Alamofire', '~> 4.7'
+  pod 'RxSwift',    '~> 4.4.0'
+  pod 'RxCocoa',    '~> 4.4.0'
+  pod 'RxDataSources', '~> 3.1.0'
+  pod 'Kingfisher', '~> 5.0.1'
 end

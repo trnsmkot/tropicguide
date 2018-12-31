@@ -1,5 +1,5 @@
 //
-//  InfosViewController.swift
+//  ToursViewController.swift
 //  TropicGuide
 //
 //  Created by Vladislav Kasatkin on 21/12/2018.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class InfosViewController: BaseViewController {
+class ToursViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationItem.title = "Экскурсии"
     }
     
 
