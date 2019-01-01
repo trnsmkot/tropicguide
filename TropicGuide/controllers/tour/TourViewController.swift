@@ -70,4 +70,8 @@ class TourViewController: BaseTableViewController<TourTableViewCell>  {
     override func getTableViewCellIdentifier() -> String {
         return tableViewCellIdentifier
     }
+
+    override func needTopAdController() -> Bool {
+        return false
+    }
 }

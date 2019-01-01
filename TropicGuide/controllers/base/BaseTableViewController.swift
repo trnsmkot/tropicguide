@@ -11,6 +11,7 @@ import UIKit
 protocol BaseTableProtocol {
     func getTableViewCellIdentifier() -> String
     func getRowHeight() -> CGFloat?
+    func needTopAdController() -> Bool
 }
 
 class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, BaseTableProtocol {
@@ -34,8 +35,6 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
         tableView.separatorStyle = .none
         if let rowHeight = getRowHeight() {
             tableView.rowHeight = rowHeight
-//        } else {
-//            tableView.rowHeight = UITableView.automaticDimension
         }
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 10))
         tableView.showsVerticalScrollIndicator = false
@@ -43,14 +42,30 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
 
         view.addSubview(tableView)
 
+        if (needTopAdController()) {
+            let height = (view.frame.width - 20) / 16 * 9 + 40
+            let headerView = UIView(frame: CGRect(x: -0, y: 0, width: view.frame.width - 20, height: height))
+            tableView.tableHeaderView = headerView
+
+            let topAdVC = TopAdViewController()
+            addChild(topAdVC)
+            headerView.addSubview(topAdVC.view)
+            topAdVC.didMove(toParent: self)
+
+            topAdVC.view.translatesAutoresizingMaskIntoConstraints = false
+
+
+            headerView.addConstraintsWithFormat(format: "H:|[v0]|", views: topAdVC.view)
+            headerView.addConstraintsWithFormat(format: "V:|-10-[v0]|", views: topAdVC.view)
+        }
+
         if #available(iOS 11.0, *) {
             tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
             tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         } else {
             view.addConstraintsWithFormat(format: "V:|[v0]|", views: tableView)
         }
-
-        view.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: tableView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: tableView)
     }
 
     func getRowHeight() -> CGFloat? {
@@ -59,5 +74,9 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
 
     func getTableViewCellIdentifier() -> String {
         fatalError("getTableViewCellIdentifier() has not been implemented")
+    }
+
+    func needTopAdController() -> Bool {
+        return true
     }
 }

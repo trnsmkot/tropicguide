@@ -46,14 +46,14 @@ class TourTableViewCell: UITableViewCell {
 
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(categoryImageView)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: categoryImageView)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: categoryImageView)
         contentView.addConstraintsWithFormat(format: "V:|-10-[v0]|", views: categoryImageView)
 
 
         let titleWrapper = UIView()
         titleWrapper.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleWrapper)
-        contentView.addConstraintsWithFormat(format: "H:|-5-[v0]", views: titleWrapper)
+        contentView.addConstraintsWithFormat(format: "H:|-15-[v0]", views: titleWrapper)
 //        contentView.addConstraintsWithFormat(format: "V:[v0]-30-|", views: titleWrapper)
         titleWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 30).isActive = true
 
@@ -77,7 +77,7 @@ class TourTableViewCell: UITableViewCell {
         let priceWrapper = UIView()
         priceWrapper.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(priceWrapper)
-        contentView.addConstraintsWithFormat(format: "H:|-5-[v0]", views: priceWrapper)
+        contentView.addConstraintsWithFormat(format: "H:|-15-[v0]", views: priceWrapper)
         priceWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 30).isActive = true
 
         let priceBG = UIView()

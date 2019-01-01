@@ -43,7 +43,7 @@ class TourCategoryTableViewCell: UITableViewCell {
 
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(categoryImageView)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: categoryImageView)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: categoryImageView)
         contentView.addConstraintsWithFormat(format: "V:|-10-[v0]|", views: categoryImageView)
 
 

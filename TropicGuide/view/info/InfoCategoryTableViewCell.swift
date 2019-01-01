@@ -35,7 +35,7 @@ class InfoCategoryTableViewCell: UITableViewCell {
         contentWrapper.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(contentWrapper)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: contentWrapper)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: contentWrapper)
         contentView.addConstraintsWithFormat(format: "V:|-10-[v0]|", views: contentWrapper)
 
         title.translatesAutoresizingMaskIntoConstraints = false

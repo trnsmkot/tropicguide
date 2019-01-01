@@ -46,7 +46,7 @@ class BaseDescTableViewCell: UITableViewCell {
         title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textColor = .black
         contentView.addSubview(title)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: title)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
 
         let desc = UILabel()
         desc.numberOfLines = 100
@@ -55,7 +55,7 @@ class BaseDescTableViewCell: UITableViewCell {
         desc.font = UIFont.systemFont(ofSize: 14)
         desc.textColor = .black
         contentView.addSubview(desc)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: desc)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: desc)
 
         contentView.addConstraintsWithFormat(format: "V:|-5-[v0]-8-[v1]-20-|", views: title, desc)
     }
@@ -67,7 +67,7 @@ class BaseDescTableViewCell: UITableViewCell {
         descImageView.clipsToBounds = true
         descImageView.layer.cornerRadius = 2
         contentView.addSubview(descImageView)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: descImageView)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: descImageView)
 
         heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width / 16 * 9)
         heightImageConstraint?.priority = UILayoutPriority.defaultHigh
@@ -80,7 +80,7 @@ class BaseDescTableViewCell: UITableViewCell {
         title.font = UIFont.systemFont(ofSize: 13)
         title.textColor = .black
         contentView.addSubview(title)
-        contentView.addConstraintsWithFormat(format: "H:|[v0]|", views: title)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
 
         contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-20-|", views: descImageView, title)
 

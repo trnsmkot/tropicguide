@@ -48,7 +48,8 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
                 }).disposed(by: disposeBag)
     }
 
-    override func initBackButton() {}
+    override func initBackButton() {
+    }
 
     private func setupViews() {
         self.dataSource.asObservable()
@@ -70,5 +71,9 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
 
     override func getTableViewCellIdentifier() -> String {
         return tableViewCellIdentifier
+    }
+
+    override func needTopAdController() -> Bool {
+        return false
     }
 }

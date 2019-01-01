@@ -32,6 +32,7 @@
 		5E8FA4C5D10FA1D8FDEA3D7C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */; };
 		5E8FA54D21446A229E6D5E0B /* NetworkVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */; };
 		5E8FA5D49DEAD64D6D9B8665 /* TourItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA50A2DC0D119565BE7A /* TourItem.swift */; };
+		5E8FA63D06D861BE0DA724DB /* TopAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */; };
 		5E8FA68923A49EE97F49D245 /* TourCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA541E5D70470F451D8EF /* TourCategory.swift */; };
 		5E8FA69B38064ADD59CD00AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA3AD468D0AFC05749642 /* BaseViewController.swift */; };
 		5E8FA6FF3CB934C2D727464F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA28C6020F05F295DE11 /* WebViewController.swift */; };
@@ -84,6 +85,7 @@
 		5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		5E8FAD55AAF6F9BBDE23B29D /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		5E8FAE67558E49D691A32536 /* InfoCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdViewController.swift; sourceTree = "<group>"; };
 		5E8FAED0A9278E4670D92342 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7FDAAD4B97725904EF8FDD9E /* Pods_TropicGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TropicGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1420D57870E90F5D82C2FE9 /* Pods-TropicGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TropicGuide.release.xcconfig"; path = "Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				08D9277121D605DB00A95707 /* place */,
 				08C9A8EF21CCE4320087140E /* tab */,
 				5E8FAF411C6C46D1FFCC9E74 /* base */,
+				5E8FAB3070B27BCDD63CFA28 /* common */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -302,6 +305,14 @@
 				5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */,
 			);
 			path = network;
+			sourceTree = "<group>";
+		};
+		5E8FAB3070B27BCDD63CFA28 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		5E8FAC3E642E47BDDB20D5BC /* tour */ = {
@@ -520,6 +531,7 @@
 				5E8FA09B91E1EBAC92FEB187 /* InfoViewController.swift in Sources */,
 				5E8FA27EE021ED5004E918F8 /* InfoContentViewController.swift in Sources */,
 				5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */,
+				5E8FA63D06D861BE0DA724DB /* TopAdViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

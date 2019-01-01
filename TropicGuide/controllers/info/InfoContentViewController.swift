@@ -53,16 +53,16 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
     private func setupViews() {
         tableView.backgroundColor = .white
 
-        let title = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 20, height: 60))
+        let title = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 60))
         title.text = infoItem?.name ?? ""
         title.textColor = .black
         title.numberOfLines = 2
         title.font = UIFont.systemFont(ofSize: 24)
 
-        let line = UIView(frame: CGRect(x: 0, y: 50, width: view.frame.width - 20, height: 1))
+        let line = UIView(frame: CGRect(x: 10, y: 50, width: view.frame.width - 20, height: 1))
         line.backgroundColor = .lightGray
 
-        let header = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 20, height: 60))
+        let header = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 60))
 
         header.addSubview(title)
         header.addSubview(line)
