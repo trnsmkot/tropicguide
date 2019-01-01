@@ -67,6 +67,7 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
         } else {
             view.addConstraintsWithFormat(format: "V:|[v0]|", views: tableView)
         }
+//        view.addConstraintsWithFormat(format: "V:|[v0]|", views: tableView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: tableView)
     }
 

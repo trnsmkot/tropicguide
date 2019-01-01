@@ -52,6 +52,7 @@ class TopAdCollectioniewCell: UICollectionViewCell {
         contentView.addSubview(titleWrapper)
         titleWrapper.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         titleWrapper.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        titleWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 40).isActive = true
 
         let titleBG = UIView()
         titleBG.backgroundColor = .black

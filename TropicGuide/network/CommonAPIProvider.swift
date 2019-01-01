@@ -179,6 +179,116 @@ class CommonAPIProvider {
     }
 
 
+    func getDistricts() -> Observable<ServerResponse<[District]>> {
+        guard let url = URL(string: NetworkVariables.DISTRICTS_URL) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([District].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of districts: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get any districts"))
+        }
+    }
+
+    func getPointCategories() -> Observable<ServerResponse<[PointCategory]>> {
+        guard let url = URL(string: NetworkVariables.POINT_CATEGORIES_URL) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([PointCategory].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of point's categories: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get any point's categories"))
+        }
+    }
+
+    func getPointsByData(categoryId: Int, districtId: Int) -> Observable<ServerResponse<[PointItemShort]>> {
+        guard let url = URL(string: NetworkVariables.getPointsURL(categoryId: categoryId, districtId: districtId, page: 1)) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([PointItemShort].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of points: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get any points"))
+        }
+    }
+
+    func getPointByPoint(id: Int) -> Observable<ServerResponse<PointItem?>> {
+        guard let url = URL(string: NetworkVariables.getPointUrlByPoint(id: id)) else {
+            return Observable.just(getResponse(nil, 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let item = try JSONDecoder().decode(PointItem?.self, from: data)
+                    return self.getResponse(item)
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse(nil, 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse(nil, 500, "Error, can't get point"))
+        }
+    }
+
+
     private func getPostRequest(url: URL, params: String? = nil) throws -> URLRequest {
         var request = URLRequest(url: url)
 

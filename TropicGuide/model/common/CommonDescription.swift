@@ -6,7 +6,6 @@
 import Foundation
 
 struct CommonDescription: Decodable {
-
     var title: String?
     var text: String?
     var type: DescType = DescType.TEXT

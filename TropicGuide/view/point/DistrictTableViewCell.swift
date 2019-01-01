@@ -1,5 +1,5 @@
 //
-//  TourCategoryTableViewCell.swift
+//  DistrictTableViewCell.swift
 //  TropicGuide
 //
 //  Created by Vladislav Kasatkin on 28/12/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TourCategoryTableViewCell: UITableViewCell {
+class DistrictTableViewCell: UITableViewCell {
 
     private var categoryImageView = UIImageView()
     private var title = UILabel()
@@ -22,15 +22,15 @@ class TourCategoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setData(category: TourCategory) {
-        if let coverUrl = category.cover {
+    func setData(district: District) {
+        if let coverUrl = district.cover {
             categoryImageView.kf.indicatorType = .activity
             categoryImageView.kf.setImage(with: URL(string: coverUrl))
         } else {
             // TODO ...
         }
 
-        title.text = category.name?.uppercased() ?? ""
+        title.text = district.desc?.name?.uppercased() ?? ""
     }
 
     private func setupViews() {
@@ -50,9 +50,9 @@ class TourCategoryTableViewCell: UITableViewCell {
         let titleWrapper = UIView()
         titleWrapper.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleWrapper)
-        titleWrapper.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        titleWrapper.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        titleWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 40).isActive = true
+        contentView.addConstraintsWithFormat(format: "H:|-15-[v0]", views: titleWrapper)
+        contentView.addConstraintsWithFormat(format: "V:[v0]-5-|", views: titleWrapper)
+        titleWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 50).isActive = true
 
         let titleBG = UIView()
         titleBG.backgroundColor = .black
