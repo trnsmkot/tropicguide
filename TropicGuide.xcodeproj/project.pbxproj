@@ -27,16 +27,21 @@
 		5E8FA1422AD2FFFB408B84C3 /* InfoCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAE67558E49D691A32536 /* InfoCategoryTableViewCell.swift */; };
 		5E8FA18D4CA18CF90CABA888 /* PointImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA9948C7B3E60CB19EBFA /* PointImage.swift */; };
 		5E8FA22C11C5E09AE91B7496 /* CommonDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA9896172345CE7638D56 /* CommonDesc.swift */; };
-		5E8FA23CA2819C023253D79D /* TopAdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA9F63531ADE88001D8D6 /* TopAdTableViewCell.swift */; };
+		5E8FA23CA2819C023253D79D /* TopAdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA9F63531ADE88001D8D6 /* TopAdCollectionViewCell.swift */; };
+		5E8FA24C6670538C94D56FD4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAEBBBDCC46CDD8E21881 /* ImageCollectionViewCell.swift */; };
 		5E8FA27EE021ED5004E918F8 /* InfoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA6A78119C67C4EE5594D /* InfoContentViewController.swift */; };
 		5E8FA2B3222B8B60D7E93A7C /* InfoViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA8B80A0161E3CDB74CF7 /* InfoViewModal.swift */; };
 		5E8FA30158FB745F93BF9CDE /* DistrictTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA340E2F16AABD219DBDA /* DistrictTableViewCell.swift */; };
 		5E8FA3CC75FC003D2E0F86D2 /* TourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAAC81C596D742A7EB14E /* TourTableViewCell.swift */; };
+		5E8FA3DA1EE45C0460F9C8CB /* PointCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAAA8383EC7A812956AC1 /* PointCategoryTableViewCell.swift */; };
+		5E8FA3E3E15891332D686F70 /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA821E9EFFA44E464A332 /* PointTableViewCell.swift */; };
+		5E8FA40F76A22217A5CEE5D3 /* PointContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA6942715FA4256A0740E /* PointContentViewController.swift */; };
 		5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */; };
 		5E8FA472E7321FB475E115DE /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA41DAAE7E4CB8130228D /* ServerResponse.swift */; };
 		5E8FA4C240CEF985546526E7 /* PointViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA33826469AD7BF2D3C3D /* PointViewModal.swift */; };
 		5E8FA4C5D10FA1D8FDEA3D7C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */; };
 		5E8FA54D21446A229E6D5E0B /* NetworkVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */; };
+		5E8FA561901CEF807D53226A /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA56061BA21443980DC35 /* PointsViewController.swift */; };
 		5E8FA5D49DEAD64D6D9B8665 /* TourItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA50A2DC0D119565BE7A /* TourItem.swift */; };
 		5E8FA63D06D861BE0DA724DB /* TopAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */; };
 		5E8FA68923A49EE97F49D245 /* TourCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA541E5D70470F451D8EF /* TourCategory.swift */; };
@@ -89,27 +94,32 @@
 		5E8FA3F77DBB5014AD20AFA5 /* PointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointItem.swift; sourceTree = "<group>"; };
 		5E8FA41DAAE7E4CB8130228D /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		5E8FA541E5D70470F451D8EF /* TourCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourCategory.swift; sourceTree = "<group>"; };
+		5E8FA56061BA21443980DC35 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
 		5E8FA58BA236F33C670863F5 /* TopAdViewModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdViewModal.swift; sourceTree = "<group>"; };
 		5E8FA5AD7F68FEF400691FDA /* TourCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDescTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA692D430A0C5C7B00719 /* InfoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
+		5E8FA6942715FA4256A0740E /* PointContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointContentViewController.swift; sourceTree = "<group>"; };
 		5E8FA6A78119C67C4EE5594D /* InfoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContentViewController.swift; sourceTree = "<group>"; };
 		5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkVariables.swift; sourceTree = "<group>"; };
+		5E8FA821E9EFFA44E464A332 /* PointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA852F0C1AF24173564C8 /* CustomLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLogger.swift; sourceTree = "<group>"; };
 		5E8FA892E3B252D3B23715C3 /* InfoCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCategory.swift; sourceTree = "<group>"; };
 		5E8FA8B80A0161E3CDB74CF7 /* InfoViewModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewModal.swift; sourceTree = "<group>"; };
 		5E8FA8FB93B669CF0DA6E537 /* PointItemShort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointItemShort.swift; sourceTree = "<group>"; };
 		5E8FA9896172345CE7638D56 /* CommonDesc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDesc.swift; sourceTree = "<group>"; };
 		5E8FA9948C7B3E60CB19EBFA /* PointImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointImage.swift; sourceTree = "<group>"; };
-		5E8FA9F63531ADE88001D8D6 /* TopAdTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdTableViewCell.swift; sourceTree = "<group>"; };
+		5E8FA9F63531ADE88001D8D6 /* TopAdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E8FAA28C6020F05F295DE11 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5E8FAA50A2DC0D119565BE7A /* TourItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItem.swift; sourceTree = "<group>"; };
+		5E8FAAA8383EC7A812956AC1 /* PointCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FAAC81C596D742A7EB14E /* TourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FAB45C06F45B99AFCB82F /* CommonAPIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonAPIProvider.swift; sourceTree = "<group>"; };
 		5E8FAB5E01668A0B57E9F433 /* Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		5E8FAD55AAF6F9BBDE23B29D /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		5E8FAE67558E49D691A32536 /* InfoCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		5E8FAEBBBDCC46CDD8E21881 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdViewController.swift; sourceTree = "<group>"; };
 		5E8FAED0A9278E4670D92342 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5E8FAF1C33D2B13137064250 /* TopAdItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdItem.swift; sourceTree = "<group>"; };
@@ -252,6 +262,8 @@
 				08C9A8F421CCE4F00087140E /* PlacesViewController.swift */,
 				5E8FA2DD7ABA5D41DE7D5081 /* DistrictsViewController.swift */,
 				5E8FA274EA4547FD75CDF936 /* PointCategoriesViewController.swift */,
+				5E8FA56061BA21443980DC35 /* PointsViewController.swift */,
+				5E8FA6942715FA4256A0740E /* PointContentViewController.swift */,
 			);
 			path = place;
 			sourceTree = "<group>";
@@ -365,7 +377,7 @@
 		5E8FA81A7E20A8750414821E /* ad */ = {
 			isa = PBXGroup;
 			children = (
-				5E8FA9F63531ADE88001D8D6 /* TopAdTableViewCell.swift */,
+				5E8FA9F63531ADE88001D8D6 /* TopAdCollectionViewCell.swift */,
 			);
 			path = ad;
 			sourceTree = "<group>";
@@ -382,6 +394,9 @@
 			isa = PBXGroup;
 			children = (
 				5E8FA340E2F16AABD219DBDA /* DistrictTableViewCell.swift */,
+				5E8FAAA8383EC7A812956AC1 /* PointCategoryTableViewCell.swift */,
+				5E8FA821E9EFFA44E464A332 /* PointTableViewCell.swift */,
+				5E8FAEBBBDCC46CDD8E21881 /* ImageCollectionViewCell.swift */,
 			);
 			path = point;
 			sourceTree = "<group>";
@@ -611,7 +626,7 @@
 				5E8FA27EE021ED5004E918F8 /* InfoContentViewController.swift in Sources */,
 				5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */,
 				5E8FA63D06D861BE0DA724DB /* TopAdViewController.swift in Sources */,
-				5E8FA23CA2819C023253D79D /* TopAdTableViewCell.swift in Sources */,
+				5E8FA23CA2819C023253D79D /* TopAdCollectionViewCell.swift in Sources */,
 				5E8FAA315BD2F5BF4B1D2C51 /* TopAdItem.swift in Sources */,
 				5E8FAD2099367C3E0FA74CAB /* TopAdViewModal.swift in Sources */,
 				5E8FA13637C30835535EB105 /* DistrictsViewController.swift in Sources */,
@@ -624,6 +639,11 @@
 				5E8FA22C11C5E09AE91B7496 /* CommonDesc.swift in Sources */,
 				5E8FA77A1BDA2B8D2288FFAF /* District.swift in Sources */,
 				5E8FA4C240CEF985546526E7 /* PointViewModal.swift in Sources */,
+				5E8FA3DA1EE45C0460F9C8CB /* PointCategoryTableViewCell.swift in Sources */,
+				5E8FA561901CEF807D53226A /* PointsViewController.swift in Sources */,
+				5E8FA3E3E15891332D686F70 /* PointTableViewCell.swift in Sources */,
+				5E8FA40F76A22217A5CEE5D3 /* PointContentViewController.swift in Sources */,
+				5E8FA24C6670538C94D56FD4 /* ImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

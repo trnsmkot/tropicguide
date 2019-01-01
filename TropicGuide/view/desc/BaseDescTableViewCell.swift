@@ -24,6 +24,9 @@ class BaseDescTableViewCell: UITableViewCell {
     }
 
     func setData(item: CommonDescription) {
+        contentView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
         switch (item.type) {
         case .IMAGE:
             setupImageViews(item: item)
@@ -83,29 +86,5 @@ class BaseDescTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
 
         contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-20-|", views: descImageView, title)
-
-//        if let imageUrl = item.imagePath {
-//            descImageView.kf.indicatorType = .activity
-//            descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
-//                switch result {
-//                case .success(let value):
-////                    descImageView.image = value.image
-//                    print(value.image.size.width, value.image.size.height)
-//                    let width = (self.contentView.frame.width + 40) / value.image.size.width * value.image.size.height
-//
-//
-////                    let aspect = value.image.size.width / value.image.size.height
-////                    let constraint = NSLayoutConstraint(item: descImageView, attribute: .width, relatedBy: .equal, toItem: descImageView, attribute: .height, multiplier: aspect, constant: 0.0)
-////                    constraint.priority = UILayoutPriority.required
-////                    descImageView.addConstraint(constraint)
-//
-//                    heightImageConstraint.constant =  self.contentView.frame.width / value.image.size.width * value.image.size.height
-//                case .failure(let error):
-//                    print("Job failed: \(error.localizedDescription)")
-//                }
-//            }
-//        }
-
-
     }
 }

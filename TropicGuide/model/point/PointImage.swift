@@ -7,5 +7,5 @@ import Foundation
 
 struct PointImage: Decodable {
     var id: Int?
-    var url: String?
+    var path: String?
 }

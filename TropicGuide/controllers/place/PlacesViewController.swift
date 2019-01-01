@@ -100,7 +100,12 @@ class PlacesViewController: BaseViewController {
 
         scrollView.addConstraintsWithFormat(format: "H:|[v0(\(view.frame.width * 2))]", views: contentScrollView)
         if #available(iOS 11.0, *) {
-            scrollView.addConstraintsWithFormat(format: "V:|[v0(\(view.frame.size.height - 220))]", views: contentScrollView)
+            let window = UIApplication.shared.keyWindow
+            let topPadding = window?.safeAreaInsets.top ?? 0
+            let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+            print(topPadding, bottomPadding)
+            let offset = 142 + topPadding + bottomPadding
+            scrollView.addConstraintsWithFormat(format: "V:|[v0(\(view.frame.size.height - offset))]", views: contentScrollView)
         } else {
             scrollView.addConstraintsWithFormat(format: "V:|[v0(\(view.frame.size.height - 166))]", views: contentScrollView)
         }

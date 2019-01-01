@@ -16,7 +16,7 @@ struct PointItem: Decodable {
     var category: PointCategory?
     var zoom: Int = 0
     var images: [PointImage]?
-    var countOfReviews: Int = 0
+    var reviews: Int = 0
     var views: Int = 0
 
     var type: PointType?

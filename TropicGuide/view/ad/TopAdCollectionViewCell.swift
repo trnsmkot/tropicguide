@@ -1,5 +1,5 @@
 //
-//  TopAdTableViewCell.swift
+//  TopAdCollectionViewCell.swift
 //  TropicGuide
 //
 //  Created by Vladislav Kasatkin on 28/12/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopAdCollectioniewCell: UICollectionViewCell {
+class TopAdCollectionViewCell: UICollectionViewCell {
 
     private var categoryImageView = UIImageView()
     private var title = UILabel()

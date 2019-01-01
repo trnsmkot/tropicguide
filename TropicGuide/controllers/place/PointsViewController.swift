@@ -10,21 +10,22 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PointCategoriesViewController: BaseTableViewController<PointCategoryTableViewCell> {
+class PointsViewController: BaseTableViewController<PointTableViewCell> {
 
-    private let tableViewCellIdentifier = "pointCategoriesTableViewCellIdentifier"
+    private let tableViewCellIdentifier = "pointsTableViewCellIdentifier"
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[PointCategory]>([])
+    let dataSource = Variable<[PointItemShort]>([])
 
     var district: District?
+    var category: PointCategory?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let district = district {
-            navigationItem.title = district.desc?.name
+        if let category = category {
+            navigationItem.title = category.name
         }
 
         setupViews()
@@ -32,7 +33,7 @@ class PointCategoriesViewController: BaseTableViewController<PointCategoryTableV
         initSpinner(spinner: spinner, offset: district == nil ? 200 : 0)
         spinner.start()
 
-        PointViewModal.shared.getPointCategories()?
+        PointViewModal.shared.getPointsByData(categoryId: category?.id ?? 0, districtId: district?.id ?? 0)?
                 .subscribe(onNext: { response in
                     if response.successful {
                         self.dataSource.value = response.data ?? []
@@ -50,17 +51,17 @@ class PointCategoriesViewController: BaseTableViewController<PointCategoryTableV
     func setupViews() {
         self.dataSource.asObservable()
                 .bind(to: tableView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
-                    guard let tourCell = cell as? PointCategoryTableViewCell else {
+                    guard let pointCell = cell as? PointTableViewCell else {
                         return
                     }
-                    tourCell.selectionStyle = .none
-                    tourCell.setData(category: item)
+                    pointCell.selectionStyle = .none
+                    pointCell.setData(item: item)
                 }.disposed(by: self.disposeBag)
 
-        tableView.rx.modelSelected(PointCategory.self)
+        tableView.rx.modelSelected(PointItemShort.self)
                 .subscribe { item in
-                    if let category = item.element {
-                        self.navigator?.openPointsViewController(category: category, district: self.district)
+                    if let point = item.element {
+                        self.navigator?.openPointContentViewController(point)
                     }
                 }.disposed(by: disposeBag)
     }
@@ -69,13 +70,7 @@ class PointCategoriesViewController: BaseTableViewController<PointCategoryTableV
         return tableViewCellIdentifier
     }
 
-    override func getRowHeight() -> CGFloat {
-        return 60
-    }
-
     override func needTopAdController() -> Int? {
-        return 1
+        return 2
     }
-
-
 }

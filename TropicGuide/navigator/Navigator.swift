@@ -68,4 +68,23 @@ class Navigator {
 
 
     }
+
+    func openPointContentViewController(_ point: PointItemShort) {
+        let pointContentViewController = PointContentViewController()
+        pointContentViewController.pointItem = point
+        navigationController.pushViewController(pointContentViewController, animated: true)
+    }
+
+    func openPointCategoriesViewControllerByCategory(_ district: District) {
+        let pointCategoriesViewController = PointCategoriesViewController()
+        pointCategoriesViewController.district = district
+        navigationController.pushViewController(pointCategoriesViewController, animated: true)
+    }
+
+    func openPointsViewController(category: PointCategory, district: District?) {
+        let pointsViewController = PointsViewController()
+        pointsViewController.district = district
+        pointsViewController.category = category
+        navigationController.pushViewController(pointsViewController, animated: true)
+    }
 }

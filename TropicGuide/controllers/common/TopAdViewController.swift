@@ -46,7 +46,7 @@ class TopAdViewController: UIViewController {
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.bounces = false
-        collectionView.register(TopAdCollectioniewCell.self, forCellWithReuseIdentifier: tableViewCellIdentifier)
+        collectionView.register(TopAdCollectionViewCell.self, forCellWithReuseIdentifier: tableViewCellIdentifier)
         collectionView.backgroundColor = UIColor.white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -66,7 +66,7 @@ class TopAdViewController: UIViewController {
 
         self.dataSource.asObservable()
                 .bind(to: collectionView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
-                    guard let addCell = cell as? TopAdCollectioniewCell else {
+                    guard let addCell = cell as? TopAdCollectionViewCell else {
                         return
                     }
                     addCell.setData(item: item)

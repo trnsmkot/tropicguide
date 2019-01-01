@@ -61,7 +61,7 @@ class DistrictsViewController: BaseTableViewController<DistrictTableViewCell> {
         tableView.rx.modelSelected(District.self)
                 .subscribe { item in
                     if let district = item.element {
-//                        self.navigator?.openInfosViewControllerByCategory(category)
+                        self.navigator?.openPointCategoriesViewControllerByCategory(district)
                     }
                 }.disposed(by: disposeBag)
     }
