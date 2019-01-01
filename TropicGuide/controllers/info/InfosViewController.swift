@@ -76,4 +76,8 @@ class InfosViewController: BaseTableViewController<InfoCategoryTableViewCell> {
     override func getTableViewCellIdentifier() -> String {
         return tableViewCellIdentifier
     }
+
+    override func needTopAdController() -> Int? {
+        return 3
+    }
 }

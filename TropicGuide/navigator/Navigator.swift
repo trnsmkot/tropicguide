@@ -40,4 +40,32 @@ class Navigator {
         infoViewController.infoItem = info
         navigationController.pushViewController(infoViewController, animated: true)
     }
+
+    func openTopAdContentController(_ ad: TopAdItem) {
+        switch ad.type {
+        case .LINK:
+            let adViewController = WebViewController()
+            var tour = TourItem()
+            tour.url = ad.link
+            tour.name = ad.title
+            tour.cover = ad.image
+
+            adViewController.tour = tour
+            navigationController.pushViewController(adViewController, animated: true)
+        case .TOUR:
+            let adViewController = WebViewController()
+            var tour = TourItem()
+            tour.url = ad.link
+            tour.name = ad.title
+            tour.cover = ad.image
+
+            adViewController.tour = tour
+            navigationController.pushViewController(adViewController, animated: true)
+        case .POINT:
+
+            return
+        }
+
+
+    }
 }

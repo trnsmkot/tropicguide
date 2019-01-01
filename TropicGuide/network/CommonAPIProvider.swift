@@ -149,6 +149,34 @@ class CommonAPIProvider {
         }
     }
 
+    func getTopAdsById(_ id: Int) -> Observable<ServerResponse<[TopAdItem]>> {
+        guard let url = URL(string: NetworkVariables.getTopAdsURLByIdy(id)) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([TopAdItem].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of ads by id \(id): \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get ads by id: \(id)"))
+        }
+    }
 
 
     private func getPostRequest(url: URL, params: String? = nil) throws -> URLRequest {

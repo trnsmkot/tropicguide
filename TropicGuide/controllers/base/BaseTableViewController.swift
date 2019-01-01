@@ -11,7 +11,7 @@ import UIKit
 protocol BaseTableProtocol {
     func getTableViewCellIdentifier() -> String
     func getRowHeight() -> CGFloat?
-    func needTopAdController() -> Bool
+    func needTopAdController() -> Int?
 }
 
 class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, BaseTableProtocol {
@@ -42,12 +42,14 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
 
         view.addSubview(tableView)
 
-        if (needTopAdController()) {
-            let height = (view.frame.width - 20) / 16 * 9 + 40
+        if let id = needTopAdController() {
+            let height = (view.frame.width - 20) / 16 * 9 + 20
             let headerView = UIView(frame: CGRect(x: -0, y: 0, width: view.frame.width - 20, height: height))
             tableView.tableHeaderView = headerView
 
             let topAdVC = TopAdViewController()
+            topAdVC.navigator = self.navigator
+            topAdVC.topAdsId = id
             addChild(topAdVC)
             headerView.addSubview(topAdVC.view)
             topAdVC.didMove(toParent: self)
@@ -56,7 +58,7 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
 
 
             headerView.addConstraintsWithFormat(format: "H:|[v0]|", views: topAdVC.view)
-            headerView.addConstraintsWithFormat(format: "V:|-10-[v0]|", views: topAdVC.view)
+            headerView.addConstraintsWithFormat(format: "V:|[v0]|", views: topAdVC.view)
         }
 
         if #available(iOS 11.0, *) {
@@ -76,7 +78,7 @@ class BaseTableViewController<CellClass: UITableViewCell>: BaseViewController, B
         fatalError("getTableViewCellIdentifier() has not been implemented")
     }
 
-    func needTopAdController() -> Bool {
-        return true
+    func needTopAdController() -> Int? {
+        return nil
     }
 }

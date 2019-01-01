@@ -23,4 +23,8 @@ struct NetworkVariables {
     static func getInfoURLByInfo(id: Int) -> String {
         return "\(BASE_URL)info/info/\(APP_LANG)/\(id)/"
     }
+
+    static func getTopAdsURLByIdy(_ id: Int) -> String {
+        return "\(BASE_URL)favorites/\(APP_LANG)/\(id)/"
+    }
 }

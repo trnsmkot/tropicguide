@@ -73,7 +73,7 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
         return tableViewCellIdentifier
     }
 
-    override func needTopAdController() -> Bool {
-        return false
+    override func needTopAdController() -> Int? {
+        return nil
     }
 }
