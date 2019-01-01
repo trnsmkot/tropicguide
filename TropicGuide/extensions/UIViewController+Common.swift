@@ -7,8 +7,8 @@ import UIKit
 
 extension UIViewController {
 
-    func initSpinner(spinner: Spinner) {
-        spinner.commonInit(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+    func initSpinner(spinner: Spinner, offset: CGFloat = 0) {
+        spinner.commonInit(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - offset))
         spinner.isHidden = true
         self.view.addSubview(spinner)
     }

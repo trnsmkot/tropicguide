@@ -25,7 +25,7 @@ class DistrictsViewController: BaseTableViewController<DistrictTableViewCell> {
 
 //        view.backgroundColor = .red
 
-        initSpinner(spinner: spinner)
+        initSpinner(spinner: spinner, offset: 200)
         spinner.start()
 
         PointViewModal.shared.getDistricts()?

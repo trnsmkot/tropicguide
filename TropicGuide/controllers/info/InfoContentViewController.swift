@@ -68,6 +68,7 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
         header.addSubview(line)
 
         tableView.tableHeaderView = header
+        tableView.estimatedRowHeight = 100
 
         self.dataSource
                 .asObservable()
