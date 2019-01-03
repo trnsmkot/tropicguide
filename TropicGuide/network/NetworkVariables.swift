@@ -41,8 +41,15 @@ struct NetworkVariables {
     static func getPointsURL(categoryId: Int, districtId: Int, page: Int) -> String {
         return "\(BASE_URL)points/\(APP_LANG)/\(districtId)/\(categoryId)/\(page)/"
     }
+
     static func getPointUrlByPoint(id: Int) -> String {
         return "\(BASE_URL)point/\(APP_LANG)/\(id)/"
     }
+
+
+    static let MAP_POiNTS_URL = "\(BASE_URL)map/points/\(APP_LANG)/"
+
+
+    static let FILTER_SETTINGS_URL = "\(BASE_URL)map/index/\(APP_LANG)/"
 
 }

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import GoogleMaps
 
 class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>, UICollectionViewDelegateFlowLayout {
 
@@ -26,6 +27,8 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
     private var images: [String: UIImage?] = [:]
     private var imageHeights: [String: CGFloat?] = [:]
+
+    private let footer = UIView()
 
     let pageControl = UIPageControl()
     let collectionView: UICollectionView = {
@@ -45,10 +48,12 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         if let id = pointItem?.id {
             PointViewModal.shared.getPointByPoint(id: id)?
                     .subscribe(onNext: { response in
-                        if response.successful {
-                            self.dataSource.value = response.data??.desc?.descriptions ?? []
-                            self.imageDataSource.value = response.data??.images ?? []
+                        if response.successful, let data = response.data, let point = data {
+                            self.dataSource.value = point.desc?.descriptions ?? []
+                            self.imageDataSource.value = point.images ?? []
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
+
+                            self.setupMapView(parent: self.footer, point: point)
 
                             self.view.layoutIfNeeded()
                         } else {
@@ -85,8 +90,10 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         header.addSubview(title)
         header.addSubview(line)
 
+        footer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3)
 
         tableView.tableHeaderView = header
+        tableView.tableFooterView = footer
         tableView.estimatedRowHeight = 100
 
         self.dataSource
@@ -157,6 +164,79 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
                     }
                     addCell.setData(item: item)
                 }.disposed(by: self.disposeBag)
+    }
+
+    private func setupMapView(parent: UIView, point: PointItem) {
+        let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 40)
+
+        mapView.settings.scrollGestures = true
+        mapView.settings.zoomGestures = true
+        mapView.isMyLocationEnabled = true
+
+        parent.addSubview(mapView)
+
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
+        marker.title = point.desc?.name
+        marker.map = mapView
+
+        if let icon  = point.markerIcon {
+            let markerImageView = UIImageView()
+
+            markerImageView.kf.setImage(with: URL(string: icon)) { result in
+                switch result {
+                case .success(let value):
+                    marker.icon = self.resizeImage(image: value.image, targetSize: CGSize(width: 32, height: 32))
+                case .failure(let error):
+                    print("Job failed: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        let button = UIButton(frame: CGRect(x: 0, y: view.frame.width / 4 * 3 - 40, width: view.frame.width - 10, height: 40))
+        button.setTitle("Открыть в Google Maps", for: .normal)
+        button.contentHorizontalAlignment = .right
+        button.setTitleColor(.lightGray, for: .normal)
+        button.addTarget(self, action: #selector(openGoogleMap), for: .touchUpInside)
+        parent.addSubview(button)
+
+    }
+
+    @objc func openGoogleMap() {
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string: "comgooglemaps://?q=\(pointItem?.lat ?? 0),\(pointItem?.lng ?? 0)&zoom=10")!)
+        } else {
+            let url = "http://maps.apple.com/?q=\(pointItem?.lat ?? 0),\(pointItem?.lng ?? 0)&z=10&t=s"
+            UIApplication.shared.openURL(URL(string:url)!)
+        }
+    }
+
+    private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
     }
 
     override func getTableViewCellIdentifier() -> String {

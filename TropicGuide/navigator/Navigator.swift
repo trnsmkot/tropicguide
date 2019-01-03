@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class Navigator {
     private let navigationController: UINavigationController
@@ -86,5 +88,11 @@ class Navigator {
         pointsViewController.district = district
         pointsViewController.category = category
         navigationController.pushViewController(pointsViewController, animated: true)
+    }
+
+    func openFilterViewController(filter: BehaviorRelay<PointFilter>) {
+        let filterViewController = FilterViewController()
+        filterViewController.currentFilterData = filter
+        navigationController.pushViewController(filterViewController, animated: true)
     }
 }

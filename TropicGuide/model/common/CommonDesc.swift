@@ -8,6 +8,6 @@ import Foundation
 struct CommonDesc: Decodable {
     var id: Int?
     var name: String?
-    var shortDescription: String?
+    var text: String?
     var descriptions: [CommonDescription]?
 }

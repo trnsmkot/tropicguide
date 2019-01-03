@@ -14,7 +14,7 @@ struct PointItem: Decodable {
     var lat: Double = 0.0
     var lng: Double = 0.0
     var category: PointCategory?
-    var zoom: Int = 0
+    var zoom: Float = 0
     var images: [PointImage]?
     var reviews: Int = 0
     var views: Int = 0

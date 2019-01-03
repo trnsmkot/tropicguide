@@ -289,6 +289,77 @@ class CommonAPIProvider {
     }
 
 
+    func getMapPointsByData(categories: [Int] = [], districts: [Int] = [], query: String? = nil) -> Observable<ServerResponse<[PointItemShort]>> {
+        guard let url = URL(string: NetworkVariables.MAP_POiNTS_URL) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            var params = "d=0"
+
+            if let query = query, query.count > 0 {
+                params += "&query=\(query)"
+            }
+
+            if (categories.count > 0) {
+                categories.forEach { id in
+                    params += "&categories=\(id)"
+                }
+            }
+
+            if (districts.count > 0) {
+                districts.forEach { id in
+                    params += "&districts=\(id)"
+                }
+            }
+
+            let request = try getPostRequest(url: url, params: params)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([PointItemShort].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of points: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get any points"))
+        }
+    }
+
+
+    func getFilterData() -> Observable<ServerResponse<FilterData?>> {
+        guard let url = URL(string: NetworkVariables.FILTER_SETTINGS_URL) else {
+            return Observable.just(getResponse(nil, 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let filter = try JSONDecoder().decode(FilterData.self, from: data)
+                    return self.getResponse(filter)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse(nil, 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse(nil, 500, "Error, can't get filter data"))
+        }
+    }
+
     private func getPostRequest(url: URL, params: String? = nil) throws -> URLRequest {
         var request = URLRequest(url: url)
 

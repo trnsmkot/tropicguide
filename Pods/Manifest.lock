@@ -1,5 +1,10 @@
 PODS:
   - Differentiator (3.1.0)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
+    - GoogleMaps/Base
   - Kingfisher (5.0.1)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
@@ -12,6 +17,7 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - GoogleMaps
   - Kingfisher (~> 5.0.1)
   - RxCocoa (~> 4.4.0)
   - RxDataSources (~> 3.1.0)
@@ -20,6 +26,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Differentiator
+    - GoogleMaps
     - Kingfisher
     - RxAtomic
     - RxCocoa
@@ -28,12 +35,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 71b51cc5e94e58d4ddf6b8771644a61e1bf42f12
+PODFILE CHECKSUM: f2f4e5a88380320d1dfaa56408842c2fed7f499e
 
 COCOAPODS: 1.5.3

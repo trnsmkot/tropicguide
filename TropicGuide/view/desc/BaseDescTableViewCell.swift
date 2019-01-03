@@ -31,7 +31,7 @@ class BaseDescTableViewCell: UITableViewCell {
         case .IMAGE:
             setupImageViews(item: item)
         case .INSTA:
-            print("INSTA")
+            setupInstaViews(item: item)
         case .TEXT:
             setupTextViews(item: item)
         }
@@ -86,5 +86,82 @@ class BaseDescTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
 
         contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-20-|", views: descImageView, title)
+    }
+
+    private var instaAccount = ""
+    private var instaBrowserUrl = ""
+
+    private func setupInstaViews(item: CommonDescription) {
+        if let array = item.text?.split(separator: "|"), array.count > 1 {
+            instaBrowserUrl = String(array[0])
+            instaAccount = String(array[1])
+        }
+
+        descImageView.translatesAutoresizingMaskIntoConstraints = false
+        descImageView.contentMode = .scaleAspectFit
+        descImageView.clipsToBounds = true
+        descImageView.layer.cornerRadius = 2
+        contentView.addSubview(descImageView)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: descImageView)
+
+        heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width)
+        heightImageConstraint?.priority = UILayoutPriority.defaultHigh
+        heightImageConstraint?.isActive = true
+
+        //instagram
+        let titleWrapper = UIView()
+        titleWrapper.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(titleWrapper)
+        contentView.addConstraintsWithFormat(format: "H:|-15-[v0]", views: titleWrapper)
+        contentView.addConstraintsWithFormat(format: "V:|-5-[v0]", views: titleWrapper)
+
+        let titleBG = UIView()
+        titleBG.backgroundColor = .black
+        titleBG.alpha = 0.6
+        titleBG.translatesAutoresizingMaskIntoConstraints = false
+        titleWrapper.addSubview(titleBG)
+        titleWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: titleBG)
+        titleWrapper.addConstraintsWithFormat(format: "V:|[v0]|", views: titleBG)
+
+        let instaLogo = UIImageView()
+        instaLogo.translatesAutoresizingMaskIntoConstraints = false
+        instaLogo.image = UIImage(named: "instagram")?.withRenderingMode(.alwaysTemplate)
+        instaLogo.contentMode = .scaleAspectFit
+        instaLogo.tintColor = .white
+        titleWrapper.addSubview(instaLogo)
+        titleWrapper.addConstraintsWithFormat(format: "V:|-5-[v0]-5-|", views: instaLogo)
+
+        let title = UILabel()
+        title.text = instaAccount
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = UIFont.systemFont(ofSize: 16)
+        title.textColor = .white
+        titleWrapper.addSubview(title)
+        titleWrapper.addConstraintsWithFormat(format: "V:|-5-[v0]-5-|", views: title)
+
+        titleWrapper.addConstraintsWithFormat(format: "H:|-5-[v0(30)]-10-[v1]-10-|", views: instaLogo, title)
+
+
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Открыть в Instagram", for: .normal)
+        button.contentHorizontalAlignment = .right
+        button.setTitleColor(.lightGray, for: .normal)
+        button.addTarget(self, action: #selector(openInstagram), for: .touchUpInside)
+        contentView.addSubview(button)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: button)
+
+        contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1(40)]-10-|", views: descImageView, button)
+    }
+
+    @objc func openInstagram() {
+        let instagramHooks = "instagram://user?username=" + instaAccount
+        let instagramUrl = URL(string: instagramHooks)
+        if UIApplication.shared.canOpenURL(instagramUrl!) {
+            UIApplication.shared.openURL(instagramUrl!)
+        } else {
+            //redirect to safari because the user doesn't have Instagram
+            UIApplication.shared.openURL(URL(string: instaBrowserUrl)!)
+        }
     }
 }
