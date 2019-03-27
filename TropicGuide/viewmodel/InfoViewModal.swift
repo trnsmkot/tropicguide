@@ -15,8 +15,8 @@ class InfoViewModal {
     static let shared = InfoViewModal()
     let apiProvider = CommonAPIProvider()
 
-    func getInfoCategories() -> Observable<ServerResponse<[InfoCategory]>>? {
-        return apiProvider.getInfoCategories()
+    func getInfoCategories(parentId: Int) -> Observable<ServerResponse<[InfoCategory]>>? {
+        return apiProvider.getInfoCategories(parentId: parentId)
                 .observeOn(MainScheduler.instance)
                 .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .share(replay: 1)

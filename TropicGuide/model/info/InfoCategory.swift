@@ -9,4 +9,5 @@ struct InfoCategory: Decodable {
     var id: Int?
     var sortOrder: Int = 0
     var name: String?
+    var icon: String?
 }

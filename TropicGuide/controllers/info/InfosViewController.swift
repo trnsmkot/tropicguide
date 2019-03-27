@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InfosViewController: BaseTableViewController<InfoCategoryTableViewCell> {
+class InfosViewController: BaseTableViewController<PointCategoryTableViewCell> {
 
     private let tableViewCellIdentifier = "infoCategoryTableViewCellIdentifier"
 
@@ -19,15 +19,17 @@ class InfosViewController: BaseTableViewController<InfoCategoryTableViewCell> {
 
     let dataSource = Variable<[InfoCategory]>([])
 
+    public var parentCategory: InfoCategory?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Справочник"
+        navigationItem.title = self.parentCategory?.name ?? "Справочник"
 
         setupViews()
         initSpinner(spinner: spinner)
 
         spinner.start()
-        InfoViewModal.shared.getInfoCategories()?
+        InfoViewModal.shared.getInfoCategories(parentId: parentCategory?.id ?? -1)?
                 .subscribe(onNext: { response in
                     if response.successful {
                         self.dataSource.value = response.data ?? []
@@ -51,22 +53,32 @@ class InfosViewController: BaseTableViewController<InfoCategoryTableViewCell> {
 
         self.dataSource.asObservable()
                 .bind(to: tableView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
-                    guard let tourCell = cell as? InfoCategoryTableViewCell else {
+                    guard let tourCell = cell as? PointCategoryTableViewCell else {
                         return
                     }
                     tourCell.selectionStyle = .none
-                    tourCell.setData(category: item)
+                    var pointCategory = PointCategory()
+                    pointCategory.name = item.name
+                    pointCategory.icon = item.icon
+                    tourCell.setData(category: pointCategory)
                 }.disposed(by: self.disposeBag)
 
         tableView.rx.modelSelected(InfoCategory.self)
                 .subscribe { item in
                     if let category = item.element {
-                        self.navigator?.openInfosViewControllerByCategory(category)
+                        if (self.parentCategory == nil) {
+                            self.navigator?.openInfosViewControllerByParentCategory(category)
+                        } else {
+                            self.navigator?.openInfoViewControllerByCategory(category)
+                        }
                     }
                 }.disposed(by: disposeBag)
     }
 
     override func initBackButton() {
+        if (parentCategory != nil) {
+            super.initBackButton()
+        }
     }
 
     override func getRowHeight() -> CGFloat {

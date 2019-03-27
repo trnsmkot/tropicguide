@@ -31,11 +31,18 @@ class Navigator {
         navigationController.pushViewController(tourContentViewController, animated: true)
     }
 
-    func openInfosViewControllerByCategory(_ category: InfoCategory) {
+    func openInfoViewControllerByCategory(_ category: InfoCategory) {
         let infoViewController = InfoViewController()
         infoViewController.infoCategory = category
         navigationController.pushViewController(infoViewController, animated: true)
     }
+
+    func openInfosViewControllerByParentCategory(_ parentCategory: InfoCategory) {
+        let infosViewController = InfosViewController()
+        infosViewController.parentCategory = parentCategory
+        navigationController.pushViewController(infosViewController, animated: true)
+    }
+
 
     func openContentInfoViewController(_ info: InfoItem) {
         let infoViewController = InfoContentViewController()

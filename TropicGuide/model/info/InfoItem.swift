@@ -11,4 +11,5 @@ struct InfoItem: Decodable {
     var name: String?
     var timestamp: Int?
     var descriptions: [CommonDescription]?
+    var cover: String?
 }

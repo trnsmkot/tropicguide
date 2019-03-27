@@ -19,7 +19,7 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
     private let disposeBag = DisposeBag()
 
     private var images: [String: UIImage?] = [:]
-    private var imageHeights: [String: CGFloat?] = [:]
+//    private var imageHeights: [String: CGFloat?] = [:]
 
     let dataSource = Variable<[CommonDescription]>([])
 
@@ -62,10 +62,10 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
         title.numberOfLines = 2
         title.font = UIFont.systemFont(ofSize: 24)
 
-        let line = UIView(frame: CGRect(x: 10, y: 50, width: view.frame.width - 20, height: 1))
+        let line = UIView(frame: CGRect(x: 10, y: 60, width: view.frame.width - 20, height: 1))
         line.backgroundColor = .lightGray
 
-        let header = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 60))
+        let header = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 70))
 
         header.addSubview(title)
         header.addSubview(line)
@@ -80,37 +80,37 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
                     cell.setData(item: item)
 
 
-                    if let imageUrl = item.imagePath {
-                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
-                            cell.heightImageConstraint?.constant = height ?? 0
-                            cell.descImageView.image = image
-                        } else {
-                            cell.descImageView.kf.indicatorType = .activity
-                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
-                                switch result {
-                                case .success(let value):
-
-                                    self.images[imageUrl] = value.image
-
-                                    DispatchQueue.main.async {
-                                        let image = value.image
-                                        let aspectRatio = image.size.height / image.size.width
-
-                                        cell.descImageView.image = image
-
-                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
-                                        self.tableView.beginUpdates()
-                                        cell.heightImageConstraint?.constant = imageHeight
-                                        self.imageHeights[imageUrl] = imageHeight
-                                        self.tableView.endUpdates()
-                                    }
-
-                                case .failure(let error):
-                                    print("Job failed: \(error.localizedDescription)")
-                                }
-                            }
-                        }
-                    }
+//                    if let imageUrl = item.imagePath {
+//                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
+//                            cell.heightImageConstraint?.constant = height ?? 0
+//                            cell.descImageView.image = image
+//                        } else {
+//                            cell.descImageView.kf.indicatorType = .activity
+//                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
+//                                switch result {
+//                                case .success(let value):
+//
+//                                    self.images[imageUrl] = value.image
+//
+//                                    DispatchQueue.main.async {
+//                                        let image = value.image
+//                                        let aspectRatio = image.size.height / image.size.width
+//
+//                                        cell.descImageView.image = image
+//
+//                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
+//                                        self.tableView.beginUpdates()
+//                                        cell.heightImageConstraint?.constant = imageHeight
+//                                        self.imageHeights[imageUrl] = imageHeight
+//                                        self.tableView.endUpdates()
+//                                    }
+//
+//                                case .failure(let error):
+//                                    print("Job failed: \(error.localizedDescription)")
+//                                }
+//                            }
+//                        }
+//                    }
 
                 }.disposed(by: self.disposeBag)
     }

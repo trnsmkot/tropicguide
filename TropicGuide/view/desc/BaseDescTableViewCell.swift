@@ -53,7 +53,13 @@ class BaseDescTableViewCell: UITableViewCell {
 
         let desc = UILabel()
         desc.numberOfLines = 100
-        desc.text = item.text
+        
+        let notCleanText = item.text ?? ""
+        let regex = try! NSRegularExpression(pattern: "<[^>]*>", options: NSRegularExpression.Options.caseInsensitive)
+        let range = NSMakeRange(0, notCleanText.count)
+        let cleanedText = regex.stringByReplacingMatches(in: notCleanText, options: [], range: range, withTemplate: "\r\n")
+        
+        desc.text = cleanedText
         desc.translatesAutoresizingMaskIntoConstraints = false
         desc.font = UIFont.systemFont(ofSize: 14)
         desc.textColor = .black
@@ -66,13 +72,13 @@ class BaseDescTableViewCell: UITableViewCell {
     private func setupImageViews(item: CommonDescription) {
 
         descImageView.translatesAutoresizingMaskIntoConstraints = false
-        descImageView.contentMode = .scaleAspectFit
+        descImageView.contentMode = .scaleAspectFill
         descImageView.clipsToBounds = true
         descImageView.layer.cornerRadius = 2
         contentView.addSubview(descImageView)
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: descImageView)
 
-        heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width / 16 * 9)
+        heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4 * 3)
         heightImageConstraint?.priority = UILayoutPriority.defaultHigh
         heightImageConstraint?.isActive = true
 
@@ -86,6 +92,12 @@ class BaseDescTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
 
         contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-20-|", views: descImageView, title)
+
+
+        if let imageUrl = item.imagePath {
+            descImageView.kf.indicatorType = .activity
+            descImageView.kf.setImage(with: URL(string: imageUrl))
+        }
     }
 
     private var instaAccount = ""

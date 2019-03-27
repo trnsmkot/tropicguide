@@ -17,6 +17,8 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
+    private let showToursKey = "showToursInfo"
+    
     let dataSource = Variable<[TourCategory]>([])
 
     override func viewDidLoad() {
@@ -46,6 +48,19 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
                     self.spinner.end()
                     // Вывести ошибку получения данных ?
                 }).disposed(by: disposeBag)
+        
+        
+        let preferences = UserDefaults.standard
+        if !preferences.bool(forKey: showToursKey) {
+            
+            let message = "Экскурсии предоставлены компанией TROPIC TOURS\r\nВсю информацию о компании вы можете найти на официальном сайте компании: phuket-tropic-tours.com, в разделе Контакты"
+            let alert = UIAlertController(title: "Информация об экскурсиях", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            
+            preferences.set(true, forKey: showToursKey)
+            preferences.synchronize()
+        }
     }
 
     override func initBackButton() {

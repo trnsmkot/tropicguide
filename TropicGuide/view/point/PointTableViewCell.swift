@@ -65,6 +65,7 @@ class PointTableViewCell: UITableViewCell {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = UIFont.systemFont(ofSize: 20)
         title.textColor = .white
+        title.numberOfLines = 2
         titleWrapper.addSubview(title)
         titleWrapper.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
         titleWrapper.addConstraintsWithFormat(format: "V:|-5-[v0]-5-|", views: title)

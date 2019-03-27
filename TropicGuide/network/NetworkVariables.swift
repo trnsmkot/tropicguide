@@ -7,6 +7,7 @@ import Foundation
 
 struct NetworkVariables {
 
+//    private static let BASE_URL = "http://localhost:9000/remote/api/v1/"
     private static let BASE_URL = "http://tropicguide.info/remote/api/v1/"
     private static let APP_LANG = "ru"
 
@@ -17,8 +18,9 @@ struct NetworkVariables {
         return "\(BASE_URL)tours/\(APP_LANG)/\(id)/"
     }
 
-
-    static let INFO_CATEGORIES_URL = "\(BASE_URL)info/categories/\(APP_LANG)/"
+    static func getInfoCategories(parentId: Int) -> String{
+        return "\(BASE_URL)info/categories/\(APP_LANG)/\(parentId)/"
+    }
 
     static func getInfosURLByCategory(id: Int) -> String {
         return "\(BASE_URL)info/list/\(APP_LANG)/\(id)/"

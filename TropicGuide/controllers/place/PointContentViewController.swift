@@ -103,39 +103,39 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
                     cell.setData(item: item)
 
 
-                    if let imageUrl = item.imagePath {
-
-                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
-                            cell.heightImageConstraint?.constant = height ?? 0
-                            cell.descImageView.image = image
-                        } else {
-                            cell.descImageView.kf.indicatorType = .activity
-                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
-                                switch result {
-                                case .success(let value):
-
-                                    self.images[imageUrl] = value.image
-
-                                    DispatchQueue.main.async {
-                                        let image = value.image
-                                        let aspectRatio = image.size.height / image.size.width
-
-                                        cell.descImageView.image = image
-
-                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
-                                        self.tableView.beginUpdates()
-                                        cell.heightImageConstraint?.constant = imageHeight
-                                        self.imageHeights[imageUrl] = imageHeight
-                                        self.tableView.endUpdates()
-                                        self.tableView.layer.removeAllAnimations()
-                                    }
-
-                                case .failure(let error):
-                                    print("Job failed: \(error.localizedDescription)")
-                                }
-                            }
-                        }
-                    }
+//                    if let imageUrl = item.imagePath {
+//
+//                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
+//                            cell.heightImageConstraint?.constant = height ?? 0
+//                            cell.descImageView.image = image
+//                        } else {
+//                            cell.descImageView.kf.indicatorType = .activity
+//                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
+//                                switch result {
+//                                case .success(let value):
+//
+//                                    self.images[imageUrl] = value.image
+//
+//                                    DispatchQueue.main.async {
+//                                        let image = value.image
+//                                        let aspectRatio = image.size.height / image.size.width
+//
+//                                        cell.descImageView.image = image
+//
+//                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
+//                                        self.tableView.beginUpdates()
+//                                        cell.heightImageConstraint?.constant = imageHeight
+//                                        self.imageHeights[imageUrl] = imageHeight
+//                                        self.tableView.endUpdates()
+//                                        self.tableView.layer.removeAllAnimations()
+//                                    }
+//
+//                                case .failure(let error):
+//                                    print("Job failed: \(error.localizedDescription)")
+//                                }
+//                            }
+//                        }
+//                    }
 
                 }.disposed(by: self.disposeBag)
     }
@@ -169,7 +169,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     private func setupMapView(parent: UIView, point: PointItem) {
         let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 40)
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 60)
 
         mapView.settings.scrollGestures = true
         mapView.settings.zoomGestures = true
@@ -195,22 +195,31 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
             }
         }
 
-        let button = UIButton(frame: CGRect(x: 0, y: view.frame.width / 4 * 3 - 40, width: view.frame.width - 10, height: 40))
-        button.setTitle("Открыть в Google Maps", for: .normal)
-        button.contentHorizontalAlignment = .right
-        button.setTitleColor(.lightGray, for: .normal)
-        button.addTarget(self, action: #selector(openGoogleMap), for: .touchUpInside)
+        let button = UIButton(frame: CGRect(x: 10, y: view.frame.width / 4 * 3 - 50, width: view.frame.width - 20, height: 40))
+        button.setTitle("Открыть навигатор", for: .normal)
+        button.contentHorizontalAlignment = .center
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .simpleBlue
+        button.addTarget(self, action: #selector(openSelectMapApp), for: .touchUpInside)
         parent.addSubview(button)
 
     }
 
-    @objc func openGoogleMap() {
+    @objc func openSelectMapApp() {
+        let alert = UIAlertController(title: "Веберите приложение", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Открыть Карты Apple", style: .default, handler: { alert in
+            let url = "http://maps.apple.com/?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&z=10&t=s"
+            UIApplication.shared.open(URL(string:url)!, options: [:], completionHandler: nil)
+        }))
+        
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-            UIApplication.shared.openURL(URL(string: "comgooglemaps://?q=\(pointItem?.lat ?? 0),\(pointItem?.lng ?? 0)&zoom=10")!)
-        } else {
-            let url = "http://maps.apple.com/?q=\(pointItem?.lat ?? 0),\(pointItem?.lng ?? 0)&z=10&t=s"
-            UIApplication.shared.openURL(URL(string:url)!)
+            alert.addAction(UIAlertAction(title: "Открыть Карты Google", style: .default, handler: { alert in
+                let url = "comgooglemaps://?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&zoom=10"
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+            }))
         }
+        present(alert, animated: true, completion: nil)
     }
 
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

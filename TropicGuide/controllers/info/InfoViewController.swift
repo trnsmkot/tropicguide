@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InfoViewController: BaseTableViewController<InfoTableViewCell> {
+class InfoViewController: BaseTableViewController<PointTableViewCell> {
 
     private let tableViewCellIdentifier = "infoTableViewCellIdentifier"
 
@@ -55,11 +55,15 @@ class InfoViewController: BaseTableViewController<InfoTableViewCell> {
 
         self.dataSource.asObservable()
                 .bind(to: tableView.rx.items(cellIdentifier: tableViewCellIdentifier)) { row, item, cell in
-                    guard let tourCell = cell as? InfoTableViewCell else {
+                    guard let tourCell = cell as? PointTableViewCell else {
                         return
                     }
                     tourCell.selectionStyle = .none
-                    tourCell.setData(item: item)
+                    var point = PointItemShort()
+                    point.desc = CommonDesc()
+                    point.desc?.name = item.name
+                    point.cover = item.cover
+                    tourCell.setData(item: point)
                 }.disposed(by: self.disposeBag)
 
         tableView.rx.modelSelected(InfoItem.self)
@@ -68,10 +72,6 @@ class InfoViewController: BaseTableViewController<InfoTableViewCell> {
                         self.navigator?.openContentInfoViewController(info)
                     }
                 }.disposed(by: disposeBag)
-    }
-
-    override func getRowHeight() -> CGFloat {
-        return 60
     }
 
     override func getTableViewCellIdentifier() -> String {

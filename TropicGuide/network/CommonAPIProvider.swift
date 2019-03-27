@@ -67,8 +67,8 @@ class CommonAPIProvider {
         }
     }
 
-    func getInfoCategories() -> Observable<ServerResponse<[InfoCategory]>> {
-        guard let url = URL(string: NetworkVariables.INFO_CATEGORIES_URL) else {
+    func getInfoCategories(parentId: Int) -> Observable<ServerResponse<[InfoCategory]>> {
+        guard let url = URL(string: NetworkVariables.getInfoCategories(parentId: parentId)) else {
             return Observable.just(getResponse([], 500, "Wrong API url"))
         }
 

@@ -64,6 +64,8 @@ class TopAdCollectionViewCell: UICollectionViewCell {
 
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = UIFont.systemFont(ofSize: 20)
+        title.numberOfLines = 2
+        title.textAlignment = .center
         title.textColor = .white
         titleWrapper.addSubview(title)
         titleWrapper.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)

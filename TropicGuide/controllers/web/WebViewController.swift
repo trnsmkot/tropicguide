@@ -31,13 +31,19 @@ class WebViewController: BaseViewController, UIWebViewDelegate {
     }
 
     @objc override func onBackButtonClicked(sender: UIBarButtonItem) {
-        if let canGoBack = webView?.canGoBack, canGoBack {
-            webView?.goBack()
-        } else {
+//        if let canGoBack = webView?.canGoBack, canGoBack {
+//            webView?.goBack()
+//        } else {
             self.navigationController?.popViewController(animated: true)
-        }
+//        }
     }
 
+    func webViewDidStartLoad(_ webView: UIWebView) {
+//        if let tourUrl = webView.request?.url, tourUrl.absoluteString.contains("stour") {
+//             spinner.start()
+//        }
+    }
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
 //        spinner.end()
     }

@@ -12,8 +12,9 @@ import RxCocoa
 import Kingfisher
 import GoogleMaps
 
-class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDelegate {
+class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
 
+    private let locationManager = CLLocationManager()
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
     private var mapView: GMSMapView?
@@ -30,6 +31,8 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         locationManager.requestWhenInUseAuthorization()
 
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 20))
         navigationItem.titleView = searchBar
@@ -38,7 +41,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterImage, style: .plain, target: self, action: #selector(onFilterButtonClicked))
 
         setupMap()
-
+        
         initSpinner(spinner: spinner)
         spinner.start()
 
@@ -168,6 +171,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
     }
 
     private func showPointsOnMap(points: [PointItemShort]) {
+        currentPoints = points
         mapView?.clear()
 
         points.forEach { point in
@@ -212,10 +216,14 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
                 title += "\n"
             }
 
+            title += point.desc?.name ?? "" + "\n"
             let alert = UIAlertController(title: title, message: point.desc?.text, preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Посмотреть", style: .default, handler: { alert in
                 self.navigator?.openPointContentViewController(point)
+            }))
+            alert.addAction(UIAlertAction(title: "Открыть навигатор", style: .default, handler: { alert in
+                self.openSelectMapApp(point: point)
             }))
 
             var coverView = UIImageView(frame: CGRect(x: 10, y: 10, width: view.frame.width - 40, height: 200))
@@ -238,6 +246,23 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
         }
     }
 
+    private func openSelectMapApp(point: PointItemShort?) {
+        let alert = UIAlertController(title: "Веберите приложение", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Открыть Карты Apple", style: .default, handler: { alert in
+            let url = "http://maps.apple.com/?q=\(point?.lat ?? 0),\(point?.lng ?? 0)&z=10&t=s"
+            UIApplication.shared.open(URL(string:url)!, options: [:], completionHandler: nil)
+        }))
+        
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            alert.addAction(UIAlertAction(title: "Открыть Карты Google", style: .default, handler: { alert in
+                let url = "comgooglemaps://?q=\(point?.lat ?? 0),\(point?.lng ?? 0)&zoom=10"
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+            }))
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func setupMap() {
         view.subviews.forEach { view in
             view.removeFromSuperview()
@@ -251,8 +276,21 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
         mapView!.settings.scrollGestures = true
         mapView!.settings.zoomGestures = true
         mapView!.isMyLocationEnabled = true
+        mapView!.settings.myLocationButton = true
+        
+        //Location Manager code to fetch current location
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
 
         view.addSubview(mapView!)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 10.5)
+        self.mapView?.animate(to: camera)
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.locationManager.stopUpdatingLocation()
     }
 
     override func initBackButton() {
