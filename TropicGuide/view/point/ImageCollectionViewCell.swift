@@ -30,6 +30,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func setTourData(item: TourItemImage) {
+        if let url = item.path {
+            pointImageView.kf.indicatorType = .activity
+            pointImageView.kf.setImage(with: URL(string: url))
+        } else {
+            // TODO ...
+        }
+    }
+
     private func setupViews() {
         contentView.backgroundColor = .mainBgGray
 

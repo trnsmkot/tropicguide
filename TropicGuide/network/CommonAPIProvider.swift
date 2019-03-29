@@ -67,6 +67,53 @@ class CommonAPIProvider {
         }
     }
 
+    func getTourById(id: Int) -> Observable<ServerResponse<TourItem?>> {
+        guard let url = URL(string: NetworkVariables.getTourURLById(id: id)) else {
+            return Observable.just(getResponse(nil, 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let item = try JSONDecoder().decode(TourItem.self, from: data)
+
+                    return self.getResponse(item)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse(nil, 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse(nil, 500, "Error, can't get tours by category"))
+        }
+    }
+
+    func sendTourOrder(id: Int, name: String, phone: String, comment: String) -> Observable<ServerResponse<String?>> {
+        guard let url = URL(string: NetworkVariables.SEND_REQUEST_TOUR_URL) else {
+            return Observable.just(getResponse(nil, 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url, params: "tourId=\(id)&name=\(name)&phone=\(phone)&comment=\(comment)")
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+//                    let item = try JSONDecoder().decode(String.self, from: data)
+                    return self.getResponse(String(data: data, encoding: .utf8))
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse(nil, 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse(nil, 500, "Error, can't get tours by category"))
+        }
+    }
+
     func getInfoCategories(parentId: Int) -> Observable<ServerResponse<[InfoCategory]>> {
         guard let url = URL(string: NetworkVariables.getInfoCategories(parentId: parentId)) else {
             return Observable.just(getResponse([], 500, "Wrong API url"))

@@ -30,7 +30,7 @@ class TourCategoryTableViewCell: UITableViewCell {
             // TODO ...
         }
 
-        title.text = category.name?.uppercased() ?? ""
+        title.text = category.ruName?.uppercased() ?? ""
     }
 
     private func setupViews() {

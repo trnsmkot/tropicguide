@@ -9,22 +9,32 @@ struct NetworkVariables {
 
 //    private static let BASE_URL = "http://localhost:9000/remote/api/v1/"
     private static let BASE_URL = "http://tropicguide.info/remote/api/v1/"
+    private static let BASE_TOUR_URL = "https://phuket-tropic-tours.com/remote/api/v1/"
+//    private static let BASE_TOUR_URL = "http://192.168.1.106:9000/remote/api/v1/"
     private static let APP_LANG = "ru"
 
 
-    static let TOUR_CATEGORIES_URL = "\(BASE_URL)tour/categories/\(APP_LANG)/"
+    static let TOUR_CATEGORIES_URL = "\(BASE_TOUR_URL)categories/"
 
     static func getToursURLByCategory(id: Int) -> String {
-        return "\(BASE_URL)tours/\(APP_LANG)/\(id)/"
+        return "\(BASE_TOUR_URL)tours/\(id)/"
     }
 
-    static func getInfoCategories(parentId: Int) -> String{
+    static func getTourURLById(id: Int) -> String {
+        return "\(BASE_TOUR_URL)tour/\(id)/"
+    }
+
+    static let SEND_REQUEST_TOUR_URL = "\(BASE_URL)booking/\(APP_LANG)/send/"
+
+
+    static func getInfoCategories(parentId: Int) -> String {
         return "\(BASE_URL)info/categories/\(APP_LANG)/\(parentId)/"
     }
 
     static func getInfosURLByCategory(id: Int) -> String {
         return "\(BASE_URL)info/list/\(APP_LANG)/\(id)/"
     }
+
     static func getInfoURLByInfo(id: Int) -> String {
         return "\(BASE_URL)info/info/\(APP_LANG)/\(id)/"
     }

@@ -18,14 +18,15 @@ class WebViewController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = tour?.name ?? ""
+        navigationItem.title = tour?.ruDesc?.name ?? ""
 
         setupViews()
         initSpinner(spinner: spinner)
 
-        if let url = tour?.url, let tourUrl = URL(string: url) {
-            webView.loadRequest(URLRequest(url: tourUrl))
-        }
+        //FIXME
+//        if let url = tour?.url, let tourUrl = URL(string: url) {
+//            webView.loadRequest(URLRequest(url: tourUrl))
+//        }
 
 //        spinner.start()
     }

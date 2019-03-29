@@ -39,8 +39,10 @@
 		5E8FA40F76A22217A5CEE5D3 /* PointContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA6942715FA4256A0740E /* PointContentViewController.swift */; };
 		5E8FA411246CD324A6C28E24 /* BaseDescTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA60467A1264346DDCC0E /* BaseDescTableViewCell.swift */; };
 		5E8FA472E7321FB475E115DE /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA41DAAE7E4CB8130228D /* ServerResponse.swift */; };
+		5E8FA4B9F764D2F6643BA867 /* TourItemProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA12EDE1371FEFEA35041 /* TourItemProgram.swift */; };
 		5E8FA4C240CEF985546526E7 /* PointViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA33826469AD7BF2D3C3D /* PointViewModal.swift */; };
 		5E8FA4C5D10FA1D8FDEA3D7C /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */; };
+		5E8FA50291C0028E2637B645 /* TourContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA2E51C920078EED1CBC2 /* TourContentViewController.swift */; };
 		5E8FA54D21446A229E6D5E0B /* NetworkVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA7C262789B92420DFD7F /* NetworkVariables.swift */; };
 		5E8FA561901CEF807D53226A /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA56061BA21443980DC35 /* PointsViewController.swift */; };
 		5E8FA5D49DEAD64D6D9B8665 /* TourItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA50A2DC0D119565BE7A /* TourItem.swift */; };
@@ -48,10 +50,13 @@
 		5E8FA642E73AAA0CD11C4F22 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA50DEA45A33104F3B412 /* FilterViewController.swift */; };
 		5E8FA68923A49EE97F49D245 /* TourCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA541E5D70470F451D8EF /* TourCategory.swift */; };
 		5E8FA69B38064ADD59CD00AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA3AD468D0AFC05749642 /* BaseViewController.swift */; };
+		5E8FA6EE615353A435D49D6B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA9F104F6EB748CFB464C /* String+Extensions.swift */; };
 		5E8FA6FF3CB934C2D727464F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA28C6020F05F295DE11 /* WebViewController.swift */; };
 		5E8FA77A1BDA2B8D2288FFAF /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA121433035AA270B3C63 /* District.swift */; };
+		5E8FA7EBA84034F4E7F6C9EF /* TourItemDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAFABE08DC0DBB2ECEA34 /* TourItemDesc.swift */; };
 		5E8FA8106134179D754A5495 /* PointCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA274EA4547FD75CDF936 /* PointCategoriesViewController.swift */; };
 		5E8FA8A37D7237433A77A9A3 /* CommonAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAB45C06F45B99AFCB82F /* CommonAPIProvider.swift */; };
+		5E8FA8FEF787137875D77B5E /* TourItemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA288B757E5FED349EE50 /* TourItemImage.swift */; };
 		5E8FA978EDBE4000662FEC25 /* TourCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA5AD7F68FEF400691FDA /* TourCategoryTableViewCell.swift */; };
 		5E8FA982A69470EEA0F8D0FE /* PointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FA3F77DBB5014AD20AFA5 /* PointItem.swift */; };
 		5E8FA9CAABC43678D7709571 /* FilterViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8FAA9EC5676ED110282AF1 /* FilterViewModal.swift */; };
@@ -90,11 +95,14 @@
 		5E8FA113D8006ABB6715A63D /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA11874CA741E403BA330 /* CommonDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDescription.swift; sourceTree = "<group>"; };
 		5E8FA121433035AA270B3C63 /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		5E8FA12EDE1371FEFEA35041 /* TourItemProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItemProgram.swift; sourceTree = "<group>"; };
 		5E8FA1F838C3A47027F5E585 /* MapViewModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModal.swift; sourceTree = "<group>"; };
 		5E8FA1FE5D6FE02397C747FE /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		5E8FA274EA4547FD75CDF936 /* PointCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCategoriesViewController.swift; sourceTree = "<group>"; };
+		5E8FA288B757E5FED349EE50 /* TourItemImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItemImage.swift; sourceTree = "<group>"; };
 		5E8FA2B39ACA9D188A131E27 /* PointCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCategory.swift; sourceTree = "<group>"; };
 		5E8FA2DD7ABA5D41DE7D5081 /* DistrictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictsViewController.swift; sourceTree = "<group>"; };
+		5E8FA2E51C920078EED1CBC2 /* TourContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourContentViewController.swift; sourceTree = "<group>"; };
 		5E8FA33826469AD7BF2D3C3D /* PointViewModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointViewModal.swift; sourceTree = "<group>"; };
 		5E8FA340E2F16AABD219DBDA /* DistrictTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictTableViewCell.swift; sourceTree = "<group>"; };
 		5E8FA3AD468D0AFC05749642 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +126,7 @@
 		5E8FA8FB93B669CF0DA6E537 /* PointItemShort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointItemShort.swift; sourceTree = "<group>"; };
 		5E8FA9896172345CE7638D56 /* CommonDesc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDesc.swift; sourceTree = "<group>"; };
 		5E8FA9948C7B3E60CB19EBFA /* PointImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointImage.swift; sourceTree = "<group>"; };
+		5E8FA9F104F6EB748CFB464C /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		5E8FA9F63531ADE88001D8D6 /* TopAdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E8FAA28C6020F05F295DE11 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5E8FAA50A2DC0D119565BE7A /* TourItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItem.swift; sourceTree = "<group>"; };
@@ -135,6 +144,7 @@
 		5E8FAEC6513810E88CCA07BA /* TopAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdViewController.swift; sourceTree = "<group>"; };
 		5E8FAED0A9278E4670D92342 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5E8FAF1C33D2B13137064250 /* TopAdItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopAdItem.swift; sourceTree = "<group>"; };
+		5E8FAFABE08DC0DBB2ECEA34 /* TourItemDesc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItemDesc.swift; sourceTree = "<group>"; };
 		7FDAAD4B97725904EF8FDD9E /* Pods_TropicGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TropicGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1420D57870E90F5D82C2FE9 /* Pods-TropicGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TropicGuide.release.xcconfig"; path = "Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig"; sourceTree = "<group>"; };
 		F7CEC5537532B5BDBF891623 /* Pods-TropicGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TropicGuide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +238,7 @@
 				08C9A8FC21CCE8630087140E /* UIColor+Extensions.swift */,
 				08D8319321D26FDB00C7620D /* UIView+extensions.swift */,
 				5E8FABC4FE7004CF7E6DAFAC /* UIViewController+Common.swift */,
+				5E8FA9F104F6EB748CFB464C /* String+Extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -290,6 +301,7 @@
 			children = (
 				08C9A8F621CCE5180087140E /* ToursViewController.swift */,
 				5E8FA1FE5D6FE02397C747FE /* TourViewController.swift */,
+				5E8FA2E51C920078EED1CBC2 /* TourContentViewController.swift */,
 			);
 			path = tour;
 			sourceTree = "<group>";
@@ -395,6 +407,9 @@
 			children = (
 				5E8FA541E5D70470F451D8EF /* TourCategory.swift */,
 				5E8FAA50A2DC0D119565BE7A /* TourItem.swift */,
+				5E8FAFABE08DC0DBB2ECEA34 /* TourItemDesc.swift */,
+				5E8FA288B757E5FED349EE50 /* TourItemImage.swift */,
+				5E8FA12EDE1371FEFEA35041 /* TourItemProgram.swift */,
 			);
 			path = tour;
 			sourceTree = "<group>";
@@ -711,6 +726,11 @@
 				5E8FA9CAABC43678D7709571 /* FilterViewModal.swift in Sources */,
 				5E8FA642E73AAA0CD11C4F22 /* FilterViewController.swift in Sources */,
 				5E8FAC3C8E9900782522F31A /* FilterTableViewCell.swift in Sources */,
+				5E8FA7EBA84034F4E7F6C9EF /* TourItemDesc.swift in Sources */,
+				5E8FA8FEF787137875D77B5E /* TourItemImage.swift in Sources */,
+				5E8FA4B9F764D2F6643BA867 /* TourItemProgram.swift in Sources */,
+				5E8FA50291C0028E2637B645 /* TourContentViewController.swift in Sources */,
+				5E8FA6EE615353A435D49D6B /* String+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,8 +26,8 @@ class Navigator {
 
 
     func openTourContentViewController(_ tour: TourItem) {
-        let tourContentViewController = WebViewController()
-        tourContentViewController.tour = tour
+        let tourContentViewController = TourContentViewController()
+        tourContentViewController.tourItem = tour
         navigationController.pushViewController(tourContentViewController, animated: true)
     }
 
@@ -55,21 +55,23 @@ class Navigator {
         case .LINK:
             let adViewController = WebViewController()
             var tour = TourItem()
-            tour.url = ad.link
-            tour.name = ad.title
+//            tour.url = ad.link
+            tour.ruDesc?.name = ad.title
             tour.cover = ad.image
 
             adViewController.tour = tour
             navigationController.pushViewController(adViewController, animated: true)
         case .TOUR:
-            let adViewController = WebViewController()
-            var tour = TourItem()
-            tour.url = ad.link
-            tour.name = ad.title
-            tour.cover = ad.image
+            let tourContentViewController = TourContentViewController()
 
-            adViewController.tour = tour
-            navigationController.pushViewController(adViewController, animated: true)
+            var tour = TourItem()
+            tour.id = ad.parentId
+            tour.ruDesc = TourItemDesc()
+            tour.ruDesc?.name = ad.title
+            tour.cover = ad.image
+            tourContentViewController.tourItem = tour
+
+            navigationController.pushViewController(tourContentViewController, animated: true)
         case .POINT:
 
             return

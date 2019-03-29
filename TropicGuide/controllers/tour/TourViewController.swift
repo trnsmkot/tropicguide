@@ -23,7 +23,7 @@ class TourViewController: BaseTableViewController<TourTableViewCell>  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = tourCategory?.name ?? ""
+        self.navigationItem.title = tourCategory?.ruName ?? ""
 
         setupViews()
         initSpinner(spinner: spinner)

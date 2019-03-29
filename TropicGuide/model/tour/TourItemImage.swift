@@ -5,9 +5,8 @@
 
 import Foundation
 
-struct TourCategory: Decodable {
-    var id: Int?
-    var sortOrder: Int = 0
-    var ruName: String?
-    var cover: String?
+struct TourItemImage: Decodable {
+    var ruTitle: String?
+    var path: String?
+    var previewPath: String?
 }

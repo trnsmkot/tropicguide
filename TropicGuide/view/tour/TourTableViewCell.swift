@@ -32,7 +32,7 @@ class TourTableViewCell: UITableViewCell {
             // TODO ...
         }
 
-        title.text = tour.name?.uppercased() ?? ""
+        title.text = tour.ruDesc?.name?.uppercased() ?? ""
         price.text = tour.price?.uppercased() ?? ""
     }
 
