@@ -260,6 +260,12 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))
         }
+        if (UIApplication.shared.canOpenURL(URL(string:"mapsme://")!)) {
+            alert.addAction(UIAlertAction(title: "Открыть Карты Maps.me", style: .default, handler: { alert in
+                let url = "mapsme://search?query=\(point?.lat ?? 0),\(point?.lng ?? 0)"
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+            }))
+        }
         present(alert, animated: true, completion: nil)
     }
     

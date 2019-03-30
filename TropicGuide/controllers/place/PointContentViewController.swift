@@ -219,6 +219,12 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))
         }
+        if (UIApplication.shared.canOpenURL(URL(string:"mapsme://")!)) {
+            alert.addAction(UIAlertAction(title: "Открыть Карты Maps.me", style: .default, handler: { alert in
+                let url = "mapsme://search?query=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)"
+                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
+            }))
+        }
         present(alert, animated: true, completion: nil)
     }
 
