@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="56e1c716-9a8d-4221-b79f-e6af5455ae85" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/Pods-TropicGuide.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/Pods-TropicGuide.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/TropicGuide.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/TropicGuide.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TropicGuide/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/map/MapViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/map/MapViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/place/PointContentViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/place/PointContentViewController.swift" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Caches/AppCode2019.1/DerivedData/TropicGuide-cwcauzgfzoeidldjwoiscvbznpyi/Build/Intermediates.noindex/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,19 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_EF30DE3F-9036-4353-9867-2D10ECDE377A" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Podfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -114,6 +95,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Cidr.FilesView">
         <subPane>
           <expand>
@@ -130,7 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -326,17 +307,18 @@
       <workItem from="1553872649501" duration="14678000" />
       <workItem from="1553916870559" duration="2526000" />
       <workItem from="1553923196243" duration="633000" />
+      <workItem from="1554373245375" duration="17000" />
+      <workItem from="1554373308398" duration="30000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114392000" />
+    <option name="totallyTimeSpent" value="114439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22039072" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22527473" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
