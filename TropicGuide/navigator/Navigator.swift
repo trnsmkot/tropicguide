@@ -9,6 +9,8 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import FBSDKCoreKit
+import FacebookCore
 
 class Navigator {
     private let navigationController: UINavigationController
@@ -51,6 +53,10 @@ class Navigator {
     }
 
     func openTopAdContentController(_ ad: TopAdItem) {
+        let params : AppEvent.ParametersDictionary = ["ad_type" : "\(ad.type): \(ad.title ?? "None")"]
+        let event = AppEvent(name: "AdClick", parameters: params)
+        AppEventsLogger.log(event)
+        
         switch ad.type {
         case .LINK:
             let adViewController = WebViewController()

@@ -13,4 +13,7 @@ target 'TropicGuide' do
   pod 'Kingfisher', '~> 5.1.0'
 
   pod 'GoogleMaps'
+  
+  pod 'FacebookCore'
+  pod 'FacebookSDK'
 end

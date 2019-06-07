@@ -1,5 +1,29 @@
 PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Differentiator (3.1.0)
+  - FacebookCore (0.6.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit (~> 4.43)
+  - FacebookSDK (4.43.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit (= 4.43.0)
+    - FacebookSDK/MarketingKit (= 4.43.0)
+  - FacebookSDK/CoreKit (4.43.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit
+  - FacebookSDK/MarketingKit (4.43.0):
+    - Bolts (~> 1.9)
+    - FacebookSDK/CoreKit
+    - FBSDKMarketingKit
+  - FBSDKCoreKit (4.44.0):
+    - Bolts (~> 1.9)
+  - FBSDKMarketingKit (4.38.0):
+    - FBSDKCoreKit
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -17,6 +41,8 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - FacebookCore
+  - FacebookSDK
   - GoogleMaps
   - Kingfisher (~> 5.1.0)
   - RxCocoa (~> 4.4.0)
@@ -25,7 +51,12 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
     - Differentiator
+    - FacebookCore
+    - FacebookSDK
+    - FBSDKCoreKit
+    - FBSDKMarketingKit
     - GoogleMaps
     - Kingfisher
     - RxAtomic
@@ -34,7 +65,12 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  FacebookCore: 38cd3a4078738d6f648eb9b6b9d35b02d693e9a1
+  FacebookSDK: d20336d70de2b2d80b5414358b3a75aa7f9d82ec
+  FBSDKCoreKit: 8bcd4503afe43f28823c2175a6142a7f50f1bf28
+  FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
@@ -42,6 +78,6 @@ SPEC CHECKSUMS:
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 2c015162f35992558e15f07ef2607c3933fe0880
+PODFILE CHECKSUM: 2318f2923922a57218478c08a7c0a6e2c2100f65
 
 COCOAPODS: 1.5.3
