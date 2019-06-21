@@ -7,10 +7,10 @@ target 'TropicGuide' do
 
   # Pods for TropicGuide
 
-  pod 'RxSwift',    '~> 4.4.0'
-  pod 'RxCocoa',    '~> 4.4.0'
-  pod 'RxDataSources', '~> 3.1.0'
-  pod 'Kingfisher', '~> 5.1.0'
+  pod 'RxSwift',    '~> 5.0.0'
+  pod 'RxCocoa',    '~> 5.0.0'
+  pod 'RxDataSources', '~> 4.0.1'
+  pod 'Kingfisher', '~> 5.6.0'
 
   pod 'GoogleMaps'
   

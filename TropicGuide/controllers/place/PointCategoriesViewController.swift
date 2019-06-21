@@ -16,26 +16,24 @@ class PointCategoriesViewController: BaseTableViewController<PointCategoryTableV
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[PointCategory]>([])
-
-    var district: District?
+    let dataSource = BehaviorRelay<[PointCategory]>(value: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let district = district {
-            navigationItem.title = district.desc?.name
-        }
+        let logo = UIImage(named: "logo")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
 
         setupViews()
 
-        initSpinner(spinner: spinner, offset: district == nil ? 200 : 0)
-        spinner.start()
+        initSpinner(spinner: spinner)
 
+        spinner.start()
         PointViewModal.shared.getPointCategories()?
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data {
+                        self.dataSource.accept(data)
                     } else {
                         // Вывести ошибку получения данных ?
                     }
@@ -60,9 +58,12 @@ class PointCategoriesViewController: BaseTableViewController<PointCategoryTableV
         tableView.rx.modelSelected(PointCategory.self)
                 .subscribe { item in
                     if let category = item.element {
-                        self.navigator?.openPointsViewController(category: category, district: self.district)
+                        self.navigator?.openPointsViewController(category: category)
                     }
                 }.disposed(by: disposeBag)
+    }
+
+    override func initBackButton() {
     }
 
     override func getTableViewCellIdentifier() -> String {

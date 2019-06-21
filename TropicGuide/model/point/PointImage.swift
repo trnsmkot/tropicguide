@@ -8,4 +8,5 @@ import Foundation
 struct PointImage: Decodable {
     var id: Int?
     var path: String?
+    var originalPath: String?
 }

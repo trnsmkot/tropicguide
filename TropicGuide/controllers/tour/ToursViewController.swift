@@ -19,7 +19,7 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
 
     private let showToursKey = "showToursInfo"
     
-    let dataSource = Variable<[TourCategory]>([])
+    let dataSource = BehaviorRelay<[TourCategory]>(value: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
         spinner.start()
         TourViewModal.shared.categories
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data  {
+                        self.dataSource.accept(data)
                     } else {
 //                        _ = self.navigationController?.popViewController(animated: true)
                         // Вывести ошибку получения данных ?

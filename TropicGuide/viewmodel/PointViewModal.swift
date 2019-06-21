@@ -29,8 +29,8 @@ class PointViewModal {
                 .share(replay: 1)
     }
 
-    func getPointsByData(categoryId: Int, districtId: Int) -> Observable<ServerResponse<[PointItemShort]>>? {
-        return apiProvider.getPointsByData(categoryId: categoryId, districtId: districtId)
+    func getPointsByData(categoryId: Int) -> Observable<ServerResponse<[PointItemShort]>>? {
+        return apiProvider.getPointsByData(categoryId: categoryId)
                 .observeOn(MainScheduler.instance)
                 .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
                 .share(replay: 1)

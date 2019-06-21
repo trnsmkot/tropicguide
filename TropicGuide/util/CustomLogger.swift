@@ -13,6 +13,6 @@ class CustomLogger {
     }
 
     func reportError(title: String, reason: String?) {
-        print("\(title): \(reason)")
+        print("\(title): \(reason ?? "no reason")")
     }
 }

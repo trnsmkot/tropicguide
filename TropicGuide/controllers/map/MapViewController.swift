@@ -226,7 +226,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
                 self.openSelectMapApp(point: point)
             }))
 
-            var coverView = UIImageView(frame: CGRect(x: 10, y: 10, width: view.frame.width - 40, height: 200))
+            let coverView = UIImageView(frame: CGRect(x: 10, y: 10, width: view.frame.width - 40, height: 200))
             coverView.translatesAutoresizingMaskIntoConstraints = false
             coverView.contentMode = .scaleAspectFill
             coverView.clipsToBounds = true

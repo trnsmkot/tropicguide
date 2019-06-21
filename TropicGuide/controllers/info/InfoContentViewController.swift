@@ -21,13 +21,13 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
     private var images: [String: UIImage?] = [:]
 //    private var imageHeights: [String: CGFloat?] = [:]
 
-    let dataSource = Variable<[CommonDescription]>([])
+    let dataSource = BehaviorRelay<[CommonDescription]>(value: [])
 
     var infoItem: InfoItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = infoItem?.name ?? ""
+        navigationItem.title = infoItem?.desc?.name ?? ""
 
         setupViews()
         initSpinner(spinner: spinner)
@@ -36,8 +36,8 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
         if let id = infoItem?.id {
             InfoViewModal.shared.getInfoByInfo(id: id)?
                     .subscribe(onNext: { response in
-                        if response.successful {
-                            self.dataSource.value = response.data??.descriptions ?? []
+                        if response.successful, let data = response.data, let descs = data?.desc?.descriptions {
+                            self.dataSource.accept(descs)
                         } else {
                             // Вывести ошибку получения данных ?
                         }
@@ -56,19 +56,25 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
     private func setupViews() {
         tableView.backgroundColor = .white
 
-        let title = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 60))
-        title.text = infoItem?.name ?? ""
+        let titleFont = UIFont.systemFont(ofSize: 24)
+        let titleText = infoItem?.desc?.name ?? ""
+        let titleHeight = heightForView(text: titleText, font: titleFont, width: view.frame.width - 40)
+
+        print(titleHeight)
+
+        let title = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: titleHeight + 20))
+        title.text = titleText
         title.textColor = .black
         title.numberOfLines = 2
-        title.font = UIFont.systemFont(ofSize: 24)
+        title.font = titleFont
 
-        let line = UIView(frame: CGRect(x: 10, y: 60, width: view.frame.width - 20, height: 1))
-        line.backgroundColor = .lightGray
+//        let line = UIView(frame: CGRect(x: 10, y: 60, width: view.frame.width - 20, height: 1))
+//        line.backgroundColor = .lightGray
 
-        let header = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: 70))
+        let header = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width - 20, height: titleHeight + 20))
 
         header.addSubview(title)
-        header.addSubview(line)
+//        header.addSubview(line)
 
         tableView.tableHeaderView = header
         tableView.estimatedRowHeight = 100
@@ -78,40 +84,7 @@ class InfoContentViewController: BaseTableViewController<BaseDescTableViewCell> 
                 .bind(to: tableView.rx.items(cellIdentifier: descTableViewCellIdentifier, cellType: BaseDescTableViewCell.self)) { row, item, cell in
                     cell.selectionStyle = .none
                     cell.setData(item: item)
-
-
-//                    if let imageUrl = item.imagePath {
-//                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
-//                            cell.heightImageConstraint?.constant = height ?? 0
-//                            cell.descImageView.image = image
-//                        } else {
-//                            cell.descImageView.kf.indicatorType = .activity
-//                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
-//                                switch result {
-//                                case .success(let value):
-//
-//                                    self.images[imageUrl] = value.image
-//
-//                                    DispatchQueue.main.async {
-//                                        let image = value.image
-//                                        let aspectRatio = image.size.height / image.size.width
-//
-//                                        cell.descImageView.image = image
-//
-//                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
-//                                        self.tableView.beginUpdates()
-//                                        cell.heightImageConstraint?.constant = imageHeight
-//                                        self.imageHeights[imageUrl] = imageHeight
-//                                        self.tableView.endUpdates()
-//                                    }
-//
-//                                case .failure(let error):
-//                                    print("Job failed: \(error.localizedDescription)")
-//                                }
-//                            }
-//                        }
-//                    }
-
+                    cell.navigator = self.navigator
                 }.disposed(by: self.disposeBag)
     }
 

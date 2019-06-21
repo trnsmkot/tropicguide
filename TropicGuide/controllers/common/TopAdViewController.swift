@@ -10,7 +10,7 @@ import RxSwift
 class TopAdViewController: UIViewController {
 
     private let tableViewCellIdentifier = "infoCategoryTableViewCellIdentifier"
-    private let dataSource = Variable<[TopAdItem]>([])
+    private let dataSource = BehaviorRelay<[TopAdItem]>(value: [])
 
     let pageControl = UIPageControl()
     let collectionView: UICollectionView = {
@@ -30,8 +30,8 @@ class TopAdViewController: UIViewController {
 
         TopAdViewModal.shared.getAdsById(topAdsId)?
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data {
+                        self.dataSource.accept(data)
                         self.pageControl.numberOfPages =  self.dataSource.value.count
                     } else {
                         // Вывести ошибку получения данных ?

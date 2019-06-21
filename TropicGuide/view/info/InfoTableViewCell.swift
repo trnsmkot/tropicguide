@@ -22,7 +22,7 @@ class InfoTableViewCell: UITableViewCell {
     }
 
     func setData(item: InfoItem) {
-        title.text = item.name ?? ""
+        title.text = item.desc?.name ?? ""
     }
 
     private func setupViews() {

@@ -20,8 +20,8 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[CommonDescription]>([])
-    private let imageDataSource = Variable<[PointImage]>([])
+    let dataSource = BehaviorRelay<[CommonDescription]>(value: [])
+    private let imageDataSource = BehaviorRelay<[PointImage]>(value: [])
 
     var pointItem: PointItemShort?
 
@@ -49,8 +49,8 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
             PointViewModal.shared.getPointByPoint(id: id)?
                     .subscribe(onNext: { response in
                         if response.successful, let data = response.data, let point = data {
-                            self.dataSource.value = point.desc?.descriptions ?? []
-                            self.imageDataSource.value = point.images ?? []
+                            self.dataSource.accept(point.desc?.descriptions ?? [])
+                            self.imageDataSource.accept(point.images ?? [])
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
 
                             self.setupMapView(parent: self.footer, point: point)
@@ -64,7 +64,6 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
                     }, onError: { error in
                         CustomLogger.instance.reportError(error: error)
-
                         self.spinner.end()
                         // Вывести ошибку получения данных ?
                     }).disposed(by: disposeBag)
@@ -74,24 +73,28 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     private func setupViews() {
         tableView.backgroundColor = .white
 
-        let cellHeight = view.frame.width / 16 * 9
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80 + cellHeight))
+        let titleFont = UIFont.systemFont(ofSize: 24)
+        let titleText = pointItem?.desc?.name ?? ""
+        let titleHeight = heightForView(text: titleText, font: titleFont, width: view.frame.width - 40)
 
-        let title = UILabel(frame: CGRect(x: 10, y: cellHeight + 20, width: view.frame.width - 20, height: 60))
-        title.text = pointItem?.desc?.name ?? ""
+        let cellHeight = view.frame.width / 16 * 9
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50 + titleHeight + cellHeight))
+
+        let title = UILabel(frame: CGRect(x: 10, y: cellHeight + 20, width: view.frame.width - 20, height: titleHeight + 30))
+        title.text = titleText
         title.textColor = .black
         title.numberOfLines = 2
-        title.font = UIFont.systemFont(ofSize: 24)
+        title.font = titleFont
 
-        let line = UIView(frame: CGRect(x: 10, y: cellHeight + 80, width: view.frame.width - 20, height: 1))
-        line.backgroundColor = .lightGray
+//        let line = UIView(frame: CGRect(x: 10, y: cellHeight + 80, width: view.frame.width - 20, height: 1))
+//        line.backgroundColor = .lightGray
 
         setupImageViews(parent: header)
         header.addSubview(title)
-        header.addSubview(line)
 
-        footer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3)
+//        header.addSubview(line)
 
+        footer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80)
         tableView.tableHeaderView = header
         tableView.tableFooterView = footer
         tableView.estimatedRowHeight = 100
@@ -101,42 +104,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
                 .bind(to: tableView.rx.items(cellIdentifier: descTableViewCellIdentifier, cellType: BaseDescTableViewCell.self)) { row, item, cell in
                     cell.selectionStyle = .none
                     cell.setData(item: item)
-
-
-//                    if let imageUrl = item.imagePath {
-//
-//                        if let image = self.images[imageUrl], let height = self.imageHeights[imageUrl] {
-//                            cell.heightImageConstraint?.constant = height ?? 0
-//                            cell.descImageView.image = image
-//                        } else {
-//                            cell.descImageView.kf.indicatorType = .activity
-//                            cell.descImageView.kf.setImage(with: URL(string: imageUrl)) { result in
-//                                switch result {
-//                                case .success(let value):
-//
-//                                    self.images[imageUrl] = value.image
-//
-//                                    DispatchQueue.main.async {
-//                                        let image = value.image
-//                                        let aspectRatio = image.size.height / image.size.width
-//
-//                                        cell.descImageView.image = image
-//
-//                                        let imageHeight = (self.view.frame.width - 20) * aspectRatio
-//                                        self.tableView.beginUpdates()
-//                                        cell.heightImageConstraint?.constant = imageHeight
-//                                        self.imageHeights[imageUrl] = imageHeight
-//                                        self.tableView.endUpdates()
-//                                        self.tableView.layer.removeAllAnimations()
-//                                    }
-//
-//                                case .failure(let error):
-//                                    print("Job failed: \(error.localizedDescription)")
-//                                }
-//                            }
-//                        }
-//                    }
-
+                    cell.navigator = self.navigator
                 }.disposed(by: self.disposeBag)
     }
 
@@ -152,6 +120,14 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         parent.addSubview(collectionView)
 
+        let zoomImageView = UIImageView(frame: CGRect(x: view.frame.width - 50, y: 10, width: 40, height: 40))
+        zoomImageView.contentMode = .scaleAspectFit
+        zoomImageView.image = UIImage(named: "zoom-in")?.withRenderingMode(.alwaysTemplate)
+        zoomImageView.tintColor = .white
+        zoomImageView.isUserInteractionEnabled = true
+        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImageZoomViewController)))
+        parent.addSubview(zoomImageView)
+
         pageControl.frame = CGRect(x: 0, y: cellHeight, width: view.frame.width, height: 20)
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .simpleBlue
@@ -166,37 +142,45 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
                 }.disposed(by: self.disposeBag)
     }
 
+    @objc func openImageZoomViewController() {
+        let imageUrl = self.imageDataSource.value[self.pageControl.currentPage].originalPath
+        navigator?.openZoomImageViewControllerByCategory(imageUrl)
+    }
+
     private func setupMapView(parent: UIView, point: PointItem) {
-        let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 60)
+//        let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
+//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+//        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 60)
+//
+//        mapView.settings.scrollGestures = false
+//        mapView.settings.zoomGestures = true
+//        mapView.isMyLocationEnabled = true
+//
+//        parent.addSubview(mapView)
+//
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
+//        marker.title = point.desc?.name
+//        marker.map = mapView
+//
+//        if let icon = point.markerIcon {
+//            let markerImageView = UIImageView()
+//
+//            markerImageView.kf.setImage(with: URL(string: icon)) { result in
+//                switch result {
+//                case .success(let value):
+//                    marker.icon = self.resizeImage(image: value.image, targetSize: CGSize(width: 32, height: 32))
+//                case .failure(let error):
+//                    print("Job failed: \(error.localizedDescription)")
+//                }
+//            }
+//        }
 
-        mapView.settings.scrollGestures = true
-        mapView.settings.zoomGestures = true
-        mapView.isMyLocationEnabled = true
-
-        parent.addSubview(mapView)
-
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
-        marker.title = point.desc?.name
-        marker.map = mapView
-
-        if let icon  = point.markerIcon {
-            let markerImageView = UIImageView()
-
-            markerImageView.kf.setImage(with: URL(string: icon)) { result in
-                switch result {
-                case .success(let value):
-                    marker.icon = self.resizeImage(image: value.image, targetSize: CGSize(width: 32, height: 32))
-                case .failure(let error):
-                    print("Job failed: \(error.localizedDescription)")
-                }
-            }
-        }
-
-        let button = UIButton(frame: CGRect(x: 10, y: view.frame.width / 4 * 3 - 50, width: view.frame.width - 20, height: 40))
-        button.setTitle("Открыть навигатор", for: .normal)
+        let button = UIButton(frame: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: 40))
+        button.setTitle("Показать на карте", for: .normal)
+        button.setImage(UIImage(named: "menu_map")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageView?.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         button.contentHorizontalAlignment = .center
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .simpleBlue
@@ -210,16 +194,16 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Открыть Карты Apple", style: .default, handler: { alert in
             let url = "http://maps.apple.com/?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&z=10&t=s"
-            UIApplication.shared.open(URL(string:url)!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
         }))
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+
+        if (UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!)) {
             alert.addAction(UIAlertAction(title: "Открыть Карты Google", style: .default, handler: { alert in
                 let url = "comgooglemaps://?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&zoom=10"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))
         }
-        if (UIApplication.shared.canOpenURL(URL(string:"mapsme://")!)) {
+        if (UIApplication.shared.canOpenURL(URL(string: "mapsme://")!)) {
             alert.addAction(UIAlertAction(title: "Открыть Карты Maps.me", style: .default, handler: { alert in
                 let url = "mapsme://search?query=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
@@ -231,15 +215,15 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
 
-        let widthRatio  = targetSize.width  / size.width
+        let widthRatio = targetSize.width / size.width
         let heightRatio = targetSize.height / size.height
 
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
-        if(widthRatio > heightRatio) {
+        if (widthRatio > heightRatio) {
             newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
         } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
         }
 
         // This is the rect that we've calculated out and this is what is actually used below

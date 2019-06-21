@@ -7,10 +7,10 @@ import Foundation
 
 struct NetworkVariables {
 
-//    private static let BASE_URL = "http://localhost:9000/remote/api/v1/"
+//    private static let BASE_URL = "http://192.168.0.101:9000/remote/api/v1/"
     private static let BASE_URL = "http://tropicguide.info/remote/api/v1/"
     private static let BASE_TOUR_URL = "https://phuket-tropic-tours.com/remote/api/v1/"
-//    private static let BASE_TOUR_URL = "http://192.168.1.106:9000/remote/api/v1/"
+//    private static let BASE_TOUR_URL = "http://192.168.1.101:9000/remote/api/v1/"
     private static let APP_LANG = "ru"
 
 
@@ -50,8 +50,8 @@ struct NetworkVariables {
 
     static let POINT_CATEGORIES_URL = "\(BASE_URL)categories/\(APP_LANG)/"
 
-    static func getPointsURL(categoryId: Int, districtId: Int, page: Int) -> String {
-        return "\(BASE_URL)points/\(APP_LANG)/\(districtId)/\(categoryId)/\(page)/"
+    static func getPointsURL(categoryId: Int, page: Int) -> String {
+        return "\(BASE_URL)points/\(APP_LANG)/\(categoryId)/\(page)/"
     }
 
     static func getPointUrlByPoint(id: Int) -> String {

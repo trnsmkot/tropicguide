@@ -16,7 +16,7 @@ class DistrictsViewController: BaseTableViewController<DistrictTableViewCell> {
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[District]>([])
+    let dataSource = BehaviorRelay<[District]>(value: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ class DistrictsViewController: BaseTableViewController<DistrictTableViewCell> {
 
         PointViewModal.shared.getDistricts()?
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data {
+                        self.dataSource.accept(data)
                     } else {
 //                        _ = self.navigationController?.popViewController(animated: true)
                         // Вывести ошибку получения данных ?
@@ -61,7 +61,7 @@ class DistrictsViewController: BaseTableViewController<DistrictTableViewCell> {
         tableView.rx.modelSelected(District.self)
                 .subscribe { item in
                     if let district = item.element {
-                        self.navigator?.openPointCategoriesViewControllerByCategory(district)
+//                        self.navigator?.openPointCategoriesViewControllerByCategory(district)
                     }
                 }.disposed(by: disposeBag)
     }

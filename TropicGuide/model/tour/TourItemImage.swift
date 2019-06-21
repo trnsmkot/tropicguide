@@ -9,4 +9,5 @@ struct TourItemImage: Decodable {
     var ruTitle: String?
     var path: String?
     var previewPath: String?
+    var originalPath: String?
 }

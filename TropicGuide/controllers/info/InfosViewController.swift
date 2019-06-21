@@ -17,7 +17,7 @@ class InfosViewController: BaseTableViewController<PointCategoryTableViewCell> {
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[InfoCategory]>([])
+    let dataSource = BehaviorRelay<[InfoCategory]>(value: [])
 
     public var parentCategory: InfoCategory?
 
@@ -31,8 +31,8 @@ class InfosViewController: BaseTableViewController<PointCategoryTableViewCell> {
         spinner.start()
         InfoViewModal.shared.getInfoCategories(parentId: parentCategory?.id ?? -1)?
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data {
+                        self.dataSource.accept(data)
                     } else {
 //                        _ = self.navigationController?.popViewController(animated: true)
                         // Вывести ошибку получения данных ?
@@ -66,7 +66,7 @@ class InfosViewController: BaseTableViewController<PointCategoryTableViewCell> {
         tableView.rx.modelSelected(InfoCategory.self)
                 .subscribe { item in
                     if let category = item.element {
-                        if (self.parentCategory == nil) {
+                        if (self.parentCategory == nil && category.total > 1) {
                             self.navigator?.openInfosViewControllerByParentCategory(category)
                         } else {
                             self.navigator?.openInfoViewControllerByCategory(category)

@@ -19,7 +19,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    private let imageDataSource = Variable<[TourItemImage]>([])
+    private let imageDataSource = BehaviorRelay<[TourItemImage]>(value: [])
 
     var tourItem: TourItem?
 
@@ -32,7 +32,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
     private var scrollView: UIScrollView?
     private let shortDesc = UILabel()
-    private let fullDesc = UILabel()
+    private var fullDescText: NSAttributedString?
 
     private let whatIncluded = UILabel()
     private let whatNotIncluded = UILabel()
@@ -41,6 +41,10 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
     private let programs = UILabel()
 
     private let phoneLabel = UILabel()
+
+    private let programsWrapper = UIView()
+    private var programList: [NSAttributedString?] = []
+    private var programDescList: [NSAttributedString?] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,33 +58,39 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
             TourViewModal.shared.getTourById(id: id)?
                     .subscribe(onNext: { response in
                         if response.successful, let data = response.data, let tour = data {
-                            self.imageDataSource.value = tour.images
+                            self.imageDataSource.accept(tour.images)
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
 
                             let style = "<style> *{ font-family: 'SF Pro Display', 'SF Pro Text', 'Arial'; font-size: 14px;}</style>"
 
+                            self.tourItem?.ruDesc?.programs = tour.ruDesc?.programs
                             self.shortDesc.text = tour.ruDesc?.shortDescription
-                            self.fullDesc.attributedText = (style + (tour.ruDesc?.description ?? "")).htmlToAttributedString
+                            self.fullDescText = (style + (tour.ruDesc?.description ?? "")).htmlToAttributedString
 
-                            self.programs.attributedText = (style + "<b style=\"color:#47c9e5;\">ПРОГРАММЫ И ЦЕНЫ</b><br><br>" + self.buildPrograms(tour: tour)).htmlToAttributedString
+                            self.programs.attributedText = (style + "<b style=\"font-size: 18px;color:#47c9e5;\">ПРОГРАММЫ И ЦЕНЫ</b>").htmlToAttributedString
+                            self.buildPrograms(tour: tour, style: style)
 
-                            self.whatIncluded.attributedText = (style + "<b style=\"color: #01cb68;\">ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatIncluded ?? "")).htmlToAttributedString
-                            self.whatNotIncluded.attributedText = (style + "<b style=\"color: #eb7591;\">НЕ ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatNotIncluded ?? "")).htmlToAttributedString
-                            self.whatTakeWithMe.attributedText = (style + "<b>ВЗЯТЬ С СОБОЙ</b><br><br>" + (tour.ruDesc?.whatTakeWithMe ?? "")).htmlToAttributedString
+                            self.whatIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #01cb68;\">ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatIncluded ?? "")).htmlToAttributedString
+                            self.whatNotIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #eb7591;\">НЕ ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatNotIncluded ?? "")).htmlToAttributedString
+                            self.whatTakeWithMe.attributedText = (style + "<b style=\"font-size: 18px;\">ВЗЯТЬ С СОБОЙ</b><br><br>" + (tour.ruDesc?.whatTakeWithMe ?? "")).htmlToAttributedString
 
                             self.phoneLabel.text = tour.phone
 
                             let width = self.view.frame.width - 20
                             let shortDescHeight: CGFloat = tour.ruDesc?.shortDescription?.height(withConstrainedWidth: width, font: UIFont.systemFont(ofSize: 16)) ?? 0
-                            let fullDescHeight: CGFloat = self.fullDesc.attributedText?.height(withConstrainedWidth: width) ?? 0
                             let whatIncludedHeight: CGFloat = self.whatIncluded.attributedText?.height(withConstrainedWidth: width) ?? 0
                             let whatNotIncludedHeight: CGFloat = self.whatNotIncluded.attributedText?.height(withConstrainedWidth: width) ?? 0
                             let whatTakeWithMeHeight: CGFloat = self.whatTakeWithMe.attributedText?.height(withConstrainedWidth: width) ?? 0
+
                             let programsHeight: CGFloat = self.programs.attributedText?.height(withConstrainedWidth: width) ?? 0
 
-                            var height: CGFloat = 380 + self.view.frame.width / 16 * 9
-                            height += shortDescHeight + fullDescHeight + whatIncludedHeight + whatNotIncludedHeight + whatTakeWithMeHeight + programsHeight
+                            var height: CGFloat = 420 + self.view.frame.width / 16 * 9
+                            height += shortDescHeight + 60 + whatIncludedHeight + whatNotIncludedHeight + whatTakeWithMeHeight + programsHeight
 
+                            for program in self.programList {
+                                height += program?.height(withConstrainedWidth: width) ?? 0
+                            }
+                            height += CGFloat(self.programList.count * 60)
 
                             self.scrollView?.contentSize = CGSize(width: self.view.frame.width, height: height)
                             self.view.layoutIfNeeded()
@@ -146,11 +156,12 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func buildPrograms(tour: TourItem) -> String {
-        var programAsHtml = ""
+    private func buildPrograms(tour: TourItem, style: String) {
+
         if let programs = tour.ruDesc?.programs {
             for program in programs {
                 if (!program.hidden) {
+                    var programAsHtml = style
                     programAsHtml += "<div><b style=\"font-size:18px;\">\(program.name ?? "")</b></div>";
 
                     programAsHtml += "<b>Цены:</b> "
@@ -167,14 +178,60 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                         programAsHtml += "<b>Начало:</b> \(program.startTime ?? "")<br>"
                     }
 
-                    programAsHtml += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br><br>"
-                    programAsHtml += program.description ?? ""
-                    programAsHtml += "<br>"
+                    programAsHtml += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br>"
+//                    programAsHtml += program.description ?? ""
+                    self.programList.append(programAsHtml.htmlToAttributedString)
+                    self.programDescList.append((style + (program.description ?? "")).htmlToAttributedString)
                 }
             }
         }
 
-        return programAsHtml
+        var previewsLabel: UIView?
+        for (index, program) in self.programList.enumerated() {
+            let programLabel = UILabel()
+            programLabel.translatesAutoresizingMaskIntoConstraints = false
+            programLabel.numberOfLines = 0
+            programLabel.attributedText = program
+            programsWrapper.addSubview(programLabel)
+
+
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitle("Описание программы", for: .normal)
+            button.contentHorizontalAlignment = .center
+            button.setTitleColor(.gray, for: .normal)
+            button.backgroundColor = .mainBgGray
+            button.addTarget(self, action: #selector(showProgramDesc), for: .touchUpInside)
+            button.tag = index
+            programsWrapper.addSubview(button)
+
+            programsWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: programLabel)
+            programsWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: button)
+
+            if (index == 0) {
+                programsWrapper.addConstraintsWithFormat(format: "V:|[v0][v1]", views: programLabel, button)
+            }
+
+            if (index == self.programList.count - 1) {
+                programsWrapper.addConstraintsWithFormat(format: "V:[v0][v1]-30-|", views: programLabel, button)
+            }
+
+            if (index > 0) {
+                if let previewsLabel = previewsLabel {
+                    programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1][v2]", views: previewsLabel, programLabel, button)
+                }
+            }
+            previewsLabel = button
+        }
+    }
+
+    @objc func showProgramDesc(_ sender: UIButton?) {
+        if let button = sender {
+            let index = button.tag
+            let program = self.tourItem?.ruDesc?.programs?[index]
+            let programText = self.programDescList[index]
+            navigator?.openDescViewControllerByCategory(title: program?.name, desc: programText)
+        }
     }
 
     private func setupViews() {
@@ -183,6 +240,10 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         scrollView!.showsHorizontalScrollIndicator = false
         view.addSubview(scrollView!)
+
+//        let titleFont = UIFont.systemFont(ofSize: 24)
+//        let titleText = tourItem?.ruDesc?.name ?? ""
+//        let titleHeight = heightForView(text: titleText, font: titleFont, width: view.frame.width - 40)
 
         let cellHeight = view.frame.width / 16 * 9
         let header = UIView()
@@ -196,12 +257,12 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         title.numberOfLines = 2
         title.font = UIFont.systemFont(ofSize: 24)
 
-        let line = UIView(frame: CGRect(x: 10, y: cellHeight + 80, width: view.frame.width - 20, height: 1))
-        line.backgroundColor = .lightGray
+//        let line = UIView(frame: CGRect(x: 10, y: cellHeight + 80, width: view.frame.width - 20, height: 1))
+//        line.backgroundColor = .lightGray
 
         setupImageViews(parent: header, width: view.frame.size.width)
         header.addSubview(title)
-        header.addSubview(line)
+//        header.addSubview(line)
 
         shortDesc.translatesAutoresizingMaskIntoConstraints = false
         shortDesc.numberOfLines = 0
@@ -216,13 +277,24 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         button0.addTarget(self, action: #selector(showOrderForm), for: .touchUpInside)
         scrollView!.addSubview(button0)
 
-        fullDesc.translatesAutoresizingMaskIntoConstraints = false
-        fullDesc.numberOfLines = 0
-        scrollView!.addSubview(fullDesc)
+
+        let button1 = UIButton()
+        button1.translatesAutoresizingMaskIntoConstraints = false
+        button1.setTitle("Подробное описание", for: .normal)
+        button1.contentHorizontalAlignment = .center
+        button1.setTitleColor(.white, for: .normal)
+        button1.backgroundColor = .lightGray
+        button1.addTarget(self, action: #selector(showExtendedDesc), for: .touchUpInside)
+        scrollView!.addSubview(button1)
 
         programs.translatesAutoresizingMaskIntoConstraints = false
         programs.numberOfLines = 0
         scrollView!.addSubview(programs)
+
+
+        programsWrapper.translatesAutoresizingMaskIntoConstraints = false
+        scrollView?.addSubview(programsWrapper)
+
 
         whatIncluded.translatesAutoresizingMaskIntoConstraints = false
         whatIncluded.numberOfLines = 0
@@ -267,8 +339,8 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         let width = view.frame.size.width - 20
         scrollView!.addConstraintsWithFormat(format: "H:|[v0(\(width))]", views: header)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: shortDesc)
-        scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: fullDesc)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: programs)
+        scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: programsWrapper)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: whatIncluded)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: whatNotIncluded)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: whatTakeWithMe)
@@ -277,9 +349,10 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: msgBlock)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: button)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: button0)
+        scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: button1)
         scrollView!.addConstraintsWithFormat(
-                format: "V:|[v0(\(80 + cellHeight))]-20-[v1]-10-[v2]-10-[v3]-10-[v4]-10-[v5]-10-[v6]-10-[v7]-10-[v8(40)]-10-[v9]-10-[v10][v11(50)]",
-                views: header, shortDesc, button0, fullDesc, programs, whatIncluded, whatNotIncluded, whatTakeWithMe, button, orLabel, phoneLabel, msgBlock)
+                format: "V:|[v0(\(80 + cellHeight))]-20-[v1]-10-[v2]-10-[v3]-40-[v4]-20-[v5]-10-[v6]-10-[v7]-10-[v8]-10-[v9(40)]-10-[v10]-10-[v11][v12(50)]",
+                views: header, shortDesc, button0, button1, programs, programsWrapper, whatIncluded, whatNotIncluded, whatTakeWithMe, button, orLabel, phoneLabel, msgBlock)
 
 
     }
@@ -295,6 +368,14 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         collectionView.isPagingEnabled = true
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         parent.addSubview(collectionView)
+
+        let zoomImageView = UIImageView(frame: CGRect(x: view.frame.width - 50, y: 10, width: 40, height: 40))
+        zoomImageView.contentMode = .scaleAspectFit
+        zoomImageView.image = UIImage(named: "zoom-in")?.withRenderingMode(.alwaysTemplate)
+        zoomImageView.tintColor = .white
+        zoomImageView.isUserInteractionEnabled = true
+        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImageZoomViewController)))
+        parent.addSubview(zoomImageView)
 
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.pageIndicatorTintColor = .lightGray
@@ -312,6 +393,15 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                     }
                     addCell.setTourData(item: item)
                 }.disposed(by: self.disposeBag)
+    }
+
+    @objc func showExtendedDesc() {
+        navigator?.openDescViewControllerByCategory(title: tourItem?.ruDesc?.name, desc: fullDescText)
+    }
+
+    @objc func openImageZoomViewController() {
+        let imageUrl = self.imageDataSource.value[self.pageControl.currentPage].originalPath
+        navigator?.openZoomImageViewControllerByCategory(imageUrl)
     }
 
     private func buildMessengers(parent: UIView) {

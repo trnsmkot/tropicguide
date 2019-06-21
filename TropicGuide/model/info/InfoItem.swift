@@ -8,8 +8,7 @@ import Foundation
 struct InfoItem: Decodable {
     var id: Int?
     var sortOrder: Int = 0
-    var name: String?
     var timestamp: Int?
-    var descriptions: [CommonDescription]?
     var cover: String?
+    var desc: CommonDesc?
 }

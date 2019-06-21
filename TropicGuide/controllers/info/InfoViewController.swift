@@ -17,7 +17,7 @@ class InfoViewController: BaseTableViewController<PointTableViewCell> {
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[InfoItem]>([])
+    let dataSource = BehaviorRelay<[InfoItem]>(value: [])
 
     var infoCategory: InfoCategory?
 
@@ -29,11 +29,11 @@ class InfoViewController: BaseTableViewController<PointTableViewCell> {
         initSpinner(spinner: spinner)
 
         spinner.start()
-        if let id = infoCategory?.id {
-            InfoViewModal.shared.getInfosByCategory(id: id)?
+        if let id = infoCategory?.id, let allCatId = infoCategory?.allCatId {
+            InfoViewModal.shared.getInfosByCategory(id: allCatId > 0 ? allCatId : id)?
                     .subscribe(onNext: { response in
-                        if response.successful {
-                            self.dataSource.value = response.data ?? []
+                        if response.successful, let data = response.data  {
+                            self.dataSource.accept(data)
                         } else {
 //                        _ = self.navigationController?.popViewController(animated: true)
                             // Вывести ошибку получения данных ?
@@ -61,7 +61,7 @@ class InfoViewController: BaseTableViewController<PointTableViewCell> {
                     tourCell.selectionStyle = .none
                     var point = PointItemShort()
                     point.desc = CommonDesc()
-                    point.desc?.name = item.name
+                    point.desc?.name = item.desc?.name
                     point.cover = item.cover
                     tourCell.setData(item: point)
                 }.disposed(by: self.disposeBag)

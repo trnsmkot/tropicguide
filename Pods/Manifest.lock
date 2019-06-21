@@ -1,57 +1,51 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - Differentiator (3.1.0)
-  - FacebookCore (0.6.0):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit (~> 4.43)
-  - FacebookSDK (4.43.0):
-    - Bolts (~> 1.9)
-    - FacebookSDK/CoreKit (= 4.43.0)
-    - FacebookSDK/MarketingKit (= 4.43.0)
-  - FacebookSDK/CoreKit (4.43.0):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit
-  - FacebookSDK/MarketingKit (4.43.0):
-    - Bolts (~> 1.9)
+  - Differentiator (4.0.1)
+  - FacebookCore (0.7.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookSDK (5.0.2):
+    - FacebookSDK/CoreKit (= 5.0.2)
+    - FacebookSDK/MarketingKit (= 5.0.2)
+  - FacebookSDK/CoreKit (5.0.2):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookSDK/MarketingKit (5.0.2):
     - FacebookSDK/CoreKit
-    - FBSDKMarketingKit
-  - FBSDKCoreKit (4.44.0):
-    - Bolts (~> 1.9)
-  - FBSDKMarketingKit (4.38.0):
-    - FBSDKCoreKit
-  - GoogleMaps (2.7.0):
-    - GoogleMaps/Maps (= 2.7.0)
-  - GoogleMaps/Base (2.7.0)
-  - GoogleMaps/Maps (2.7.0):
+    - FBSDKMarketingKit (~> 5.0)
+  - FBSDKCoreKit (5.0.0):
+    - FBSDKCoreKit/Basics (= 5.0.0)
+    - FBSDKCoreKit/Core (= 5.0.0)
+  - FBSDKCoreKit/Basics (5.0.0)
+  - FBSDKCoreKit/Core (5.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKMarketingKit (5.0.0):
+    - FBSDKCoreKit (= 5.0.0)
+  - GoogleMaps (3.1.0):
+    - GoogleMaps/Maps (= 3.1.0)
+  - GoogleMaps/Base (3.1.0)
+  - GoogleMaps/Maps (3.1.0):
     - GoogleMaps/Base
-  - Kingfisher (5.1.0)
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxDataSources (3.1.0):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
+  - Kingfisher (5.6.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
 
 DEPENDENCIES:
   - FacebookCore
   - FacebookSDK
   - GoogleMaps
-  - Kingfisher (~> 5.1.0)
-  - RxCocoa (~> 4.4.0)
-  - RxDataSources (~> 3.1.0)
-  - RxSwift (~> 4.4.0)
+  - Kingfisher (~> 5.6.0)
+  - RxCocoa (~> 5.0.0)
+  - RxDataSources (~> 4.0.1)
+  - RxSwift (~> 5.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Bolts
     - Differentiator
     - FacebookCore
     - FacebookSDK
@@ -59,25 +53,24 @@ SPEC REPOS:
     - FBSDKMarketingKit
     - GoogleMaps
     - Kingfisher
-    - RxAtomic
     - RxCocoa
     - RxDataSources
+    - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  FacebookCore: 38cd3a4078738d6f648eb9b6b9d35b02d693e9a1
-  FacebookSDK: d20336d70de2b2d80b5414358b3a75aa7f9d82ec
-  FBSDKCoreKit: 8bcd4503afe43f28823c2175a6142a7f50f1bf28
-  FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
-  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
-  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
+  FacebookSDK: 94a2aee31c90d6bd32069ccbd7d830cb11438153
+  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
+  FBSDKMarketingKit: 4b8d3c6b53b5397cd0b6ba39b1e7034bc9f3a45e
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: 2318f2923922a57218478c08a7c0a6e2c2100f65
+PODFILE CHECKSUM: 7f03d2d049cad6ed71f39f745314516ce3b0d25f
 
 COCOAPODS: 1.5.3

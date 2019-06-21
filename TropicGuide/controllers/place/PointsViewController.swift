@@ -16,9 +16,8 @@ class PointsViewController: BaseTableViewController<PointTableViewCell> {
     private let spinner = Spinner()
     private let disposeBag = DisposeBag()
 
-    let dataSource = Variable<[PointItemShort]>([])
+    let dataSource = BehaviorRelay<[PointItemShort]>(value: [])
 
-    var district: District?
     var category: PointCategory?
 
     override func viewDidLoad() {
@@ -30,13 +29,13 @@ class PointsViewController: BaseTableViewController<PointTableViewCell> {
 
         setupViews()
 
-        initSpinner(spinner: spinner, offset: district == nil ? 200 : 0)
+        initSpinner(spinner: spinner)
         spinner.start()
 
-        PointViewModal.shared.getPointsByData(categoryId: category?.id ?? 0, districtId: district?.id ?? 0)?
+        PointViewModal.shared.getPointsByData(categoryId: category?.id ?? 0)?
                 .subscribe(onNext: { response in
-                    if response.successful {
-                        self.dataSource.value = response.data ?? []
+                    if response.successful, let data = response.data {
+                        self.dataSource.accept(data)
                     } else {
                         // Вывести ошибку получения данных ?
                     }

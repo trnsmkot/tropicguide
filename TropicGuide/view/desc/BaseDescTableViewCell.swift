@@ -12,7 +12,10 @@ import Kingfisher
 class BaseDescTableViewCell: UITableViewCell {
 
     var descImageView = UIImageView()
+    var zoomImageView = UIImageView()
     var heightImageConstraint: NSLayoutConstraint?
+    var navigator: Navigator?
+    var imageUrl: String?
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,12 +56,12 @@ class BaseDescTableViewCell: UITableViewCell {
 
         let desc = UILabel()
         desc.numberOfLines = 100
-        
+
         let notCleanText = item.text ?? ""
         let regex = try! NSRegularExpression(pattern: "<[^>]*>", options: NSRegularExpression.Options.caseInsensitive)
         let range = NSMakeRange(0, notCleanText.count)
         let cleanedText = regex.stringByReplacingMatches(in: notCleanText, options: [], range: range, withTemplate: "\r\n")
-        
+
         desc.text = cleanedText
         desc.translatesAutoresizingMaskIntoConstraints = false
         desc.font = UIFont.systemFont(ofSize: 14)
@@ -70,13 +73,25 @@ class BaseDescTableViewCell: UITableViewCell {
     }
 
     private func setupImageViews(item: CommonDescription) {
-
         descImageView.translatesAutoresizingMaskIntoConstraints = false
         descImageView.contentMode = .scaleAspectFill
         descImageView.clipsToBounds = true
         descImageView.layer.cornerRadius = 2
         contentView.addSubview(descImageView)
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: descImageView)
+
+        zoomImageView.translatesAutoresizingMaskIntoConstraints = false
+        zoomImageView.layer.shadowColor = UIColor.lightGray.cgColor
+        zoomImageView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        zoomImageView.contentMode = .scaleAspectFit
+        zoomImageView.image = UIImage(named: "zoom-in")?.withRenderingMode(.alwaysTemplate)
+        zoomImageView.tintColor = .white
+        zoomImageView.isUserInteractionEnabled = true
+        contentView.addSubview(zoomImageView)
+        contentView.addConstraintsWithFormat(format: "V:|-10-[v0(40)]", views: zoomImageView)
+        contentView.addConstraintsWithFormat(format: "H:[v0(40)]-20-|", views: zoomImageView)
+
+        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImageZoomViewController)))
 
         heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4 * 3)
         heightImageConstraint?.priority = UILayoutPriority.defaultHigh
@@ -94,6 +109,7 @@ class BaseDescTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-20-|", views: descImageView, title)
 
 
+        self.imageUrl = item.imagePath
         if let imageUrl = item.imagePath {
             descImageView.kf.indicatorType = .activity
             descImageView.kf.setImage(with: URL(string: imageUrl))
@@ -170,10 +186,14 @@ class BaseDescTableViewCell: UITableViewCell {
         let instagramHooks = "instagram://user?username=" + instaAccount
         let instagramUrl = URL(string: instagramHooks)
         if UIApplication.shared.canOpenURL(instagramUrl!) {
-            UIApplication.shared.openURL(instagramUrl!)
+            UIApplication.shared.open(instagramUrl!, options: [:], completionHandler: nil)
         } else {
             //redirect to safari because the user doesn't have Instagram
-            UIApplication.shared.openURL(URL(string: instaBrowserUrl)!)
+            UIApplication.shared.open(URL(string: instaBrowserUrl)!, options: [:], completionHandler: nil)
         }
+    }
+
+    @objc func openImageZoomViewController() {
+        navigator?.openZoomImageViewControllerByCategory(imageUrl)
     }
 }

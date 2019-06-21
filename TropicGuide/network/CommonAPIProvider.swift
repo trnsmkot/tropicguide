@@ -99,14 +99,7 @@ class CommonAPIProvider {
         do {
             let request = try getPostRequest(url: url, params: "tourId=\(id)&name=\(name)&phone=\(phone)&comment=\(comment)")
             return URLSession.shared.rx.data(request: request).retry(3).map { data in
-                do {
-//                    let item = try JSONDecoder().decode(String.self, from: data)
-                    return self.getResponse(String(data: data, encoding: .utf8))
-
-                } catch let jsonError {
-                    CustomLogger.instance.reportError(error: jsonError)
-                    return self.getResponse(nil, 500, "Error parse JSON")
-                }
+                return self.getResponse(String(data: data, encoding: .utf8))
             }
         } catch let error {
             CustomLogger.instance.reportError(error: error)
@@ -284,8 +277,8 @@ class CommonAPIProvider {
         }
     }
 
-    func getPointsByData(categoryId: Int, districtId: Int) -> Observable<ServerResponse<[PointItemShort]>> {
-        guard let url = URL(string: NetworkVariables.getPointsURL(categoryId: categoryId, districtId: districtId, page: 1)) else {
+    func getPointsByData(categoryId: Int) -> Observable<ServerResponse<[PointItemShort]>> {
+        guard let url = URL(string: NetworkVariables.getPointsURL(categoryId: categoryId, page: 1)) else {
             return Observable.just(getResponse([], 500, "Wrong API url"))
         }
 
