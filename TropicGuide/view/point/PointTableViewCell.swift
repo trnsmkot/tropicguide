@@ -12,6 +12,7 @@ class PointTableViewCell: UITableViewCell {
 
     private var categoryImageView = UIImageView()
     private var title = UILabel()
+    private var distr = UILabel()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,6 +32,7 @@ class PointTableViewCell: UITableViewCell {
         }
 
         title.text = item.desc?.name?.uppercased() ?? ""
+        distr.text = item.distr ?? ""
     }
 
     private func setupViews() {
@@ -69,6 +71,29 @@ class PointTableViewCell: UITableViewCell {
         titleWrapper.addSubview(title)
         titleWrapper.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
         titleWrapper.addConstraintsWithFormat(format: "V:|-5-[v0]-5-|", views: title)
+        
+        let distrWrapper = UIView()
+        distrWrapper.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(distrWrapper)
+        contentView.addConstraintsWithFormat(format: "H:|-15-[v0]", views: distrWrapper)
+        contentView.addConstraintsWithFormat(format: "V:|-15-[v0]", views: distrWrapper)
+        distrWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 50).isActive = true
+        
+        let distrBG = UIView()
+        distrBG.backgroundColor = .black
+        distrBG.alpha = 0.5
+        distrBG.translatesAutoresizingMaskIntoConstraints = false
+        distrWrapper.addSubview(distrBG)
+        distrWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: distrBG)
+        distrWrapper.addConstraintsWithFormat(format: "V:|[v0]|", views: distrBG)
+        
+        distr.translatesAutoresizingMaskIntoConstraints = false
+        distr.font = UIFont.systemFont(ofSize: 12)
+        distr.textColor = .white
+        distr.numberOfLines = 1
+        distrWrapper.addSubview(distr)
+        distrWrapper.addConstraintsWithFormat(format: "H:|-5-[v0]-5-|", views: distr)
+        distrWrapper.addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: distr)
 
 
     }

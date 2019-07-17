@@ -29,6 +29,9 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     private var imageHeights: [String: CGFloat?] = [:]
 
     private let footer = UIView()
+    
+    private var mapView: GMSMapView?
+//    private let locationManager = CLLocationManager()
 
     let pageControl = UIPageControl()
     let collectionView: UICollectionView = {
@@ -43,6 +46,8 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
         setupViews()
         initSpinner(spinner: spinner)
+        
+//        locationManager.requestWhenInUseAuthorization()
 
         spinner.start()
         if let id = pointItem?.id {
@@ -94,7 +99,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
 //        header.addSubview(line)
 
-        footer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80)
+        footer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3)
         tableView.tableHeaderView = header
         tableView.tableFooterView = footer
         tableView.estimatedRowHeight = 100
@@ -148,35 +153,38 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
     }
 
     private func setupMapView(parent: UIView, point: PointItem) {
-//        let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 60)
-//
-//        mapView.settings.scrollGestures = false
-//        mapView.settings.zoomGestures = true
-//        mapView.isMyLocationEnabled = true
-//
-//        parent.addSubview(mapView)
-//
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
-//        marker.title = point.desc?.name
-//        marker.map = mapView
-//
-//        if let icon = point.markerIcon {
-//            let markerImageView = UIImageView()
-//
-//            markerImageView.kf.setImage(with: URL(string: icon)) { result in
-//                switch result {
-//                case .success(let value):
-//                    marker.icon = self.resizeImage(image: value.image, targetSize: CGSize(width: 32, height: 32))
-//                case .failure(let error):
-//                    print("Job failed: \(error.localizedDescription)")
-//                }
-//            }
-//        }
+        let camera = GMSCameraPosition.camera(withLatitude: point.lat, longitude: point.lng, zoom: point.zoom)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView!.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / 4 * 3 - 60)
 
-        let button = UIButton(frame: CGRect(x: 10, y: 10, width: view.frame.width - 20, height: 40))
+        mapView!.settings.scrollGestures = true
+        mapView!.settings.zoomGestures = true
+        mapView!.isMyLocationEnabled = true
+
+        parent.addSubview(mapView!)
+        
+//        locationManager.delegate = self
+//        locationManager.startUpdatingLocation()
+
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
+        marker.title = point.desc?.name
+        marker.map = mapView
+
+        if let icon = point.markerIcon {
+            let markerImageView = UIImageView()
+
+            markerImageView.kf.setImage(with: URL(string: icon)) { result in
+                switch result {
+                case .success(let value):
+                    marker.icon = self.resizeImage(image: value.image, targetSize: CGSize(width: 32, height: 32))
+                case .failure(let error):
+                    print("Job failed: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        let button = UIButton(frame: CGRect(x: 10, y: view.frame.width / 4 * 3 - 50, width: view.frame.width - 20, height: 40))
         button.setTitle("Показать на карте", for: .normal)
         button.setImage(UIImage(named: "menu_map")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = .white
@@ -188,6 +196,13 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         parent.addSubview(button)
 
     }
+    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let location = locations.last
+//        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 10.5)
+//        self.mapView?.animate(to: camera)
+//        self.locationManager.stopUpdatingLocation()
+//    }
 
     @objc func openSelectMapApp() {
         let alert = UIAlertController(title: "Веберите приложение", message: nil, preferredStyle: .actionSheet)

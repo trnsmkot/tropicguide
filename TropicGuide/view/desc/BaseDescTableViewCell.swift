@@ -57,7 +57,8 @@ class BaseDescTableViewCell: UITableViewCell {
         let desc = UILabel()
         desc.numberOfLines = 100
 
-        let notCleanText = item.text ?? ""
+        let notCleanText = (item.text ?? "").replacingOccurrences(of: "\r\n", with: "", options: .literal, range: nil)
+//        let notCleanText = item.text ?? ""
         let regex = try! NSRegularExpression(pattern: "<[^>]*>", options: NSRegularExpression.Options.caseInsensitive)
         let range = NSMakeRange(0, notCleanText.count)
         let cleanedText = regex.stringByReplacingMatches(in: notCleanText, options: [], range: range, withTemplate: "\r\n")

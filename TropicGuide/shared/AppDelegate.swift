@@ -10,6 +10,8 @@ import UIKit
 import GoogleMaps
 import FacebookCore
 import FBSDKCoreKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyCHX0Xo0wb2zVibSk8U4v9hSEEq--HwHtM")
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        Fabric.with([Crashlytics.self])
         return true
     }
 

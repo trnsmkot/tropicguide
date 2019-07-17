@@ -16,4 +16,7 @@ target 'TropicGuide' do
   
   pod 'FacebookCore'
   pod 'FacebookSDK'
+
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

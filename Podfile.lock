@@ -1,5 +1,8 @@
 PODS:
+  - Crashlytics (3.13.2):
+    - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
+  - Fabric (1.10.2)
   - FacebookCore (0.7.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookSDK (5.0.2):
@@ -36,6 +39,8 @@ PODS:
   - RxSwift (5.0.0)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - FacebookCore
   - FacebookSDK
   - GoogleMaps
@@ -46,7 +51,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Crashlytics
     - Differentiator
+    - Fabric
     - FacebookCore
     - FacebookSDK
     - FBSDKCoreKit
@@ -59,7 +66,9 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
+  Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
   FacebookSDK: 94a2aee31c90d6bd32069ccbd7d830cb11438153
   FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
@@ -71,6 +80,6 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: 7f03d2d049cad6ed71f39f745314516ce3b0d25f
+PODFILE CHECKSUM: 9b12e9ecf2eda0af70f4ac5db52d62679c8d458f
 
 COCOAPODS: 1.5.3
