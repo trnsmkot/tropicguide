@@ -7,12 +7,14 @@
       <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/Pods-TropicGuide.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/Pods-TropicGuide.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/hedgi.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.debug.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TropicGuide/model/ad/TopAdItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/model/ad/TopAdItem.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +26,7 @@
     <option name="autoscrollToSource" value="true" />
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_6B60461A-3879-4B80-A27B-134CE5CCD8D6" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -118,6 +120,11 @@
       <workItem from="1561276333528" duration="242000" />
       <workItem from="1563306156502" duration="145000" />
       <workItem from="1563306318271" duration="2000" />
+      <workItem from="1563684607352" duration="52000" />
+      <workItem from="1563716661090" duration="402000" />
+      <workItem from="1563717820242" duration="819000" />
+      <workItem from="1563722915032" duration="166000" />
+      <workItem from="1564157998193" duration="1431000" />
     </task>
     <servers />
   </component>

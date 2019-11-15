@@ -10,7 +10,7 @@ target 'TropicGuide' do
   pod 'RxSwift',    '~> 5.0.0'
   pod 'RxCocoa',    '~> 5.0.0'
   pod 'RxDataSources', '~> 4.0.1'
-  pod 'Kingfisher', '~> 5.6.0'
+  pod 'Kingfisher', '~> 5.7.0'
 
   pod 'GoogleMaps'
   
@@ -19,4 +19,6 @@ target 'TropicGuide' do
 
   pod 'Fabric'
   pod 'Crashlytics'
+
+  pod 'RealmSwift'
 end
