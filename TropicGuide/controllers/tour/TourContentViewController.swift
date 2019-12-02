@@ -61,18 +61,23 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                             self.imageDataSource.accept(tour.images)
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
 
-                            let style = "<style> *{ font-family: 'SF Pro Display', 'SF Pro Text', 'Arial'; font-size: 14px;}</style>"
+                            let style = "<style> *{ font-family: 'SF Pro Display', 'SF Pro Text', 'Arial'; font-size: 14px;} ul {} ul li {margin-bottom:5px;}</style>"
 
                             self.tourItem?.ruDesc?.programs = tour.ruDesc?.programs
                             self.shortDesc.text = tour.ruDesc?.shortDescription
                             self.fullDescText = (style + (tour.ruDesc?.description ?? "")).htmlToAttributedString
 
-                            self.programs.attributedText = (style + "<b style=\"font-size: 18px;color:#47c9e5;\">ПРОГРАММЫ И ЦЕНЫ</b>").htmlToAttributedString
+                            self.programs.attributedText = (style + "<b style=\"font-size: 20px;color:#47c9e5;\">Программы и цены</b>").htmlToAttributedString
                             self.buildPrograms(tour: tour, style: style)
 
-                            self.whatIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #01cb68;\">ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatIncluded ?? "")).htmlToAttributedString
-                            self.whatNotIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #eb7591;\">НЕ ВКЛЮЧЕНО</b><br><br>" + (tour.ruDesc?.whatNotIncluded ?? "")).htmlToAttributedString
-                            self.whatTakeWithMe.attributedText = (style + "<b style=\"font-size: 18px;\">ВЗЯТЬ С СОБОЙ</b><br><br>" + (tour.ruDesc?.whatTakeWithMe ?? "")).htmlToAttributedString
+                            let whatIncludedText = tour.ruDesc?.whatIncluded?.replacingOccurrences(of: "<br>", with: "")
+                            self.whatIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #01cb68;\">Включено</b><br><br>" + (whatIncludedText ?? "")).htmlToAttributedString
+                            
+                            let whatNotIncludedText = tour.ruDesc?.whatNotIncluded?.replacingOccurrences(of: "<br>", with: "")
+                            self.whatNotIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #eb7591;\">Не включено</b><br><br>" + (whatNotIncludedText ?? "")).htmlToAttributedString
+                            
+                            let whatTakeWithMeText = tour.ruDesc?.whatTakeWithMe?.replacingOccurrences(of: "<br>", with: "")
+                            self.whatTakeWithMe.attributedText = (style + "<b style=\"font-size: 18px;\">Взять с собой</b><br><br>" + (whatTakeWithMeText ?? "")).htmlToAttributedString
 
                             self.phoneLabel.text = tour.phone
 
@@ -134,26 +139,32 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
     }
 
     @objc func showOrderForm() {
-        let alert = UIAlertController(title: "Оставить заявку", message: "Заполните данные для обратной связи", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Имя"
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Телефон"
-            textField.keyboardType = .phonePad
-        }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Комментарий"
-        }
-
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Отправить", style: .default, handler: { [weak alert] (_) in
-            if let name = alert?.textFields?[0], let phone = alert?.textFields?[1], let comment = alert?.textFields?[2] {
-                self.sendTourOrder(name: name.text ?? "", phone: phone.text ?? "", comment: comment.text ?? "")
-            }
-        }))
-
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Оставить заявку", message: "Заполните данные для обратной связи", preferredStyle: .alert)
+//        alert.addTextField { (textField) in
+//            textField.placeholder = "Имя"
+//        }
+//        alert.addTextField { (textField) in
+//            textField.placeholder = "Телефон"
+//            textField.keyboardType = .phonePad
+//        }
+//        alert.addTextField { (textField) in
+//            textField.placeholder = "Комментарий"
+//        }
+//
+//        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Отправить", style: .default, handler: { [weak alert] (_) in
+//            if let name = alert?.textFields?[0], let phone = alert?.textFields?[1], let comment = alert?.textFields?[2] {
+//                self.sendTourOrder(name: name.text ?? "", phone: phone.text ?? "", comment: comment.text ?? "")
+//            }
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
+        
+        
+        let adViewController = WebViewController()
+        adViewController.pageTitle = tourItem?.ruDesc?.name ?? ""
+        adViewController.pageURL = "https://phuket-tropic-tours.ru/frame/booking/form/\(tourItem?.id ?? 0)/tropicguide/"
+        navigationController?.pushViewController(adViewController, animated: true)
     }
 
     private func buildPrograms(tour: TourItem, style: String) {
@@ -162,31 +173,56 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
             for program in programs {
                 if (!program.hidden) {
                     var programAsHtml = style
-                    programAsHtml += "<div><b style=\"font-size:18px;\">\(program.name ?? "")</b></div>";
-
-                    programAsHtml += "<b>Цены:</b> "
-                    for (index, price) in program.prices.enumerated() {
-                        programAsHtml += "\(price.type?.name ?? ""): \(price.price)฿"
-                        if (index < program.prices.count - 1) {
-                            programAsHtml += ", "
+                    programAsHtml += "<div><b style=\"font-size:20px;\">\(program.name ?? "")</b></div>";
+//                    programAsHtml += "<b>Цены:</b> "
+                    
+                    if (program.isPrivate) {
+                        programAsHtml += "Цена по запросу"
+                    } else {
+                        let prices = program.prices.filter { $0.price > 0  }
+                        for (index, price) in prices.enumerated() {
+                            programAsHtml += "\(price.name ?? ""): <b style=\"font-size:16px;\">\(price.price)</b>฿"
+                            if (index < prices.count - 1) {
+                                programAsHtml += ", "
+                            }
                         }
                     }
-                    programAsHtml += "<br>"
-                    programAsHtml += "<b>Дни:</b> \(program.schedule ?? "")<br>"
-                    programAsHtml += "<b>Продолжительность:</b> \(program.longTime ?? "")<br>"
-                    if (program.showStartTime) {
-                        programAsHtml += "<b>Начало:</b> \(program.startTime ?? "")<br>"
-                    }
-
-                    programAsHtml += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br>"
+                    
+//                    programAsHtml += "<br>"
+//                    programAsHtml += "<b>Дни:</b> \(program.schedule ?? "")<br>"
+//                    if let longTime = program.longTime, longTime != "0" {
+//                          programAsHtml += "<b>Продолжительность:</b> \(longTime)ч.<br>"
+//                    }
+//
+//                    if (program.showStartTime) {
+//                        programAsHtml += "<b>Начало:</b> \(program.startTime ?? "")<br>"
+//                    }
+//
+//                    programAsHtml += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br>"
 //                    programAsHtml += program.description ?? ""
                     self.programList.append(programAsHtml.htmlToAttributedString)
-                    self.programDescList.append((style + (program.description ?? "")).htmlToAttributedString)
+                    var programDescription = ""
+                    if let desc = program.description  {
+                        programDescription += "<br>"
+                        programDescription += "<b>Дни программы:</b> \(program.schedule ?? "")<br>"
+                        
+                        if let longTime = program.longTime, longTime != "0" {
+                            programDescription += "<b>Продолжительность:</b> \(longTime)ч.<br>"
+                        }
+                        if (program.showStartTime) {
+                            programDescription += "<b>Начало:</b> \(program.startTime ?? "")<br>"
+                        }
+                        
+                        programDescription += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br><br><br>"
+                        programDescription += desc
+                    }
+                    self.programDescList.append((style + programDescription).htmlToAttributedString)
                 }
             }
         }
 
-        var previewsLabel: UIView?
+        var previewLabel: UIView?
+//        var previewButton: UIButton?
         for (index, program) in self.programList.enumerated() {
             let programLabel = UILabel()
             programLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -197,31 +233,56 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("Описание программы", for: .normal)
-            button.contentHorizontalAlignment = .center
-            button.setTitleColor(.gray, for: .normal)
+            button.setTitle("    Открыть описание", for: .normal)
+            button.setImage(UIImage(named: "info")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            button.imageView?.tintColor = .darkGray
+//            button.titleLabel?.textAlignment = .left
+            button.contentHorizontalAlignment = .left
+            button.imageView?.contentMode = .scaleAspectFit
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+//            button.contentHorizontalAlignment = .center
+            button.setTitleColor(.darkGray, for: .normal)
             button.backgroundColor = .mainBgGray
             button.addTarget(self, action: #selector(showProgramDesc), for: .touchUpInside)
             button.tag = index
             programsWrapper.addSubview(button)
+            
+            let separator = UIView()
+            separator.translatesAutoresizingMaskIntoConstraints = false
+            separator.backgroundColor = .white
+            programsWrapper.addSubview(separator)
 
+//            programsWrapper.addConstraintsWithFormat(format: "H:|[v0]-20-[v1(40)]|", views: programLabel, button)
+//            programLabel.heightAnchor.constraint(equalTo: button.heightAnchor).isActive = true
+           
             programsWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: programLabel)
             programsWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: button)
+             programsWrapper.addConstraintsWithFormat(format: "H:|[v0]|", views: separator)
 
             if (index == 0) {
-                programsWrapper.addConstraintsWithFormat(format: "V:|[v0][v1]", views: programLabel, button)
+                programsWrapper.addConstraintsWithFormat(format: "V:|-10-[v0]-10-[v1(35)]-10-[v2(20)]", views: programLabel, button, separator)
+//                programsWrapper.addConstraintsWithFormat(format: "V:|[v0]", views: programLabel)
+//                programsWrapper.addConstraintsWithFormat(format: "V:|[v0]", views: button)
             }
 
             if (index == self.programList.count - 1) {
-                programsWrapper.addConstraintsWithFormat(format: "V:[v0][v1]-30-|", views: programLabel, button)
+             
+                
+               
+                
+                programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1(35)]-10-[v2(20)]|", views: programLabel, button, separator)
+//                programsWrapper.addConstraintsWithFormat(format: "V:[v0]-30-|", views: programLabel)
+//                programsWrapper.addConstraintsWithFormat(format: "V:[v0]-30-|", views: button)
             }
 
             if (index > 0) {
-                if let previewsLabel = previewsLabel {
-                    programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1][v2]", views: previewsLabel, programLabel, button)
+                if let previewLabel = previewLabel {
+                    programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1]-10-[v2(35)]-10-[v3(20)]", views: previewLabel, programLabel, button, separator)
+//                    programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1]", views: previewLabel, programLabel)
+//                    programsWrapper.addConstraintsWithFormat(format: "V:[v0]-10-[v1]", views: previewButton ,button)
                 }
             }
-            previewsLabel = button
+            previewLabel = separator
         }
     }
 
@@ -293,6 +354,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
 
         programsWrapper.translatesAutoresizingMaskIntoConstraints = false
+        programsWrapper.backgroundColor = .mainBgGray
         scrollView?.addSubview(programsWrapper)
 
 
@@ -351,7 +413,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: button0)
         scrollView!.addConstraintsWithFormat(format: "H:|-10-[v0(\(width))]", views: button1)
         scrollView!.addConstraintsWithFormat(
-                format: "V:|[v0(\(80 + cellHeight))]-20-[v1]-10-[v2]-10-[v3]-40-[v4]-20-[v5]-10-[v6]-10-[v7]-10-[v8]-10-[v9(40)]-10-[v10]-10-[v11][v12(50)]",
+                format: "V:|[v0(\(80 + cellHeight))]-20-[v1]-10-[v2]-10-[v3]-40-[v4]-20-[v5]-20-[v6]-10-[v7]-10-[v8]-10-[v9(40)]-10-[v10]-10-[v11][v12(50)]",
                 views: header, shortDesc, button0, button1, programs, programsWrapper, whatIncluded, whatNotIncluded, whatTakeWithMe, button, orLabel, phoneLabel, msgBlock)
 
 

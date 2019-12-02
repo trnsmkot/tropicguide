@@ -15,6 +15,7 @@ struct TourItemProgram: Decodable {
     var showStartTime: Bool = false
     var hidden: Bool = true
     var startTime: String?
+    var isPrivate: Bool = false
 
     var prices: [TourItemProgramPrice] = []
 }
@@ -22,9 +23,5 @@ struct TourItemProgram: Decodable {
 
 struct TourItemProgramPrice: Decodable {
     var price: Int = 0
-    var type: TourItemProgramPriceType?
-}
-
-struct TourItemProgramPriceType: Decodable {
     var name: String?
 }

@@ -13,22 +13,23 @@ class WebViewController: BaseViewController, UIWebViewDelegate {
     private var webView: UIWebView!
 
     private let spinner = Spinner()
-    var tour: TourItem?
+    var pageTitle: String = ""
+    var pageURL: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = tour?.ruDesc?.name ?? ""
+        navigationItem.title = pageTitle
 
         setupViews()
         initSpinner(spinner: spinner)
 
-        //FIXME
-//        if let url = tour?.url, let tourUrl = URL(string: url) {
-//            webView.loadRequest(URLRequest(url: tourUrl))
-//        }
 
-//        spinner.start()
+        if let tourUrl = URL(string: pageURL) {
+            webView.loadRequest(URLRequest(url: tourUrl))
+        }
+
+        spinner.start()
     }
 
     @objc override func onBackButtonClicked(sender: UIBarButtonItem) {
@@ -40,13 +41,13 @@ class WebViewController: BaseViewController, UIWebViewDelegate {
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {
-//        if let tourUrl = webView.request?.url, tourUrl.absoluteString.contains("stour") {
-//             spinner.start()
-//        }
+        if let tourUrl = webView.request?.url, tourUrl.absoluteString.contains("stour") {
+             spinner.start()
+        }
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-//        spinner.end()
+        spinner.end()
     }
 
     private func setupViews() {

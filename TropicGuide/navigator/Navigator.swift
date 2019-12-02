@@ -83,12 +83,8 @@ class Navigator {
         switch ad.type {
         case .LINK:
             let adViewController = WebViewController()
-            var tour = TourItem()
-//            tour.url = ad.link
-            tour.ruDesc?.name = ad.title
-            tour.cover = ad.image
-
-            adViewController.tour = tour
+            adViewController.pageTitle = ad.title ?? ""
+            adViewController.pageURL = ad.link ?? ""
             navigationController.pushViewController(adViewController, animated: true)
         case .TOUR:
             let tourContentViewController = TourContentViewController()

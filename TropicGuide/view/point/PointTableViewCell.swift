@@ -13,6 +13,7 @@ class PointTableViewCell: UITableViewCell {
     private var categoryImageView = UIImageView()
     private var title = UILabel()
     private var distr = UILabel()
+    private var distrBG = UIView()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,7 +33,12 @@ class PointTableViewCell: UITableViewCell {
         }
 
         title.text = item.desc?.name?.uppercased() ?? ""
-        distr.text = item.distr ?? ""
+        if let text = item.distr {
+             distr.text = text
+        } else {
+            distrBG.isHidden = true
+        }
+       
     }
 
     private func setupViews() {
@@ -79,7 +85,6 @@ class PointTableViewCell: UITableViewCell {
         contentView.addConstraintsWithFormat(format: "V:|-15-[v0]", views: distrWrapper)
         distrWrapper.widthAnchor.constraint(lessThanOrEqualToConstant: contentView.frame.width - 50).isActive = true
         
-        let distrBG = UIView()
         distrBG.backgroundColor = .black
         distrBG.alpha = 0.5
         distrBG.translatesAutoresizingMaskIntoConstraints = false

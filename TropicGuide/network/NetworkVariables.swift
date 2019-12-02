@@ -7,10 +7,10 @@ import Foundation
 
 struct NetworkVariables {
 
-//    private static let BASE_URL = "http://192.168.0.101:9000/remote/api/v1/"
+//    private static let BASE_URL = "http://localhost:9000/remote/api/v1/"
     private static let BASE_URL = "http://tropicguide.info/remote/api/v1/"
     private static let BASE_TOUR_URL = "https://phuket-tropic-tours.com/remote/api/v1/"
-//    private static let BASE_TOUR_URL = "http://192.168.1.101:9000/remote/api/v1/"
+//    private static let BASE_TOUR_URL = "http://localhost:9000/remote/api/v1/"
     private static let APP_LANG = "ru"
 
 
