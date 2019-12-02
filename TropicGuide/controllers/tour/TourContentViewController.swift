@@ -95,7 +95,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                             for program in self.programList {
                                 height += program?.height(withConstrainedWidth: width) ?? 0
                             }
-                            height += CGFloat(self.programList.count * 60)
+                            height += CGFloat(self.programList.count * 90)
 
                             self.scrollView?.contentSize = CGSize(width: self.view.frame.width, height: height)
                             self.view.layoutIfNeeded()
