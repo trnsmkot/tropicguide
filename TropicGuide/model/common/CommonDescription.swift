@@ -11,8 +11,9 @@ struct CommonDescription: Decodable {
     var type: DescType = DescType.TEXT
     var imagePath: String?
     var sortOrder: Int?
+    var pointId: Int?
 }
 
 enum DescType: String, Decodable {
-    case TEXT, IMAGE, INSTA
+    case TEXT, IMAGE, INSTA, LINK, TOUR
 }

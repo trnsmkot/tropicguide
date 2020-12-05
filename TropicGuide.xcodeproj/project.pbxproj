@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08A4D90325210E4F002B299A /* TopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A4D90225210E4F002B299A /* TopCategoriesViewController.swift */; };
 		08C9A8DB21CCE2E60087140E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C9A8DA21CCE2E60087140E /* AppDelegate.swift */; };
 		08C9A8E221CCE2E60087140E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9A8E021CCE2E60087140E /* Main.storyboard */; };
 		08C9A8E721CCE2E70087140E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C9A8E521CCE2E70087140E /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08A4D90225210E4F002B299A /* TopCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoriesViewController.swift; sourceTree = "<group>"; };
 		08C9A8D721CCE2E60087140E /* TropicGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TropicGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08C9A8DA21CCE2E60087140E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08C9A8E121CCE2E60087140E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,6 +168,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08A4D90125210E09002B299A /* top */ = {
+			isa = PBXGroup;
+			children = (
+				08A4D90225210E4F002B299A /* TopCategoriesViewController.swift */,
+			);
+			path = top;
+			sourceTree = "<group>";
+		};
 		08C9A8CE21CCE2E60087140E = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +218,7 @@
 		08C9A8EE21CCE4290087140E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				08A4D90125210E09002B299A /* top */,
 				08D9277921D6065B00A95707 /* web */,
 				08D9277421D605EE00A95707 /* info */,
 				08D9277321D605EA00A95707 /* map */,
@@ -625,24 +636,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\" 20b5d64ffc88398fc10301d27e6275c04f92afc7 a7775474250b555dcbc13848981e9604e4c4830c1f34d47b0ae09e0efdc63f92\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		51680D46803C2E931E084452 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9CBE0AE33B6FD706F2EEA598 /* [CP] Embed Pods Frameworks */ = {
@@ -650,37 +660,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D80BAEE56642BBDAAD20167B /* [CP] Check Pods Manifest.lock */ = {
@@ -722,6 +711,7 @@
 				5E8FA54D21446A229E6D5E0B /* NetworkVariables.swift in Sources */,
 				5E8FA68923A49EE97F49D245 /* TourCategory.swift in Sources */,
 				5E8FAEEC71AD383CA1E5F77B /* CustomLogger.swift in Sources */,
+				08A4D90325210E4F002B299A /* TopCategoriesViewController.swift in Sources */,
 				5E8FA472E7321FB475E115DE /* ServerResponse.swift in Sources */,
 				5E8FAFC8BA164A0BFA317F95 /* Spinner.swift in Sources */,
 				5E8FA4C5D10FA1D8FDEA3D7C /* UIViewController+Common.swift in Sources */,
@@ -920,7 +910,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = Z5JY8FBN26;
 				INFOPLIST_FILE = TropicGuide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
@@ -928,7 +918,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedgi.TropicGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -942,7 +932,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = Z5JY8FBN26;
 				INFOPLIST_FILE = TropicGuide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
@@ -950,7 +940,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedgi.TropicGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -276,6 +276,35 @@ class CommonAPIProvider {
             return Observable.just(getResponse([], 500, "Error, can't get any point's categories"))
         }
     }
+    
+    func getTopCategories() -> Observable<ServerResponse<[PointCategory]>> {
+        guard let url = URL(string: NetworkVariables.TOP_CATEGORIES_URL) else {
+            return Observable.just(getResponse([], 500, "Wrong API url"))
+        }
+
+        do {
+            let request = try getPostRequest(url: url)
+            return URLSession.shared.rx.data(request: request).retry(3).map { data in
+                do {
+                    let items = try JSONDecoder().decode([PointCategory].self, from: data)
+
+                    let sortedItems = items.sorted {
+                        $0.sortOrder < $1.sortOrder
+                    }
+                    print("Count of point's categories: \(items.count)")
+
+                    return self.getResponse(sortedItems)
+
+                } catch let jsonError {
+                    CustomLogger.instance.reportError(error: jsonError)
+                    return self.getResponse([], 500, "Error parse JSON")
+                }
+            }
+        } catch let error {
+            CustomLogger.instance.reportError(error: error)
+            return Observable.just(getResponse([], 500, "Error, can't get any point's categories"))
+        }
+    }
 
     func getPointsByData(categoryId: Int) -> Observable<ServerResponse<[PointItemShort]>> {
         guard let url = URL(string: NetworkVariables.getPointsURL(categoryId: categoryId, page: 1)) else {

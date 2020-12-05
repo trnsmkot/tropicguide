@@ -9,8 +9,6 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import FBSDKCoreKit
-import FacebookCore
 
 class Navigator {
     private let navigationController: UINavigationController
@@ -21,7 +19,7 @@ class Navigator {
 
 
     func openToursViewControllerByCategory(_ category: TourCategory) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "tourCategories", "name": category.ruName ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "tourCategories", "name": category.ruName ?? "empty"])
 
         let tourViewController = TourViewController()
         tourViewController.tourCategory = category
@@ -30,7 +28,7 @@ class Navigator {
 
 
     func openTourContentViewController(_ tour: TourItem) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "tour", "name": tour.ruDesc?.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "tour", "name": tour.ruDesc?.name ?? "empty"])
 
         let tourContentViewController = TourContentViewController()
         tourContentViewController.tourItem = tour
@@ -38,7 +36,7 @@ class Navigator {
     }
 
     func openInfoViewControllerByCategory(_ category: InfoCategory) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "infoCategories", "name": category.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "infoCategories", "name": category.name ?? "empty"])
 
         let infoViewController = InfoViewController()
         infoViewController.infoCategory = category
@@ -46,7 +44,7 @@ class Navigator {
     }
 
     func openZoomImageViewControllerByCategory(_ url: String?) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "image"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "image"])
 
         let zoomImageViewController = ZoomImageViewController()
         zoomImageViewController.bigImageUrl = url
@@ -61,7 +59,7 @@ class Navigator {
     }
 
     func openInfosViewControllerByParentCategory(_ parentCategory: InfoCategory) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "infosCategories", "name": parentCategory.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "infosCategories", "name": parentCategory.name ?? "empty"])
 
         let infosViewController = InfosViewController()
         infosViewController.parentCategory = parentCategory
@@ -70,7 +68,7 @@ class Navigator {
 
 
     func openContentInfoViewController(_ info: InfoItem) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "info", "name": info.desc?.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "info", "name": info.desc?.name ?? "empty"])
 
         let infoViewController = InfoContentViewController()
         infoViewController.infoItem = info
@@ -78,7 +76,7 @@ class Navigator {
     }
 
     func openTopAdContentController(_ ad: TopAdItem) {
-        AppEvents.logEvent(.adClick, parameters: ["ad_type": "\(ad.type): \(ad.title ?? "None")"])
+//        AppEvents.logEvent(.adClick, parameters: ["ad_type": "\(ad.type): \(ad.title ?? "None")"])
 
         switch ad.type {
         case .LINK:
@@ -106,7 +104,7 @@ class Navigator {
     }
 
     func openPointContentViewController(_ point: PointItemShort) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "point", "name": point.desc?.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "point", "name": point.desc?.name ?? "empty"])
 
         let pointContentViewController = PointContentViewController()
         pointContentViewController.pointItem = point
@@ -120,7 +118,7 @@ class Navigator {
 //    }
 
     func openPointsViewController(category: PointCategory) {
-        AppEvents.logEvent(.viewedContent, parameters: ["view": "points", "name": category.name ?? "empty"])
+//        AppEvents.logEvent(.viewedContent, parameters: ["view": "points", "name": category.name ?? "empty"])
 
         let pointsViewController = PointsViewController()
         pointsViewController.category = category

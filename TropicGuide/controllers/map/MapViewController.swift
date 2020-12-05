@@ -67,14 +67,14 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
 
         let closeButton = UIButton(frame: CGRect(x: 10, y: 0, width: view.frame.width / 2 - 10, height: 44))
         closeButton.setTitleColor(.black, for: .normal)
-        closeButton.setTitle("Закрыть", for: .normal)
+        closeButton.setTitle("Close", for: .normal)
         closeButton.contentHorizontalAlignment = .left
         closeButton.addTarget(self, action: #selector(dismissKeyboard), for: .touchUpInside)
         customView.addSubview(closeButton)
 
         let clearButton = UIButton(frame: CGRect(x: view.frame.width / 2, y: 0, width: view.frame.width / 2 - 10, height: 44))
         clearButton.setTitleColor(.black, for: .normal)
-        clearButton.setTitle("Очистить", for: .normal)
+        clearButton.setTitle("Clear", for: .normal)
         clearButton.contentHorizontalAlignment = .right
         clearButton.addTarget(self, action: #selector(clearSearchBar), for: .touchUpInside)
         customView.addSubview(clearButton)
@@ -177,7 +177,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
         points.forEach { point in
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
-            marker.title = point.desc?.name
+            marker.title = point.name
             marker.map = mapView
             marker.userData = point.id
 
@@ -216,13 +216,13 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
                 title += "\n"
             }
 
-            title += point.desc?.name ?? "" + "\n"
-            let alert = UIAlertController(title: title, message: point.desc?.text, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Посмотреть", style: .default, handler: { alert in
+            title += point.name ?? "" + "\n"
+            let alert = UIAlertController(title: title, message: point.district, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "View", style: .default, handler: { alert in
                 self.navigator?.openPointContentViewController(point)
             }))
-            alert.addAction(UIAlertAction(title: "Открыть навигатор", style: .default, handler: { alert in
+            alert.addAction(UIAlertAction(title: "Open navigator", style: .default, handler: { alert in
                 self.openSelectMapApp(point: point)
             }))
 
@@ -247,21 +247,21 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, UISearchBarDele
     }
 
     private func openSelectMapApp(point: PointItemShort?) {
-        let alert = UIAlertController(title: "Веберите приложение", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Открыть Карты Apple", style: .default, handler: { alert in
+        let alert = UIAlertController(title: "Choose an application", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Open Apple Maps", style: .default, handler: { alert in
             let url = "http://maps.apple.com/?q=\(point?.lat ?? 0),\(point?.lng ?? 0)&z=10&t=s"
             UIApplication.shared.open(URL(string:url)!, options: [:], completionHandler: nil)
         }))
         
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-            alert.addAction(UIAlertAction(title: "Открыть Карты Google", style: .default, handler: { alert in
+            alert.addAction(UIAlertAction(title: "Open Google Maps", style: .default, handler: { alert in
                 let url = "comgooglemaps://?q=\(point?.lat ?? 0),\(point?.lng ?? 0)&zoom=10"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))
         }
         if (UIApplication.shared.canOpenURL(URL(string:"mapsme://")!)) {
-            alert.addAction(UIAlertAction(title: "Открыть Карты Maps.me", style: .default, handler: { alert in
+            alert.addAction(UIAlertAction(title: "Open Maps.me", style: .default, handler: { alert in
                 let url = "mapsme://search?query=\(point?.lat ?? 0),\(point?.lng ?? 0)"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))

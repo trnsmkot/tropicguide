@@ -9,7 +9,6 @@ struct PointItem: Decodable {
     var id: Int?
     var sortOrder: Int = 0
     var cover: String?
-    var desc: CommonDesc?
     var markerIcon: String?
     var lat: Double = 0.0
     var lng: Double = 0.0
@@ -20,6 +19,10 @@ struct PointItem: Decodable {
     var views: Int = 0
 
     var type: PointType?
+
+    var name: String?
+    var text: String?
+    var descriptions: [CommonDescription]?
 
     enum PointType: String, Decodable {
         case POINT, POST

@@ -18,16 +18,19 @@ class BaseViewController: UIViewController {
 //        let backItem = UIBarButtonItem()
 //        backItem.title = "Назад"
 //        navigationItem.backBarButtonItem = backItem
-        initBackButton()
+
 
         if let navigationController = self.navigationController {
             navigator = Navigator(navigationController)
         }
+        initBackButton()
     }
 
     func initBackButton() {
         navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(onBackButtonClicked))
+        let backImage = UIImage(named: "back")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(onBackButtonClicked))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(onBackButtonClicked))
     }
 
     @objc func onBackButtonClicked(sender: UIBarButtonItem) {

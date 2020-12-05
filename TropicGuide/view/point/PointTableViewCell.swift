@@ -32,8 +32,8 @@ class PointTableViewCell: UITableViewCell {
             // TODO ...
         }
 
-        title.text = item.desc?.name?.uppercased() ?? ""
-        if let text = item.distr {
+        title.text = item.name?.uppercased() ?? ""
+        if let text = item.district {
              distr.text = text
         } else {
             distrBG.isHidden = true

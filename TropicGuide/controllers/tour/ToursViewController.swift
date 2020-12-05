@@ -24,7 +24,7 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Экскурсии"
+        navigationItem.title = "Tours"
 
         setupViews()
         initSpinner(spinner: spinner)
@@ -53,8 +53,8 @@ class ToursViewController: BaseTableViewController<TourCategoryTableViewCell> {
         let preferences = UserDefaults.standard
         if !preferences.bool(forKey: showToursKey) {
             
-            let message = "Экскурсии предоставлены компанией TROPIC TOURS\r\nВсю информацию о компании вы можете найти на официальном сайте компании: phuket-tropic-tours.com, в разделе Контакты"
-            let alert = UIAlertController(title: "Информация об экскурсиях", message: message, preferredStyle: .alert)
+            let message = "Tours provided by TROPIC TOURS\r\nYou can find all information about the company on the official website of the company: phuket-tropic-tours.com, in the Contacts section"
+            let alert = UIAlertController(title: "Tours Information", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
             

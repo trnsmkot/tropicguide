@@ -11,7 +11,7 @@ struct NetworkVariables {
     private static let BASE_URL = "http://tropicguide.info/remote/api/v1/"
     private static let BASE_TOUR_URL = "https://phuket-tropic-tours.com/remote/api/v1/"
 //    private static let BASE_TOUR_URL = "http://localhost:9000/remote/api/v1/"
-    private static let APP_LANG = "ru"
+    private static let APP_LANG = "en"
 
 
     static let TOUR_CATEGORIES_URL = "\(BASE_TOUR_URL)categories/"
@@ -49,6 +49,7 @@ struct NetworkVariables {
 
 
     static let POINT_CATEGORIES_URL = "\(BASE_URL)categories/\(APP_LANG)/"
+    static let TOP_CATEGORIES_URL = "\(BASE_URL)topcategories/\(APP_LANG)/"
 
     static func getPointsURL(categoryId: Int, page: Int) -> String {
         return "\(BASE_URL)points/\(APP_LANG)/\(categoryId)/\(page)/"

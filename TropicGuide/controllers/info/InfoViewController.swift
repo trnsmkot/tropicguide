@@ -60,8 +60,7 @@ class InfoViewController: BaseTableViewController<PointTableViewCell> {
                     }
                     tourCell.selectionStyle = .none
                     var point = PointItemShort()
-                    point.desc = CommonDesc()
-                    point.desc?.name = item.desc?.name
+                    point.name = item.desc?.name
                     point.cover = item.cover
                     tourCell.setData(item: point)
                 }.disposed(by: self.disposeBag)

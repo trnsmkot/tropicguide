@@ -42,7 +42,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = pointItem?.desc?.name ?? ""
+        navigationItem.title = pointItem?.name ?? ""
 
         setupViews()
         initSpinner(spinner: spinner)
@@ -54,12 +54,12 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
             PointViewModal.shared.getPointByPoint(id: id)?
                     .subscribe(onNext: { response in
                         if response.successful, let data = response.data, let point = data {
-                            self.dataSource.accept(point.desc?.descriptions ?? [])
+                            self.dataSource.accept(point.descriptions ?? [])
                             self.imageDataSource.accept(point.images ?? [])
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
 
                             self.setupMapView(parent: self.footer, point: point)
-
+                            self.navigationItem.title = point.name
                             self.view.layoutIfNeeded()
                         } else {
                             // Вывести ошибку получения данных ?
@@ -79,7 +79,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         tableView.backgroundColor = .white
 
         let titleFont = UIFont.systemFont(ofSize: 24)
-        let titleText = pointItem?.desc?.name ?? ""
+        let titleText = pointItem?.name ?? ""
         let titleHeight = heightForView(text: titleText, font: titleFont, width: view.frame.width - 40)
 
         let cellHeight = view.frame.width / 16 * 9
@@ -168,7 +168,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: point.lat, longitude: point.lng)
-        marker.title = point.desc?.name
+        marker.title = point.name
         marker.map = mapView
 
         if let icon = point.markerIcon {
@@ -185,7 +185,7 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
         }
 
         let button = UIButton(frame: CGRect(x: 10, y: view.frame.width / 4 * 3 - 50, width: view.frame.width - 20, height: 40))
-        button.setTitle("Показать на карте", for: .normal)
+        button.setTitle("Show on map", for: .normal)
         button.setImage(UIImage(named: "menu_map")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = .white
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
@@ -205,21 +205,21 @@ class PointContentViewController: BaseTableViewController<BaseDescTableViewCell>
 //    }
 
     @objc func openSelectMapApp() {
-        let alert = UIAlertController(title: "Веберите приложение", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Открыть Карты Apple", style: .default, handler: { alert in
+        let alert = UIAlertController(title: "Choose an application", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Open Apple Maps", style: .default, handler: { alert in
             let url = "http://maps.apple.com/?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&z=10&t=s"
             UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
         }))
 
         if (UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!)) {
-            alert.addAction(UIAlertAction(title: "Открыть Карты Google", style: .default, handler: { alert in
+            alert.addAction(UIAlertAction(title: "Open Google Maps", style: .default, handler: { alert in
                 let url = "comgooglemaps://?q=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)&zoom=10"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))
         }
         if (UIApplication.shared.canOpenURL(URL(string: "mapsme://")!)) {
-            alert.addAction(UIAlertAction(title: "Открыть Карты Maps.me", style: .default, handler: { alert in
+            alert.addAction(UIAlertAction(title: "Open Maps.me", style: .default, handler: { alert in
                 let url = "mapsme://search?query=\(self.pointItem?.lat ?? 0),\(self.pointItem?.lng ?? 0)"
                 UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
             }))

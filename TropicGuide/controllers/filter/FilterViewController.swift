@@ -27,9 +27,9 @@ class FilterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Фильтр"
+        navigationItem.title = "Filter"
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Очистить", style: .plain, target: self, action: #selector(clearFilterData))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilterData))
 
         setupViews()
         initSpinner(spinner: spinner)
@@ -75,7 +75,7 @@ class FilterViewController: BaseViewController {
         view.addSubview(tableView)
 
         let applyButton = UIButton()
-        applyButton.setTitle("Применить", for: .normal)
+        applyButton.setTitle("Apply", for: .normal)
         applyButton.setTitleColor(.white, for: .normal)
         applyButton.backgroundColor = .simpleBlue
         applyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -146,8 +146,8 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch (section) {
-        case 0: return "Категории"
-        case 1: return "Районы"
+        case 0: return "Categories"
+        case 1: return "Districts"
         default: return nil
         }
     }

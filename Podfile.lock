@@ -1,62 +1,28 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - Crashlytics (3.13.4):
-    - Fabric (~> 1.10.2)
   - Differentiator (4.0.1)
-  - Fabric (1.10.2)
-  - FacebookCore (0.7.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookSDK (4.44.1):
-    - Bolts (~> 1.9)
-    - FacebookSDK/CoreKit (= 4.44.1)
-    - FacebookSDK/MarketingKit (= 4.44.1)
-  - FacebookSDK/CoreKit (4.44.1):
-    - Bolts (~> 1.9)
-    - FBSDKCoreKit
-  - FacebookSDK/MarketingKit (4.44.1):
-    - Bolts (~> 1.9)
-    - FacebookSDK/CoreKit
-    - FBSDKMarketingKit
-  - FBSDKCoreKit (5.2.3):
-    - FBSDKCoreKit/Basics (= 5.2.3)
-    - FBSDKCoreKit/Core (= 5.2.3)
-  - FBSDKCoreKit/Basics (5.2.3)
-  - FBSDKCoreKit/Core (5.2.3):
-    - FBSDKCoreKit/Basics
-  - FBSDKMarketingKit (4.38.0):
-    - FBSDKCoreKit
-  - GoogleMaps (3.2.0):
-    - GoogleMaps/Maps (= 3.2.0)
-  - GoogleMaps/Base (3.2.0)
-  - GoogleMaps/Maps (3.2.0):
+  - GoogleMaps (3.9.0):
+    - GoogleMaps/Maps (= 3.9.0)
+  - GoogleMaps/Base (3.9.0)
+  - GoogleMaps/Maps (3.9.0):
     - GoogleMaps/Base
-  - Kingfisher (5.7.0)
-  - Realm (3.17.3):
-    - Realm/Headers (= 3.17.3)
-  - Realm/Headers (3.17.3)
-  - RealmSwift (3.17.3):
-    - Realm (= 3.17.3)
-  - RxCocoa (5.0.0):
+  - Kingfisher (5.7.1)
+  - Realm (5.0.3):
+    - Realm/Headers (= 5.0.3)
+  - Realm/Headers (5.0.3)
+  - RealmSwift (5.0.3):
+    - Realm (= 5.0.3)
+  - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxDataSources (4.0.1):
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
-  - RxRelay (5.0.0):
+  - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSwift (5.0.0)
+  - RxSwift (5.0.1)
 
 DEPENDENCIES:
-  - Crashlytics
-  - Fabric
-  - FacebookCore
-  - FacebookSDK
   - GoogleMaps
   - Kingfisher (~> 5.7.0)
   - RealmSwift
@@ -65,15 +31,8 @@ DEPENDENCIES:
   - RxSwift (~> 5.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Bolts
-    - Crashlytics
+  trunk:
     - Differentiator
-    - Fabric
-    - FacebookCore
-    - FacebookSDK
-    - FBSDKCoreKit
-    - FBSDKMarketingKit
     - GoogleMaps
     - Kingfisher
     - Realm
@@ -84,23 +43,16 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
-  FacebookSDK: 98dd798abb2fe8148d010d30f5d9b4b47bc30922
-  FBSDKCoreKit: 5154c35d9058fd7dfa0445ba19e194c4b172fc32
-  FBSDKMarketingKit: e609f39d74ab273cf52e2f8b7e8829ed412b2827
-  GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
-  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
-  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
-  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
+  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
+  Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
+  RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
 
-PODFILE CHECKSUM: 3abde26a5ca7facc90037d5afd98c18e0c0ab0f8
+PODFILE CHECKSUM: 95605a2fd35af34b1c7621c82db7036569839e01
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.0

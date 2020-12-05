@@ -32,6 +32,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
     private var scrollView: UIScrollView?
     private let shortDesc = UILabel()
+    private var titleLabel = UILabel()
     private var fullDescText: NSAttributedString?
 
     private let whatIncluded = UILabel()
@@ -58,26 +59,29 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
             TourViewModal.shared.getTourById(id: id)?
                     .subscribe(onNext: { response in
                         if response.successful, let data = response.data, let tour = data {
+                            self.navigationItem.title = tour.ruDesc?.name ?? ""
+                            self.titleLabel.text = tour.ruDesc?.name ?? ""
+                            
                             self.imageDataSource.accept(tour.images)
                             self.pageControl.numberOfPages = self.imageDataSource.value.count
 
                             let style = "<style> *{ font-family: 'SF Pro Display', 'SF Pro Text', 'Arial'; font-size: 14px;} ul {} ul li {margin-bottom:5px;}</style>"
 
-                            self.tourItem?.ruDesc?.programs = tour.ruDesc?.programs
+                            self.tourItem?.ruDesc = tour.ruDesc
                             self.shortDesc.text = tour.ruDesc?.shortDescription
                             self.fullDescText = (style + (tour.ruDesc?.description ?? "")).htmlToAttributedString
 
-                            self.programs.attributedText = (style + "<b style=\"font-size: 20px;color:#47c9e5;\">Программы и цены</b>").htmlToAttributedString
+                            self.programs.attributedText = (style + "<b style=\"font-size: 20px;color:#47c9e5;\">Programs and prices</b>").htmlToAttributedString
                             self.buildPrograms(tour: tour, style: style)
 
                             let whatIncludedText = tour.ruDesc?.whatIncluded?.replacingOccurrences(of: "<br>", with: "")
-                            self.whatIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #01cb68;\">Включено</b><br><br>" + (whatIncludedText ?? "")).htmlToAttributedString
+                            self.whatIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #01cb68;\">Included</b><br><br>" + (whatIncludedText ?? "")).htmlToAttributedString
                             
                             let whatNotIncludedText = tour.ruDesc?.whatNotIncluded?.replacingOccurrences(of: "<br>", with: "")
-                            self.whatNotIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #eb7591;\">Не включено</b><br><br>" + (whatNotIncludedText ?? "")).htmlToAttributedString
+                            self.whatNotIncluded.attributedText = (style + "<b style=\"font-size: 18px;color: #eb7591;\">Not included</b><br><br>" + (whatNotIncludedText ?? "")).htmlToAttributedString
                             
                             let whatTakeWithMeText = tour.ruDesc?.whatTakeWithMe?.replacingOccurrences(of: "<br>", with: "")
-                            self.whatTakeWithMe.attributedText = (style + "<b style=\"font-size: 18px;\">Взять с собой</b><br><br>" + (whatTakeWithMeText ?? "")).htmlToAttributedString
+                            self.whatTakeWithMe.attributedText = (style + "<b style=\"font-size: 18px;\">Take with you</b><br><br>" + (whatTakeWithMeText ?? "")).htmlToAttributedString
 
                             self.phoneLabel.text = tour.phone
 
@@ -123,7 +127,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                             if (result == "ERROR") {
                                 // TODO
                             } else {
-                                let alert = UIAlertController(title: "Заявка успешно отправлена", message: "Контакнтый телефон: \(self.phoneLabel.text ?? ""), WhatsApp, Viber, Telegram", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Request submitted successfully", message: "Contact number: \(self.phoneLabel.text ?? ""), WhatsApp, Viber, Telegram", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "ОК", style: .cancel, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
                             }
@@ -177,7 +181,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 //                    programAsHtml += "<b>Цены:</b> "
                     
                     if (program.isPrivate) {
-                        programAsHtml += "Цена по запросу"
+                        programAsHtml += "Price on request"
                     } else {
                         let prices = program.prices.filter { $0.price > 0  }
                         for (index, price) in prices.enumerated() {
@@ -204,16 +208,16 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
                     var programDescription = ""
                     if let desc = program.description  {
                         programDescription += "<br>"
-                        programDescription += "<b>Дни программы:</b> \(program.schedule ?? "")<br>"
+                        programDescription += "<b>Program days:</b> \(program.schedule ?? "")<br>"
                         
                         if let longTime = program.longTime, longTime != "0" {
-                            programDescription += "<b>Продолжительность:</b> \(longTime)ч.<br>"
+                            programDescription += "<b>Duration:</b> \(longTime)ч.<br>"
                         }
                         if (program.showStartTime) {
-                            programDescription += "<b>Начало:</b> \(program.startTime ?? "")<br>"
+                            programDescription += "<b>Start:</b> \(program.startTime ?? "")<br>"
                         }
                         
-                        programDescription += "<b>Гид:</b> \(program.guide == 0 ? "Русский гид" : program.guide == 1 ? "Английский гид" : "Без гида")<br><br><br>"
+                        programDescription += "<b>Guide:</b> \(program.guide == 0 ? "Russian guide" : program.guide == 1 ? "English guide" : "No guide")<br><br><br>"
                         programDescription += desc
                     }
                     self.programDescList.append((style + programDescription).htmlToAttributedString)
@@ -233,7 +237,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("    Открыть описание", for: .normal)
+            button.setTitle("    Open description", for: .normal)
             button.setImage(UIImage(named: "info")?.withRenderingMode(.alwaysTemplate), for: .normal)
             button.imageView?.tintColor = .darkGray
 //            button.titleLabel?.textAlignment = .left
@@ -312,17 +316,17 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
         scrollView!.addSubview(header)
 
-        let title = UILabel(frame: CGRect(x: 10, y: cellHeight + 20, width: view.frame.width - 20, height: 60))
-        title.text = tourItem?.ruDesc?.name ?? ""
-        title.textColor = .black
-        title.numberOfLines = 2
-        title.font = UIFont.systemFont(ofSize: 24)
+        titleLabel = UILabel(frame: CGRect(x: 10, y: cellHeight + 20, width: view.frame.width - 20, height: 60))
+        titleLabel.text = tourItem?.ruDesc?.name ?? ""
+        titleLabel.textColor = .black
+        titleLabel.numberOfLines = 2
+        titleLabel.font = UIFont.systemFont(ofSize: 24)
 
 //        let line = UIView(frame: CGRect(x: 10, y: cellHeight + 80, width: view.frame.width - 20, height: 1))
 //        line.backgroundColor = .lightGray
 
         setupImageViews(parent: header, width: view.frame.size.width)
-        header.addSubview(title)
+        header.addSubview(titleLabel)
 //        header.addSubview(line)
 
         shortDesc.translatesAutoresizingMaskIntoConstraints = false
@@ -331,7 +335,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
         let button0 = UIButton()
         button0.translatesAutoresizingMaskIntoConstraints = false
-        button0.setTitle("Оставить заявку", for: .normal)
+        button0.setTitle("Submit your application", for: .normal)
         button0.contentHorizontalAlignment = .center
         button0.setTitleColor(.white, for: .normal)
         button0.backgroundColor = .simpleBlue
@@ -341,7 +345,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
         let button1 = UIButton()
         button1.translatesAutoresizingMaskIntoConstraints = false
-        button1.setTitle("Подробное описание", for: .normal)
+        button1.setTitle("Additional info", for: .normal)
         button1.contentHorizontalAlignment = .center
         button1.setTitleColor(.white, for: .normal)
         button1.backgroundColor = .lightGray
@@ -373,7 +377,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
 
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Оставить заявку", for: .normal)
+        button.setTitle("Submit your application", for: .normal)
         button.contentHorizontalAlignment = .center
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .simpleBlue
@@ -383,7 +387,7 @@ class TourContentViewController: BaseViewController, UICollectionViewDelegateFlo
         let orLabel = UILabel()
         orLabel.translatesAutoresizingMaskIntoConstraints = false
         orLabel.textAlignment = .center
-        orLabel.text = "или"
+        orLabel.text = "or"
         scrollView!.addSubview(orLabel)
 
         phoneLabel.translatesAutoresizingMaskIntoConstraints = false

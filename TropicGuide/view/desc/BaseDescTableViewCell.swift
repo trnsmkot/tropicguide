@@ -16,6 +16,9 @@ class BaseDescTableViewCell: UITableViewCell {
     var heightImageConstraint: NSLayoutConstraint?
     var navigator: Navigator?
     var imageUrl: String?
+    
+    var point: PointItemShort?
+    var tour: TourItem?
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,13 +33,13 @@ class BaseDescTableViewCell: UITableViewCell {
         contentView.subviews.forEach { view in
             view.removeFromSuperview()
         }
+        
         switch (item.type) {
-        case .IMAGE:
-            setupImageViews(item: item)
-        case .INSTA:
-            setupInstaViews(item: item)
-        case .TEXT:
-            setupTextViews(item: item)
+            case .IMAGE: setupImageViews(item: item)
+            case .INSTA: setupInstaViews(item: item)
+            case .TEXT: setupTextViews(item: item)
+            case .LINK: setupLinkViews(item: item)
+            case .TOUR: setupLinkViews(item: item)
         }
     }
 
@@ -116,6 +119,76 @@ class BaseDescTableViewCell: UITableViewCell {
             descImageView.kf.setImage(with: URL(string: imageUrl))
         }
     }
+    
+    private func setupLinkViews(item: CommonDescription) {
+        descImageView.translatesAutoresizingMaskIntoConstraints = false
+        descImageView.contentMode = .scaleAspectFill
+        descImageView.clipsToBounds = true
+        descImageView.layer.cornerRadius = 2
+        contentView.addSubview(descImageView)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: descImageView)
+
+        heightImageConstraint = descImageView.heightAnchor.constraint(equalToConstant: contentView.frame.width / 16 * 9)
+        heightImageConstraint?.priority = UILayoutPriority.defaultHigh
+        heightImageConstraint?.isActive = true
+
+
+        let title = UILabel()
+        title.text = item.title
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = UIFont.boldSystemFont(ofSize: 14)
+        title.textColor = .black
+        contentView.addSubview(title)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: title)
+
+        let desc = UILabel()
+        desc.numberOfLines = 100
+        desc.text = item.text
+        desc.translatesAutoresizingMaskIntoConstraints = false
+        desc.font = UIFont.systemFont(ofSize: 14)
+        desc.textColor = .black
+        contentView.addSubview(desc)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: desc)
+        
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Read more", for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.setTitleColor(.simpleBlue, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        if (item.type == .LINK) {
+            button.addTarget(self, action: #selector(openPointContentViewController), for: .touchUpInside)
+        }
+        if (item.type == .TOUR) {
+            button.addTarget(self, action: #selector(openTourContentViewController), for: .touchUpInside)
+        }
+        contentView.addSubview(button)
+        contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: button)
+        
+        contentView.addConstraintsWithFormat(format: "V:|[v0]-5-[v1]-5-[v2]-5-[v3]-20-|", views: descImageView, title, desc, button)
+
+        if let pointId =  item.pointId {
+            self.point = PointItemShort()
+            self.point?.id = pointId
+            
+            if let title = item.title {
+                let array = title.split(separator: ".")
+                if (array.count > 1) {
+                    self.point?.name = "\(array[1])"
+                }
+            }
+            
+            self.tour = TourItem()
+            self.tour?.id = pointId
+        }
+        
+        self.imageUrl = item.imagePath
+        if let imageUrl = item.imagePath {
+            descImageView.kf.indicatorType = .activity
+            descImageView.kf.setImage(with: URL(string: imageUrl))
+        }
+    }
+
 
     private var instaAccount = ""
     private var instaBrowserUrl = ""
@@ -173,10 +246,10 @@ class BaseDescTableViewCell: UITableViewCell {
 
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Открыть в Instagram", for: .normal)
+        button.setTitle("Open Instagram", for: .normal)
         button.contentHorizontalAlignment = .right
         button.setTitleColor(.lightGray, for: .normal)
-        button.addTarget(self, action: #selector(openInstagram), for: .touchUpInside)
+        button.addTarget(self, action: #selector(openPointContentViewController), for: .touchUpInside)
         contentView.addSubview(button)
         contentView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: button)
 
@@ -196,5 +269,17 @@ class BaseDescTableViewCell: UITableViewCell {
 
     @objc func openImageZoomViewController() {
         navigator?.openZoomImageViewControllerByCategory(imageUrl)
+    }
+    
+    @objc func openTourContentViewController() {
+        if let tour = self.tour {
+            navigator?.openTourContentViewController(tour)
+        }
+    }
+    
+    @objc func openPointContentViewController() {
+        if let point = self.point {
+            navigator?.openPointContentViewController(point)
+        }
     }
 }

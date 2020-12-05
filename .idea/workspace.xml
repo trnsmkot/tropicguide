@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56e1c716-9a8d-4221-b79f-e6af5455ae85" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/back.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/back.imageset/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/top.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/top.imageset/top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TropicGuide/controllers/top/TopCategoriesViewController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
@@ -12,31 +17,54 @@
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-acknowledgements.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-frameworks.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide-resources.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.debug.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-TropicGuide/Pods-TropicGuide.release.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Assets.xcassets/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Base.lproj/Main.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/base/BaseViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/filter/FilterViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/filter/FilterViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfoViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/info/InfosViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/map/MapViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/map/MapViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/place/PointContentViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/place/PointContentViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/tour/TourContentViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/tour/TourContentViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/controllers/tour/ToursViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/controllers/tour/ToursViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/model/common/CommonDescription.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/model/common/CommonDescription.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/model/point/PointItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/model/point/PointItem.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/model/point/PointItemShort.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/model/point/PointItemShort.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/navigator/Navigator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/network/CommonAPIProvider.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/network/CommonAPIProvider.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/network/NetworkVariables.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/shared/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/shared/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/view/desc/BaseDescTableViewCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/view/point/PointTableViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/view/point/PointTableViewCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TropicGuide/viewmodel/PointViewModal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TropicGuide/viewmodel/PointViewModal.swift" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ErrorTreeViewConfiguration">
-    <option name="autoscrollToSource" value="true" />
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
-  </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_6B60461A-3879-4B80-A27B-134CE5CCD8D6" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_CBBFB05A-ADDE-4800-BC5D-F906DE43F343" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Mun3Ghj7S0vX8mI81oV5iNoM2f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="TropicGuide" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TropicGuide/controllers/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TropicGuide/Assets.xcassets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -49,27 +77,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/TropicGuide/Assets.xcassets" />
       <recent name="$PROJECT_DIR$/TropicGuide/controllers/common" />
       <recent name="$PROJECT_DIR$/TropicGuide/model/tour" />
       <recent name="$PROJECT_DIR$/TropicGuide/controllers/place" />
       <recent name="$PROJECT_DIR$/TropicGuide/view/info" />
-      <recent name="$PROJECT_DIR$/TropicGuide/viewmodel" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
-    <configuration name="TropicGuide" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TropicGuide" TARGET_NAME="TropicGuide" CONFIG_NAME="Debug" SCHEME_NAME="TropicGuide" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="TropicGuide" RUN_TARGET_NAME="TropicGuide" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+    <configuration name="TropicGuide" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TropicGuide" TARGET_NAME="TropicGuide" CONFIG_NAME="Debug" SCHEME_NAME="TropicGuide" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="TropicGuide" RUN_TARGET_NAME="TropicGuide" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
@@ -125,23 +141,50 @@
       <workItem from="1563717820242" duration="819000" />
       <workItem from="1563722915032" duration="166000" />
       <workItem from="1564157998193" duration="1431000" />
+      <workItem from="1592597512565" duration="1810000" />
+      <workItem from="1593022985824" duration="3241000" />
+      <workItem from="1594464258611" duration="1784000" />
+      <workItem from="1594545060611" duration="103000" />
+      <workItem from="1594664599906" duration="656000" />
+      <workItem from="1604487868307" duration="83000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1878" height="293" key="GridCell.Tab.0.bottom" timestamp="1594667376302">
+      <screen x="1680" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="484" key="GridCell.Tab.0.bottom/-132.-1057.1920.1057/0.23.1680.1027@-132.-1057.1920.1057" timestamp="1593027586896" />
+    <state width="1878" height="293" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1594667376302" />
+    <state width="1878" height="293" key="GridCell.Tab.0.center" timestamp="1594667376300">
+      <screen x="1680" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="484" key="GridCell.Tab.0.center/-132.-1057.1920.1057/0.23.1680.1027@-132.-1057.1920.1057" timestamp="1593027586895" />
+    <state width="1878" height="293" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1594667376300" />
+    <state width="1878" height="293" key="GridCell.Tab.0.left" timestamp="1594667376300">
+      <screen x="1680" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="484" key="GridCell.Tab.0.left/-132.-1057.1920.1057/0.23.1680.1027@-132.-1057.1920.1057" timestamp="1593027586895" />
+    <state width="1878" height="293" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1594667376300" />
+    <state width="1878" height="293" key="GridCell.Tab.0.right" timestamp="1594667376301">
+      <screen x="1680" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1878" height="484" key="GridCell.Tab.0.right/-132.-1057.1920.1057/0.23.1680.1027@-132.-1057.1920.1057" timestamp="1593027586895" />
+    <state width="1878" height="293" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.1027@1680.23.1920.1057" timestamp="1594667376301" />
   </component>
 </project>

@@ -8,10 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import FacebookCore
-import FBSDKCoreKit
-import Fabric
-import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,14 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyCHX0Xo0wb2zVibSk8U4v9hSEEq--HwHtM")
         
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        Fabric.with([Crashlytics.self])
         return true
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        ApplicationDelegate.shared.application(app, open: url, options: options)
+//        ApplicationDelegate.shared.application(app, open: url, options: options)
            return true
     }
     
@@ -49,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        AppEvents.activateApp()
+//        AppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

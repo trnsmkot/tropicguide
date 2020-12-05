@@ -9,8 +9,8 @@ struct PointItemShort: Decodable {
     var id: Int?
     var sortOrder: Int = 0
     var cover: String?
-    var distr: String?
-    var desc: CommonDesc?
+    var district: String?
+    var name: String?
     var markerIcon: String?
     var lat: Double = 0.0
     var lng: Double = 0.0
